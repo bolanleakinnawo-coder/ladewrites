@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
@@ -29,6 +33,7 @@
         --ink: #1c0d04;
         --soft-bg: #f5ede3;
         --f-display: "Playfair Display", serif;
+        --f-script: "Arizonia", "Playfair Display", cursive;
         --f-body: "Tahoma", "Segoe UI", "Outfit", sans-serif;
         --f-ui: "Outfit", "Segoe UI", sans-serif;
       }
@@ -70,9 +75,9 @@
         color: var(--brown);
       }
       .booking-header h1 {
-        font-family: var(--f-display);
-        font-size: clamp(2rem, 5vw, 2.8rem);
-        font-weight: 800;
+        font-family: var(--f-script);
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+        font-weight: 400;
         color: var(--brown);
         margin-bottom: 0.5rem;
       }
@@ -84,7 +89,7 @@
 
       /* Modal-style card */
       .booking-card {
-        max-width: 620px;
+        max-width: 720px;
         margin: 0 auto;
         background: var(--cream);
         padding: 2.5rem;
@@ -159,6 +164,70 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
       }
+      .fg-row-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+      }
+
+      /* Delivery/Pickup toggle styling */
+      .delivery-toggle {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      .delivery-option {
+        flex: 1;
+        text-align: center;
+        cursor: pointer;
+      }
+      .delivery-option input {
+        display: none;
+      }
+      .delivery-option label {
+        display: block;
+        padding: 0.75rem;
+        background: var(--sand-3);
+        border: 1.5px solid var(--sand);
+        border-radius: 12px;
+        font-family: var(--f-ui);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: var(--brown-2);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 0;
+      }
+      .delivery-option input:checked + label {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: var(--brown);
+      }
+
+      /* Conditional field */
+      .conditional-field {
+        display: none;
+      }
+      .conditional-field.show {
+        display: block;
+      }
+
+      /* Word counter */
+      .word-counter {
+        text-align: right;
+        font-size: 0.7rem;
+        font-family: var(--f-ui);
+        color: var(--brown-4);
+        margin-top: 0.3rem;
+      }
+      .word-counter.warning {
+        color: #d97706;
+      }
+      .word-counter.limit {
+        color: #dc2626;
+      }
+
       .m-submit {
         width: 100%;
         background: var(--gold);
@@ -194,15 +263,28 @@
         color: var(--gold);
         margin-left: 2px;
       }
+      hr {
+        margin: 1.5rem 0;
+        border: none;
+        border-top: 1px solid var(--sand);
+      }
+      .section-title {
+        font-family: var(--f-script);
+        font-size: 1.2rem;
+        color: var(--brown);
+        margin-bottom: 1rem;
+        font-weight: 400;
+      }
 
-      @media (max-width: 550px) {
+      @media (max-width: 650px) {
         body {
           padding: 1.5rem 1rem;
         }
         .booking-card {
           padding: 1.8rem;
         }
-        .fg-row {
+        .fg-row,
+        .fg-row-3 {
           grid-template-columns: 1fr;
           gap: 0;
         }
@@ -222,6 +304,7 @@
         <span class="m-price" id="mPrice"></span>
       </div>
 
+      <!-- OFFERING -->
       <div class="fg">
         <label>Choose offering <span class="required-star">*</span></label>
         <select id="fOffering">
@@ -237,26 +320,87 @@
         </select>
       </div>
 
-      <div class="fg">
-        <label>Your Name <span class="required-star">*</span></label>
-        <input type="text" id="fName" placeholder="e.g. Amara Okafor" />
+      <!-- CLIENT INFO -->
+      <div class="fg-row">
+        <div class="fg">
+          <label>Your Name <span class="required-star">*</span></label>
+          <input type="text" id="fName" placeholder="e.g. Amara Okafor" />
+        </div>
+        <div class="fg">
+          <label>WhatsApp Number <span class="required-star">*</span></label>
+          <input type="tel" id="fPhone" placeholder="0800 000 0000" />
+        </div>
       </div>
 
       <div class="fg-row">
         <div class="fg">
-          <label>WhatsApp Number <span class="required-star">*</span></label>
-          <input
-            type="tel"
-            id="fPhone"
-            placeholder="0800 000 0000"
-          />
-        </div>
-        <div class="fg">
           <label>Instagram (optional)</label>
           <input type="text" id="fInsta" placeholder="@username" />
         </div>
+        <div class="fg">
+          <label>Email (optional)</label>
+          <input type="email" id="fEmail" placeholder="you@example.com" />
+        </div>
       </div>
 
+      <!-- DELIVERY OPTIONS -->
+      <div class="fg">
+        <label>Delivery method <span class="required-star">*</span></label>
+        <div class="delivery-toggle" id="deliveryToggle">
+          <div class="delivery-option">
+            <input
+              type="radio"
+              name="deliveryMethod"
+              id="optPickup"
+              value="pickup"
+              checked
+            />
+            <label for="optPickup">📦 Pickup (Ikola, Lagos)</label>
+          </div>
+          <div class="delivery-option">
+            <input
+              type="radio"
+              name="deliveryMethod"
+              id="optDelivery"
+              value="delivery"
+            />
+            <label for="optDelivery">🚚 Delivery</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pickup location (always visible, pre-filled) -->
+      <div class="fg" id="pickupLocation">
+        <label>Pickup Location</label>
+        <input
+          type="text"
+          id="fPickupLocation"
+          value="Ikola, Lagos, Nigeria"
+          placeholder="Pickup location"
+        />
+        <small style="font-size: 0.7rem; color: var(--brown-4)"
+          >Pickup available at Ikola, Lagos — you'll receive exact address after
+          booking</small
+        >
+      </div>
+
+      <!-- Delivery address (conditional - hidden by default) -->
+      <div class="fg conditional-field" id="deliveryAddress">
+        <label
+          >Delivery Address
+          <span class="required-star" id="deliveryStar">*</span></label
+        >
+        <textarea
+          id="fDeliveryAddress"
+          rows="3"
+          placeholder="Full delivery address (street, landmark, city, state)"
+        ></textarea>
+        <small style="font-size: 0.7rem; color: var(--brown-4)"
+          >Delivery fees may apply based on location</small
+        >
+      </div>
+
+      <!-- LETTER DETAILS -->
       <div class="fg">
         <label>Who is the letter for?</label>
         <input
@@ -266,37 +410,68 @@
         />
       </div>
 
+      <div class="fg-row">
+        <div class="fg">
+          <label>Occasion</label>
+          <select id="fOccasion">
+            <option value="">Select…</option>
+            <option>Birthday</option>
+            <option>Anniversary</option>
+            <option>Graduation</option>
+            <option>Apology</option>
+            <option>Wedding / Proposal</option>
+            <option>Just because</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Deadline (if any)</label>
+          <input
+            type="text"
+            id="fDeadline"
+            placeholder="e.g. Before Dec 25th"
+          />
+        </div>
+      </div>
+
+      <!-- DATE ON POLAROID (only for polaroid offerings) -->
+      <div class="fg" id="polaroidDateGroup" style="display: none">
+        <label>Date on Polaroid</label>
+        <input
+          type="text"
+          id="fPolaroidDate"
+          placeholder="e.g. Dec 25, 2024 | Our 3rd anniversary | The day we met"
+        />
+        <small style="font-size: 0.7rem; color: var(--brown-4)">
+          This date will be handwritten on the polaroid picture</small
+        >
+      </div>
+
+      <!-- THEIR OWN WORDS (450 words max) -->
       <div class="fg">
-        <label>Occasion</label>
-        <select id="fOccasion">
-          <option value="">Select…</option>
-          <option>Birthday</option>
-          <option>Anniversary</option>
-          <option>Graduation</option>
-          <option>Apology</option>
-          <option>Wedding / Proposal</option>
-          <option>Just because</option>
-          <option>Other</option>
-        </select>
+        <label>Your own words / message (optional) ></label>
+        <textarea
+          id="fCustomWords"
+          rows="6"
+          placeholder="Write your message here (up to 450 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: You can write in paragraphs, include special memories, inside jokes, or just pour your heart out!"
+        ></textarea>
+        <div class="word-counter" id="wordCounter">0 / 450 words</div>
       </div>
 
       <div class="fg">
-        <label>Give me the vibes</label>
+        <label>Give me the vibes / direction</label>
         <textarea
           id="fVibe"
+          rows="3"
           placeholder="Tell me about the person, the tone you want — happy, emotional, romantic, funny… anything helps!"
         ></textarea>
-      </div>
-
-      <div class="fg">
-        <label>Deadline (if any)</label>
-        <input type="text" id="fDeadline" placeholder="e.g. Before Dec 25th" />
       </div>
 
       <div class="fg">
         <label>Anything else?</label>
         <textarea
           id="fExtra"
+          rows="2"
           placeholder="Special requests, add-ons, questions…"
           style="min-height: 65px"
         ></textarea>
@@ -309,12 +484,11 @@
     </div>
 
     <script>
-      // Get URL parameters
+      // URL parameters
       const urlParams = new URLSearchParams(window.location.search);
       const offeringParam = urlParams.get("offering");
       const priceParam = urlParams.get("price");
 
-      // Auto-fill offering from URL if present
       if (offeringParam && priceParam) {
         const fullOffering = offeringParam + " — " + priceParam;
         const selectEl = document.getElementById("fOffering");
@@ -324,15 +498,87 @@
             break;
           }
         }
-        // Show pill
         document.getElementById("mName").textContent = offeringParam;
         document.getElementById("mPrice").textContent = priceParam;
         document.getElementById("mPill").style.display = "flex";
       }
 
+      // Delivery/Pickup toggle logic
+      const optPickup = document.getElementById("optPickup");
+      const optDelivery = document.getElementById("optDelivery");
+      const deliveryAddressDiv = document.getElementById("deliveryAddress");
+      const pickupLocationDiv = document.getElementById("pickupLocation");
+      const deliveryStar = document.getElementById("deliveryStar");
+
+      function toggleDeliveryFields() {
+        if (optDelivery.checked) {
+          deliveryAddressDiv.classList.add("show");
+          pickupLocationDiv.style.opacity = "0.5";
+          deliveryStar.style.display = "inline";
+        } else {
+          deliveryAddressDiv.classList.remove("show");
+          pickupLocationDiv.style.opacity = "1";
+          deliveryStar.style.display = "none";
+        }
+      }
+
+      optPickup.addEventListener("change", toggleDeliveryFields);
+      optDelivery.addEventListener("change", toggleDeliveryFields);
+      toggleDeliveryFields();
+
+      // Show/hide polaroid date field based on offering selection
+      const offeringSelect = document.getElementById("fOffering");
+      const polaroidDateGroup = document.getElementById("polaroidDateGroup");
+
+      function togglePolaroidDate() {
+        const selected = offeringSelect.value;
+        if (
+          selected.includes("Polaroid") ||
+          selected.includes("Letter Polaroid")
+        ) {
+          polaroidDateGroup.style.display = "block";
+        } else {
+          polaroidDateGroup.style.display = "none";
+        }
+      }
+
+      offeringSelect.addEventListener("change", togglePolaroidDate);
+      togglePolaroidDate();
+
+      // Word counter (450 words max)
+      const customWordsTextarea = document.getElementById("fCustomWords");
+      const wordCounterDiv = document.getElementById("wordCounter");
+
+      function countWords(str) {
+        return str.trim() === "" ? 0 : str.trim().split(/\s+/).length;
+      }
+
+      function updateWordCounter() {
+        const text = customWordsTextarea.value;
+        const wordCount = countWords(text);
+        const maxWords = 450;
+
+        wordCounterDiv.textContent = `${wordCount} / ${maxWords} words`;
+
+        if (wordCount > maxWords) {
+          wordCounterDiv.classList.add("limit");
+          wordCounterDiv.classList.remove("warning");
+        } else if (wordCount > maxWords * 0.8) {
+          wordCounterDiv.classList.add("warning");
+          wordCounterDiv.classList.remove("limit");
+        } else {
+          wordCounterDiv.classList.remove("warning", "limit");
+        }
+      }
+
+      customWordsTextarea.addEventListener("input", updateWordCounter);
+      updateWordCounter();
+
+      // WhatsApp message
       function sendWA() {
         const name = document.getElementById("fName").value.trim();
         const phone = document.getElementById("fPhone").value.trim();
+        const email = document.getElementById("fEmail").value.trim();
         const offering = document.getElementById("fOffering").value;
         const recipient = document.getElementById("fRecipient").value.trim();
         const occasion = document.getElementById("fOccasion").value;
@@ -340,31 +586,99 @@
         const deadline = document.getElementById("fDeadline").value.trim();
         const insta = document.getElementById("fInsta").value.trim();
         const extra = document.getElementById("fExtra").value.trim();
+        const customWords = document
+          .getElementById("fCustomWords")
+          .value.trim();
+        const polaroidDate = document
+          .getElementById("fPolaroidDate")
+          .value.trim();
+
+        // Delivery info
+        const deliveryMethod = optDelivery.checked ? "Delivery" : " Pickup";
+        const pickupLocation = document
+          .getElementById("fPickupLocation")
+          .value.trim();
+        const deliveryAddress = document
+          .getElementById("fDeliveryAddress")
+          .value.trim();
 
         if (!name || !phone) {
           alert("Please fill in your name and WhatsApp number ✦");
           return;
         }
 
+        if (!offering) {
+          alert("Please select an offering ✦");
+          return;
+        }
+
+        if (!customWords) {
+          alert(
+            "Please write your message (up to 450 words) — this is what will be handwritten ✦",
+          );
+          return;
+        }
+
+        const wordCount = countWords(customWords);
+        if (wordCount > 450) {
+          alert(
+            `Your message has ${wordCount} words. Please shorten it to 450 words or less.`,
+          );
+          return;
+        }
+
+        if (optDelivery.checked && !deliveryAddress) {
+          alert("Please provide your delivery address ✦");
+          return;
+        }
+
         const msg = [
-          "✉️ *New Booking — Lade Writes*",
+          " *NEW BOOKING — LADE WRITES*",
           "",
-          "*Offering:* " + (offering || "Not selected"),
+
+          "* OFFERING DETAILS*",
+
+          "*Offering:* " + offering,
           "",
-          "*Client:* " + name,
-          "*Phone/WhatsApp:* " + phone,
+
+          "*CLIENT INFO*",
+
+          "*Name:* " + name,
+          "*WhatsApp:* " + phone,
+          email ? "*Email:* " + email : null,
           insta ? "*Instagram:* " + insta : null,
           "",
-          "*Letter for:* " + (recipient || "Not specified"),
-          "*Occasion:* " + (occasion || "Not specified"),
+
+          "*DELIVERY*",
+
+          "*Method:* " + deliveryMethod,
+          optDelivery.checked
+            ? "*Delivery Address:*\n" + deliveryAddress
+            : "*Pickup:* " + pickupLocation,
           "",
-          "*Vibes / Direction:*",
-          vibe || "Not specified",
-          "",
+
+          "*LETTER DETAILS*",
+
+          recipient ? "*For:* " + recipient : null,
+          occasion !== "Select…" && occasion ? "*Occasion:* " + occasion : null,
           deadline ? "*Deadline:* " + deadline : null,
-          extra ? "*Extra Notes:*\n" + extra : null,
+          polaroidDate ? "*Date on Polaroid:* " + polaroidDate : null,
           "",
-          "_via ladewrites.com_",
+
+          "* THEIR WORDS (" + wordCount + "/450 words)*",
+
+          customWords,
+          "",
+          vibe
+            ? "━━━━━━━━━━━━━━━━━━\n*VIBES / DIRECTION*\n━━━━━━━━━━━━━━━━━━\n" +
+              vibe
+            : null,
+          "",
+          extra
+            ? "━━━━━━━━━━━━━━━━━━\n* EXTRA NOTES*\n━━━━━━━━━━━━━━━━━━\n" + extra
+            : null,
+          "",
+          "_— Sent from LadeWrites booking form_",
         ]
           .filter(Boolean)
           .join("\n");
