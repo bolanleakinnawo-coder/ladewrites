@@ -7,8 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter%3A400%2C600%2C700%7CIBM+Plex+Serif%3A600%2C700%7CManrope%3A600"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <style>
       :root {
@@ -23,9 +31,11 @@
         --gold: #c4923a;
         --gold-2: #e8b86d;
         --ink: #1c0d04;
-        --f-display: "Playfair Display", serif;
-        --f-body: "Libre Baskerville", serif;
-        --f-ui: "Outfit", sans-serif;
+        --soft-bg: #f5ede3;
+        --warm-accent: #d4a373;
+        --f-display: "IBM Plex Serif", serif;
+        --f-body: "Tahoma", "Segoe UI", "Outfit", sans-serif;
+        --f-ui: "Outfit", "Segoe UI", sans-serif;
       }
       *,
       *::before,
@@ -49,7 +59,7 @@
         content: "";
         position: fixed;
         inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
         pointer-events: none;
         z-index: 9998;
       }
@@ -65,9 +75,8 @@
         justify-content: space-between;
         align-items: center;
         padding: 0 5vw;
-        height: 68px;
+        height: 72px;
         background: var(--brown);
-        border-bottom: 1px solid rgba(255, 252, 247, 0.08);
         transition: box-shadow 0.3s;
       }
       nav.solid {
@@ -75,15 +84,15 @@
       }
       .nav-logo {
         font-family: var(--f-display);
-        font-size: 1.35rem;
-        font-weight: 700;
+        font-size: 1.4rem;
+        font-weight: 800;
         color: var(--sand-3);
         text-decoration: none;
         letter-spacing: 0.01em;
       }
-      .nav-logo em {
-        font-style: italic;
+      .nav-logo span {
         color: var(--gold-2);
+        font-weight: 700;
       }
       .nav-center {
         display: flex;
@@ -96,12 +105,29 @@
         font-size: 0.72rem;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: rgba(250, 245, 238, 0.65);
+        color: rgba(250, 245, 238, 0.75);
         text-decoration: none;
         transition: color 0.2s;
+        font-weight: 500;
       }
       .nav-center a:hover {
         color: var(--sand-3);
+      }
+      .nav-social {
+        display: flex;
+        gap: 1.2rem;
+        align-items: center;
+      }
+      .nav-social a {
+        color: var(--sand);
+        font-size: 1rem;
+        transition:
+          color 0.2s,
+          transform 0.2s;
+      }
+      .nav-social a:hover {
+        color: var(--gold-2);
+        transform: translateY(-2px);
       }
       .nav-book {
         font-family: var(--f-ui);
@@ -110,11 +136,13 @@
         text-transform: uppercase;
         background: var(--gold);
         color: var(--brown);
-        font-weight: 600;
+        font-weight: 700;
         padding: 0.55rem 1.3rem;
         border: none;
         cursor: pointer;
         transition: background 0.2s;
+        text-decoration: none;
+        display: inline-block;
       }
       .nav-book:hover {
         background: var(--gold-2);
@@ -160,7 +188,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2.4rem;
+        gap: 2rem;
         transform: translateX(-100%);
         transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
       }
@@ -170,14 +198,23 @@
       .nav-drawer a,
       .nav-drawer button {
         font-family: var(--f-display);
-        font-size: 2rem;
-        font-weight: 400;
+        font-size: 1.5rem;
+        font-weight: 600;
         color: var(--brown);
         text-decoration: none;
         letter-spacing: 0.02em;
         background: none;
         border: none;
         cursor: pointer;
+      }
+      .nav-drawer-social {
+        display: flex;
+        gap: 1.8rem;
+        margin-top: 1rem;
+      }
+      .nav-drawer-social a {
+        font-size: 1.8rem;
+        color: var(--brown-3);
       }
 
       /* ══ HERO ══ */
@@ -186,9 +223,8 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding: 0 5vw;
-        padding-top: 68px;
+        padding-top: 72px;
         position: relative;
-        overflow: hidden;
         background: var(--sand-3);
       }
       .hero-left {
@@ -220,13 +256,12 @@
       .hero-h1 {
         font-family: var(--f-display);
         font-size: clamp(3rem, 6.5vw, 6.5rem);
-        font-weight: 700;
+        font-weight: 800;
         line-height: 1.02;
         color: var(--brown);
         margin-bottom: 1.6rem;
       }
-      .hero-h1 em {
-        font-style: italic;
+      .hero-h1 span {
         color: var(--brown-3);
         display: block;
       }
@@ -252,19 +287,18 @@
         text-transform: uppercase;
         background: var(--gold);
         color: var(--brown);
-        font-weight: 600;
+        font-weight: 700;
         padding: 0.85rem 2rem;
         border: none;
         cursor: pointer;
-        transition:
-          background 0.2s,
-          transform 0.2s;
+        transition: all 0.2s;
         text-decoration: none;
         display: inline-block;
       }
       .btn-primary:hover {
         background: var(--brown-2);
         transform: translateY(-2px);
+        color: var(--sand-3);
       }
       .btn-ghost {
         font-family: var(--f-ui);
@@ -283,7 +317,7 @@
       .btn-ghost:hover {
         background: var(--gold);
         color: var(--brown);
-        font-weight: 600;
+        font-weight: 700;
         border-color: var(--brown);
       }
 
@@ -296,8 +330,7 @@
       .hero-img-wrap {
         width: 100%;
         height: 100%;
-        min-height: 560px;
-
+        min-height: 530px;
         position: relative;
         overflow: hidden;
         display: flex;
@@ -312,84 +345,25 @@
         position: absolute;
         inset: 0;
       }
-      .hero-img-placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-        color: var(--brown-4);
-        font-family: var(--f-display);
-        font-style: italic;
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 2rem;
-      }
-      .hero-img-placeholder .big-icon {
-        font-size: 3.5rem;
-        opacity: 0.4;
-      }
-      .hero-img-placeholder p {
-        font-size: 0.9rem;
-        opacity: 0.6;
-        font-family: var(--f-ui);
-        font-style: normal;
-        letter-spacing: 0.08em;
-      }
-      .hero-badge {
-        position: absolute;
-        bottom: 2.5rem;
-        left: -1.5rem;
-        z-index: 3;
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 600;
-        padding: 1rem 1.5rem;
-        font-family: var(--f-display);
-        font-style: italic;
-        font-size: 1rem;
-        line-height: 1.4;
-        max-width: 200px;
-        box-shadow: 0 8px 32px rgba(59, 26, 8, 0.25);
-      }
-      .hero-badge strong {
-        display: block;
-        font-family: var(--f-ui);
-        font-style: normal;
-        font-size: 0.65rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        margin-bottom: 0.3rem;
-        color: var(--gold-2);
-      }
       .hero-deco {
         position: absolute;
         right: -2vw;
         top: 50%;
         transform: translateY(-50%);
         font-family: var(--f-display);
-        font-style: italic;
         font-size: 28vw;
-        color: rgba(59, 26, 8, 0.04);
+        color: rgba(59, 26, 8, 0.03);
         line-height: 1;
         pointer-events: none;
         user-select: none;
         z-index: 0;
+        font-weight: 800;
       }
 
-      /* ══ WHAT I OFFER ══ */
-      #offerings {
-        padding: 7rem 5vw;
-        background: var(--cream);
-      }
-      .sec-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+      /* ══ SECTION HEADERS (CENTERED) ══ */
+      .sec-header-center {
+        text-align: center;
         margin-bottom: 3.5rem;
-
-        flex-wrap: wrap;
-        gap: 1.5rem;
       }
       .sec-tag {
         font-family: var(--f-ui);
@@ -403,15 +377,102 @@
         font-family: var(--f-display);
         font-size: clamp(2rem, 4.5vw, 3.5rem);
         color: var(--brown);
-        font-weight: 700;
+        font-weight: 800;
         line-height: 1.1;
       }
-      .sec-title em {
-        font-style: italic;
+      .sec-title span {
         color: var(--brown-3);
       }
 
-      /* Cards grid */
+      /* ══ WHY CHOOSE US ══ */
+      #whyus {
+        padding: 6rem 5vw;
+        background: var(--cream);
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .why-card {
+        text-align: center;
+        padding: 2rem 1.5rem;
+        background: var(--sand-3);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        border: 1px solid var(--sand);
+      }
+      .why-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 32px rgba(59, 26, 8, 0.08);
+      }
+      .why-icon {
+        font-size: 2.5rem;
+        color: var(--gold);
+        margin-bottom: 1rem;
+      }
+      .why-title {
+        font-family: var(--f-ui);
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        color: var(--brown);
+        margin-bottom: 0.75rem;
+      }
+      .why-desc {
+        font-family: var(--f-body);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: var(--brown-2);
+      }
+
+      @media (max-width: 900px) {
+        .why-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 500px) {
+        .why-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ══ VIDEO SHOWCASE ══ */
+      #video-showcase {
+        padding: 6rem 5vw;
+        background: var(--sand-2);
+      }
+      .video-container {
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      .video-container video {
+        width: 100%;
+        display: block;
+      }
+      .video-caption {
+        text-align: center;
+        margin-top: 1.2rem;
+        font-family: var(--f-ui);
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--brown-3);
+        font-weight: 500;
+      }
+
+      /* ══ OFFERINGS ══ */
+      #offerings {
+        padding: 6rem 5vw;
+        background: var(--cream);
+      }
       .cards-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -434,7 +495,6 @@
         box-shadow: 0 16px 48px rgba(59, 26, 8, 0.1);
       }
 
-      /* Image gallery on card */
       .card-gallery {
         height: 260px;
         position: relative;
@@ -489,9 +549,7 @@
         border: none;
         cursor: pointer;
         padding: 0;
-        transition:
-          background 0.2s,
-          transform 0.2s;
+        transition: all 0.2s;
       }
       .g-dot.active {
         background: var(--cream);
@@ -545,12 +603,9 @@
       .card-name {
         font-family: var(--f-display);
         font-size: 1.4rem;
-        font-weight: 700;
+        font-weight: 800;
         color: var(--brown);
         margin-bottom: 0.2rem;
-      }
-      .card-name em {
-        font-style: italic;
       }
       .card-price {
         font-family: var(--f-ui);
@@ -558,7 +613,7 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: var(--gold);
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: 0.8rem;
       }
       .card-desc {
@@ -581,6 +636,9 @@
         background: none;
         cursor: pointer;
         transition: all 0.2s;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
       }
       .card-book:hover {
         background: var(--brown);
@@ -589,20 +647,17 @@
 
       /* ══ LADE BOX ══ */
       #ladebox {
-        background: var(--brown);
-        color: var(--sand-3);
+        background: linear-gradient(135deg, var(--soft-bg) 0%, #e6d9cc 100%);
         position: relative;
         overflow: hidden;
-        padding: 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
         min-height: 600px;
       }
       .lbox-image {
         position: relative;
-        padding-top: 30px;
         overflow: hidden;
-        background: var(--brown-2);
+        background: #d4c5b3;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -615,24 +670,6 @@
         object-fit: cover;
         position: absolute;
         inset: 0;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .lbox-img-ph {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.8rem;
-        color: rgba(232, 213, 186, 0.3);
-        font-family: var(--f-display);
-        font-style: italic;
-        position: relative;
-        z-index: 1;
-        text-align: center;
-        padding: 3rem;
-      }
-      .lbox-img-ph span {
-        font-size: 3rem;
       }
       .lbox-content {
         padding: 5rem 5vw 5rem 4rem;
@@ -647,48 +684,47 @@
         right: -3vw;
         bottom: -4rem;
         font-family: var(--f-display);
-        font-style: italic;
         font-size: 22vw;
-        color: rgba(232, 213, 186, 0.04);
+        color: rgba(59, 26, 8, 0.03);
         line-height: 1;
         pointer-events: none;
+        font-weight: 800;
       }
       .lbox-tag {
         font-family: var(--f-ui);
         font-size: 0.65rem;
         letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: var(--gold-2);
+        color: var(--brown-3);
         margin-bottom: 0.8rem;
       }
       .lbox-title {
         font-family: var(--f-display);
         font-size: clamp(2rem, 4vw, 3.4rem);
-        font-weight: 700;
-        color: var(--sand-3);
+        font-weight: 800;
+        color: var(--brown);
         margin-bottom: 1.6rem;
         line-height: 1.1;
       }
-      .lbox-title em {
-        font-style: italic;
-        color: var(--gold-2);
+      .lbox-title span {
+        color: var(--brown-2);
       }
       .lbox-body p {
         font-family: var(--f-body);
         font-size: 0.98rem;
         line-height: 1.9;
-        color: var(--sand);
+        color: var(--brown-2);
         margin-bottom: 1rem;
       }
       .lbox-quote {
         font-family: var(--f-display);
-        font-style: italic;
         font-size: 1.15rem;
-        color: var(--gold-2);
+        color: var(--brown-3);
         line-height: 1.6;
         border-left: 2px solid var(--gold);
         padding-left: 1.2rem;
         margin: 1.6rem 0;
+        font-weight: 600;
       }
       .btn-gold {
         align-self: flex-start;
@@ -698,107 +734,97 @@
         letter-spacing: 0.15em;
         text-transform: uppercase;
         border: 1.5px solid var(--gold);
-        color: var(--gold);
+        color: var(--brown);
         padding: 0.8rem 1.8rem;
-        background: none;
+        background: var(--gold);
         cursor: pointer;
         transition: all 0.2s;
         text-decoration: none;
         display: inline-block;
+        font-weight: 700;
       }
       .btn-gold:hover {
-        background: var(--gold);
-        color: var(--brown);
+        background: var(--brown-2);
+        border-color: var(--brown-2);
+        color: var(--sand-3);
       }
 
-      /* ══ REVIEWS CAROUSEL ══ */
+      /* ══ REVIEWS CAROUSEL (SINGLE VIEW) ══ */
       #reviews {
-        padding: 7rem 5vw;
+        padding: 6rem 5vw;
         background: var(--sand-2);
         overflow: hidden;
       }
       .reviews-carousel-wrap {
-        margin-top: 3.5rem;
+        margin-top: 2rem;
         position: relative;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
       .reviews-track-outer {
         overflow: hidden;
+        border-radius: 24px;
       }
       .reviews-track {
         display: flex;
-        gap: 1.5rem;
         transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
       }
       .review-card {
-        flex: 0 0 calc(33.333% - 1rem);
+        flex: 0 0 100%;
         background: var(--cream);
-        padding: 2.8rem;
-        border-top: 3px solid var(--brown);
+        padding: 3rem;
+        border-top: 4px solid var(--brown);
         display: flex;
         flex-direction: column;
-        gap: 0.9rem;
-        border-radius: 18px;
-      }
-      @media (max-width: 900px) {
-        .review-card {
-          flex: 0 0 calc(50% - 0.8rem);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .review-card {
-          flex: 0 0 100%;
-        }
-      }
-      @media (max-width: 600px) {
+        gap: 1rem;
+        border-radius: 24px;
+        text-align: center;
       }
       .r-stars {
         display: flex;
-        gap: 3px;
+        gap: 4px;
+        justify-content: center;
       }
       .r-stars span {
         color: var(--gold);
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       .r-text {
         font-family: var(--f-body);
-        font-style: italic;
-        font-size: 0.97rem;
+        font-size: 1.1rem;
         line-height: 1.85;
         color: var(--brown-2);
       }
-      .r-text::before {
-        content: "\201C";
-      }
-      .r-text::after {
-        content: "\201D";
-      }
       .r-author {
         font-family: var(--f-ui);
-        font-size: 0.65rem;
+        font-size: 0.7rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--brown-3);
         margin-top: auto;
+        font-weight: 600;
       }
       .carousel-controls {
         display: flex;
-        gap: 0.8rem;
+        gap: 1rem;
         margin-top: 2rem;
         align-items: center;
+        justify-content: center;
       }
       .car-btn {
-        width: 44px;
-        height: 44px;
+        width: 48px;
+        height: 48px;
         border: 1.5px solid var(--brown);
         background: none;
         cursor: pointer;
-        font-size: 1rem;
+        font-size: 1.2rem;
         color: var(--brown);
         display: flex;
         align-items: center;
         justify-content: center;
         transition: all 0.2s;
+        border-radius: 50%;
       }
       .car-btn:hover {
         background: var(--brown);
@@ -806,8 +832,7 @@
       }
       .car-dots {
         display: flex;
-        gap: 0.5rem;
-        margin-left: 0.5rem;
+        gap: 0.6rem;
       }
       .car-dot {
         width: 8px;
@@ -826,9 +851,10 @@
 
       /* ══ FOOTER ══ */
       footer {
-        background: var(--ink);
-        color: var(--sand);
+        background: var(--soft-bg);
+        color: var(--brown);
         padding: 4rem 5vw;
+        border-top: 1px solid var(--sand);
       }
       .foot-inner {
         display: flex;
@@ -841,15 +867,13 @@
       .foot-brand {
         font-family: var(--f-display);
         font-size: 2rem;
-        font-weight: 700;
-        font-style: italic;
-        color: var(--sand-3);
+        font-weight: 800;
+        color: var(--brown);
       }
       .foot-tagline {
         font-family: var(--f-body);
         font-size: 0.9rem;
-        color: var(--brown-4);
-        font-style: italic;
+        color: var(--brown-3);
         margin-top: 0.3rem;
       }
       .foot-links {
@@ -862,184 +886,40 @@
         font-size: 0.7rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: var(--sand);
+        color: var(--brown);
         text-decoration: none;
-        opacity: 0.6;
+        opacity: 0.7;
         transition: opacity 0.2s;
+        font-weight: 500;
       }
       .foot-links a:hover {
         opacity: 1;
       }
+      .foot-social {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 0.5rem;
+      }
+      .foot-social a {
+        color: var(--brown);
+        font-size: 1.3rem;
+        opacity: 0.6;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .foot-social a:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
       .foot-bottom {
-        border-top: 1px solid rgba(232, 213, 186, 0.1);
+        border-top: 1px solid rgba(59, 26, 8, 0.1);
         padding-top: 1.5rem;
         font-family: var(--f-ui);
         font-size: 0.65rem;
         letter-spacing: 0.08em;
-        opacity: 0.4;
-      }
-
-      /* ══ BOOKING MODAL ══ */
-      .m-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(28, 13, 4, 0.72);
-        backdrop-filter: blur(6px);
-        z-index: 800;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s;
-      }
-      .m-overlay.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-      .modal {
-        background: var(--cream);
-        width: 100%;
-        max-width: 560px;
-        max-height: 92vh;
-        overflow-y: auto;
-        padding: 2.8rem;
-        position: relative;
-        transform: translateY(20px);
-        transition: transform 0.35s;
-        scrollbar-width: thin;
-        scrollbar-color: var(--sand) transparent;
-      }
-      .m-overlay.open .modal {
-        transform: translateY(0);
-      }
-      .m-close {
-        position: absolute;
-        top: 1.4rem;
-        right: 1.4rem;
-        background: var(--sand-2);
-        border: none;
-        cursor: pointer;
-        width: 34px;
-        height: 34px;
-        font-size: 1rem;
-        color: var(--brown);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-      }
-      .m-close:hover {
-        background: var(--sand);
-      }
-      .m-title {
-        font-family: var(--f-display);
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--brown);
-        margin-bottom: 0.3rem;
-      }
-      .m-sub {
-        font-family: var(--f-body);
-        font-style: italic;
-        font-size: 0.9rem;
-        color: var(--brown-3);
-        margin-bottom: 1.8rem;
-      }
-      .m-pill {
-        background: var(--sand-2);
-        padding: 0.75rem 1.1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.8rem;
-        font-family: var(--f-ui);
-        font-size: 0.75rem;
-        letter-spacing: 0.06em;
-        color: var(--brown-2);
-      }
-      .m-pill strong {
-        color: var(--brown);
-      }
-      .m-price {
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 600;
-        padding: 0.2rem 0.7rem;
-        font-size: 0.65rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-      .fg {
-        margin-bottom: 1.1rem;
-      }
-      .fg label {
-        display: block;
-        font-family: var(--f-ui);
-        font-size: 0.65rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        margin-bottom: 0.4rem;
-      }
-      .fg input,
-      .fg textarea,
-      .fg select {
-        width: 100%;
-        background: var(--sand-3);
-        border: 1.5px solid var(--sand);
-        padding: 0.7rem 0.9rem;
-        font-family: var(--f-body);
-        font-size: 0.95rem;
-        color: var(--brown);
-        outline: none;
-        transition: border-color 0.2s;
-        resize: vertical;
-        appearance: none;
-      }
-      .fg input:focus,
-      .fg textarea:focus,
-      .fg select:focus {
-        border-color: var(--brown-2);
-      }
-      .fg textarea {
-        min-height: 88px;
-      }
-      .fg-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      .m-submit {
-        width: 100%;
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 600;
-        border: none;
-        padding: 0.95rem;
-        font-family: var(--f-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        margin-top: 0.6rem;
-        transition: background 0.2s;
-      }
-      .m-submit:hover {
-        background: var(--brown-2);
-      }
-      .m-note {
+        opacity: 0.5;
         text-align: center;
-        font-family: var(--f-body);
-        font-style: italic;
-        font-size: 0.85rem;
-        color: var(--brown-3);
-        margin-top: 0.7rem;
       }
 
       /* ══ FADE IN ══ */
@@ -1076,10 +956,6 @@
         .hero-left {
           padding: 4rem 0 3rem;
         }
-        .hero-badge {
-          left: 1rem;
-          bottom: 1.5rem;
-        }
         #ladebox {
           grid-template-columns: 1fr;
         }
@@ -1098,23 +974,22 @@
         .nav-book {
           display: none;
         }
+        .nav-social {
+          display: none;
+        }
       }
       @media (max-width: 600px) {
         .cards-grid {
           grid-template-columns: 1fr;
         }
-        .sec-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .fg-row {
-          grid-template-columns: 1fr;
-        }
-        .modal {
-          padding: 2rem 1.4rem;
-        }
         #hero {
-          padding-top: 68px;
+          padding-top: 72px;
+        }
+        .review-card {
+          padding: 2rem;
+        }
+        .r-text {
+          font-size: 0.95rem;
         }
       }
     </style>
@@ -1122,15 +997,22 @@
   <body>
     <!-- ══ NAV ══ -->
     <nav id="navbar">
-      <a class="nav-logo" href="#"><em>Lade</em> Writes</a>
+      <a class="nav-logo" href="#">Lade <span>Writes</span></a>
       <ul class="nav-center" id="navCenter">
         <li><a href="#offerings">Offerings</a></li>
+        <li><a href="#whyus">Why Us</a></li>
         <li><a href="#ladebox">About</a></li>
         <li><a href="#reviews">Reviews</a></li>
       </ul>
-      <button class="nav-book btn-primary" onclick="openModal('', '')">
-        Book Now
-      </button>
+      <div class="nav-social">
+        <a href="https://instagram.com" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://tiktok.com" target="_blank"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+      </div>
+      <a href="book.html" class="nav-book">Book Now</a>
       <button class="ham" id="ham" aria-label="Menu" onclick="toggleNav()">
         <span></span><span></span><span></span>
       </button>
@@ -1139,23 +1021,26 @@
     <!-- Mobile Drawer -->
     <div class="nav-drawer" id="navDrawer">
       <a href="#offerings" onclick="closeNav()">Offerings</a>
+      <a href="#whyus" onclick="closeNav()">Why Us</a>
       <a href="#ladebox" onclick="closeNav()">About</a>
       <a href="#reviews" onclick="closeNav()">Reviews</a>
-      <button
-        onclick="
-          closeNav();
-          openModal('', '');
-        "
-      >
-        Book Now
-      </button>
+      <a href="book.html" onclick="closeNav()">Book Now</a>
+      <div class="nav-drawer-social">
+        <a href="https://instagram.com" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://tiktok.com" target="_blank"
+          ><i class="fab fa-tiktok"></i
+        ></a>
+      </div>
     </div>
 
     <!-- ══ HERO ══ -->
     <section id="hero">
       <div class="hero-left">
-        <p class="hero-eyebrow fi">Letters written from the heart</p>
-        <h1 class="hero-h1 fi d1">Words that<br /><em>stay forever.</em></h1>
+        <h1 class="hero-h1 fi d1">
+          Words that<br /><span>stay forever.</span>
+        </h1>
         <p class="hero-p fi d2">
           Bespoke handcrafted letters, scroll keepsakes and polaroid mementos —
           written for the moments that matter most.
@@ -1177,27 +1062,75 @@
       <div class="hero-deco" aria-hidden="true">L</div>
     </section>
 
+    <!-- ══ WHY CHOOSE US ══ -->
+    <section id="whyus">
+      <div class="sec-header-center">
+        <div class="sec-tag">Why Lade Writes</div>
+        <h2 class="sec-title">More Than <span>Just Words</span></h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card fi d1">
+          <div class="why-icon"><i class="fas fa-feather-alt"></i></div>
+          <div class="why-title">Handcrafted With Care</div>
+          <div class="why-desc">
+            Every letter is thoughtfully written by hand, never mass-produced or
+            templated.
+          </div>
+        </div>
+        <div class="why-card fi d2">
+          <div class="why-icon"><i class="fas fa-heart"></i></div>
+          <div class="why-title">Deeply Personal</div>
+          <div class="why-desc">
+            We capture your voice, your feelings, and the unique story behind
+            every message.
+          </div>
+        </div>
+        <div class="why-card fi d3">
+          <div class="why-icon"><i class="fas fa-clock"></i></div>
+          <div class="why-title">Timely Delivery</div>
+          <div class="why-desc">
+            Respect for your deadlines. We communicate clearly and deliver when
+            promised.
+          </div>
+        </div>
+        <div class="why-card fi d1">
+          <div class="why-icon"><i class="fas fa-gem"></i></div>
+          <div class="why-title">Keepsake Quality</div>
+          <div class="why-desc">
+            Premium paper, beautiful presentation — designed to be treasured for
+            years.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ VIDEO SHOWCASE ══ -->
+    <section id="video-showcase">
+      <div class="sec-header-center">
+        <div class="sec-tag">Behind The Letters</div>
+        <h2 class="sec-title">Handwritten <span>With Intention</span></h2>
+      </div>
+      <div class="video-container fi d2">
+        <video controls>
+          <source src="lade-vid.mp4" type="video/mp4" />
+          Your browser does not support the video tag. Add a video URL in the
+          src attribute.
+        </video>
+      </div>
+    </section>
+
     <!-- ══ OFFERINGS ══ -->
     <section id="offerings">
-      <div class="sec-header">
-        <div>
-          <div class="sec-tag fi">What I offer</div>
-          <h2 class="sec-title fi d1">Choose your <em>keepsake</em></h2>
-        </div>
-        <button class="btn-primary fi d2" onclick="openModal('', '')">
-          Book Now
-        </button>
+      <div class="sec-header-center">
+        <div class="sec-tag">Choose Your Keepsake</div>
+        <h2 class="sec-title">What I <span>Offer</span></h2>
       </div>
 
       <div class="cards-grid">
         <!-- SINGLE LETTER -->
-        <div
-          class="offer-card fi"
-          onclick="openModal('Single Letter', '₦5,000')"
-        >
+        <div class="offer-card fi">
           <div class="card-gallery" id="g-single">
             <div class="placeholder-gallery"><span>✉</span>Add photos here</div>
-            <!-- Add up to 3 <img class="gallery-img"> tags with real src values -->
             <img
               class="gallery-img"
               src="SINGLE 1.jpeg"
@@ -1208,7 +1141,6 @@
               src="SINGLE 2.jpeg"
               alt="Single letter 2"
             />
-
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-single')"
@@ -1225,30 +1157,23 @@
             <div class="gallery-count" id="cnt-g-single">1 / 3</div>
           </div>
           <div class="card-body">
-            <div class="card-name">Single <em>Letter</em></div>
+            <div class="card-name">Single Letter</div>
             <div class="card-price">₦5,000</div>
             <p class="card-desc">
               A deeply personal handwritten letter, thoughtfully composed for
               any moment — birthdays, anniversaries, apologies, or simply saying
               what your heart couldn't quite find the words for.
             </p>
-            <button
+            <a
+              href="book.html?offering=Single%20Letter&price=%E2%82%A65,000"
               class="card-book"
-              onclick="
-                openModal('Single Letter', '₦5,000');
-                event.stopPropagation();
-              "
+              >Book This</a
             >
-              Book This
-            </button>
           </div>
         </div>
 
         <!-- LETTER POLAROID -->
-        <div
-          class="offer-card fi d1"
-          onclick="openModal('Letter Polaroid', '₦7,000')"
-        >
+        <div class="offer-card fi d1">
           <div class="card-gallery" id="g-polaroid">
             <div class="placeholder-gallery">
               <span>📸</span>Add photos here
@@ -1258,7 +1183,6 @@
               src="LETTERPOLAROID.jpeg"
               alt="Letter polaroid 1"
             />
-
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-polaroid')"
@@ -1275,30 +1199,23 @@
             <div class="gallery-count" id="cnt-g-polaroid">1 / 2</div>
           </div>
           <div class="card-body">
-            <div class="card-name">Letter <em>Polaroid</em></div>
+            <div class="card-name">Letter Polaroid</div>
             <div class="card-price">₦7,000</div>
             <p class="card-desc">
               A heartfelt letter paired with a cherished printed polaroid — your
               words and a memory, bound together in one beautiful keepsake to
               hold for a lifetime.
             </p>
-            <button
+            <a
+              href="book.html?offering=Letter%20Polaroid&price=%E2%82%A67,000"
               class="card-book"
-              onclick="
-                openModal('Letter Polaroid', '₦7,000');
-                event.stopPropagation();
-              "
+              >Book This</a
             >
-              Book This
-            </button>
           </div>
         </div>
 
         <!-- POLAROID POCKET -->
-        <div
-          class="offer-card fi d2"
-          onclick="openModal('Polaroid Pocket', '₦2,000')"
-        >
+        <div class="offer-card fi d2">
           <div class="card-gallery" id="g-pocket">
             <div class="placeholder-gallery">
               <span>🖼</span>Add photos here
@@ -1313,7 +1230,6 @@
               src="POLA 2.jpeg"
               alt="Polaroid pocket 2"
             />
-
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-pocket')"
@@ -1330,30 +1246,23 @@
             <div class="gallery-count" id="cnt-g-pocket">1 / 4</div>
           </div>
           <div class="card-body">
-            <div class="card-name">Polaroid <em>Pocket</em></div>
+            <div class="card-name">Polaroid Pocket</div>
             <div class="card-price">₦2,000</div>
             <p class="card-desc">
               A small, sweet polaroid pocket — compact, but enormous in feeling.
               The perfect gesture when you want to say something real without
               saying too much.
             </p>
-            <button
+            <a
+              href="book.html?offering=Polaroid%20Pocket&price=%E2%82%A62,000"
               class="card-book"
-              onclick="
-                openModal('Polaroid Pocket', '₦2,000');
-                event.stopPropagation();
-              "
+              >Book This</a
             >
-              Book This
-            </button>
           </div>
         </div>
 
         <!-- SCROLL LETTER -->
-        <div
-          class="offer-card fi d3"
-          onclick="openModal('Scroll Letter', '₦4,000')"
-        >
+        <div class="offer-card fi d3">
           <div class="card-gallery" id="g-scroll">
             <div class="placeholder-gallery">
               <span>📜</span>Add photos here
@@ -1368,7 +1277,6 @@
               src="SCROLL 1.jpeg"
               alt="Scroll letter 2"
             />
-
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-scroll')"
@@ -1385,22 +1293,18 @@
             <div class="gallery-count" id="cnt-g-scroll">1 / 3</div>
           </div>
           <div class="card-body">
-            <div class="card-name">Scroll <em>Letter</em></div>
+            <div class="card-name">Scroll Letter</div>
             <div class="card-price">₦4,000</div>
             <p class="card-desc">
               Long, luxurious, and dramatic — a scroll-style letter for when
               ordinary paper simply isn't enough. Pour everything you've been
               meaning to say into a format built to last.
             </p>
-            <button
+            <a
+              href="book.html?offering=Scroll%20Letter&price=%E2%82%A64,000"
               class="card-book"
-              onclick="
-                openModal('Scroll Letter', '₦4,000');
-                event.stopPropagation();
-              "
+              >Book This</a
             >
-              Book This
-            </button>
           </div>
         </div>
       </div>
@@ -1409,11 +1313,16 @@
     <!-- ══ LADE BOX ══ -->
     <section id="ladebox">
       <div class="lbox-image fi">
-        <img src="LADE BOX.jpeg" alt="Lade Box aesthetic" />
+        <img src="LADE BOX.jpeg" alt="Lade Box aesthetic" id="ladeBoxImg" />
       </div>
       <div class="lbox-content">
-        <div class="lbox-tag fi">The story</div>
-        <h2 class="lbox-title fi d1">The <em>Lade Box</em></h2>
+        <div
+          class="sec-header-center"
+          style="text-align: left; margin-bottom: 1rem"
+        >
+          <div class="sec-tag">The Heart Of Lade Writes</div>
+          <h2 class="lbox-title">The <span>Lade Box</span></h2>
+        </div>
         <div class="lbox-body">
           <p class="fi d1">
             In a world of quick texts and disappearing stories, I believe that a
@@ -1433,27 +1342,16 @@
             and the kind of attention that makes someone feel truly seen.
           </p>
         </div>
-        <a href="#offerings" class="btn-gold fi d3">Book a Letter</a>
+        <a href="book.html" class="btn-gold fi d3">Book a Letter</a>
       </div>
       <div class="lbox-deco" aria-hidden="true">L</div>
     </section>
 
-    <!-- ══ REVIEWS ══ -->
+    <!-- ══ REVIEWS (SINGLE CAROUSEL) ══ -->
     <section id="reviews">
-      <div class="sec-header">
-        <div>
-          <div class="sec-tag fi">Kind words</div>
-          <h2 class="sec-title fi d1">What they <em>said</em></h2>
-        </div>
-        <div class="carousel-controls fi d2">
-          <button class="car-btn" onclick="carPrev()" aria-label="Previous">
-            ‹
-          </button>
-          <button class="car-btn" onclick="carNext()" aria-label="Next">
-            ›
-          </button>
-          <div class="car-dots" id="carDots"></div>
-        </div>
+      <div class="sec-header-center">
+        <div class="sec-tag">Love Notes</div>
+        <h2 class="sec-title">What Clients <span>Say</span></h2>
       </div>
       <div class="reviews-carousel-wrap fi d1">
         <div class="reviews-track-outer">
@@ -1464,10 +1362,12 @@
                 ><span>★</span>
               </div>
               <p class="r-text">
-                She wrote a letter for my mum's birthday and she cried. I cried.
-                Everyone cried. That's all I'll say.
+                Got it already and he said he loves it Thanks so much I really
+                appreciate it And I didn't know you added comb to it and he said
+                the chocolate is very sweet and he loves it so much. I will
+                definitely be ordering again
               </p>
-              <div class="r-author">— Tolu A., Lagos</div>
+              <div class="r-author">— Tolu A.</div>
             </div>
             <div class="review-card">
               <div class="r-stars">
@@ -1479,7 +1379,7 @@
                 felt like a piece of art. She has it framed on her wall. Worth
                 every naira.
               </p>
-              <div class="r-author">— Amara O., Abuja</div>
+              <div class="r-author">— Amara O.</div>
             </div>
             <div class="review-card">
               <div class="r-stars">
@@ -1491,7 +1391,7 @@
                 exactly what I wanted to say even better than I could have said
                 it myself.
               </p>
-              <div class="r-author">— Blessing E., Port Harcourt</div>
+              <div class="r-author">— Blessing E.</div>
             </div>
             <div class="review-card">
               <div class="r-stars">
@@ -1499,23 +1399,13 @@
                 ><span>★</span>
               </div>
               <p class="r-text">
-                I've booked her three times now. The quality, the care, the
-                turnaround — Lade Writes never disappoints. I recommend her to
-                everyone.
+                The review he gave was so given nostalgic feeling He really
+                loved it ooo And he hasn't received a gift as such before and he
+                said it was really thoughtful and he appreciates it so much.
               </p>
-              <div class="r-author">— Kemi B., Lagos</div>
+              <div class="r-author">— Kemi B.</div>
             </div>
-            <div class="review-card">
-              <div class="r-stars">
-                <span>★</span><span>★</span><span>★</span><span>★</span
-                ><span>★</span>
-              </div>
-              <p class="r-text">
-                She wrote my wedding vows for me. My husband still keeps the
-                letter in his drawer. I cannot overstate how special it was.
-              </p>
-              <div class="r-author">— Nneka I., Enugu</div>
-            </div>
+
             <div class="review-card">
               <div class="r-stars">
                 <span>★</span><span>★</span><span>★</span><span>★</span
@@ -1525,9 +1415,18 @@
                 The attention to detail is unmatched. It reads like poetry but
                 still sounds like you. I am obsessed with her work.
               </p>
-              <div class="r-author">— Fatima Y., Kano</div>
+              <div class="r-author">— Fatima Y.</div>
             </div>
           </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="car-btn" onclick="carPrev()" aria-label="Previous">
+            ‹
+          </button>
+          <div class="car-dots" id="carDots"></div>
+          <button class="car-btn" onclick="carNext()" aria-label="Next">
+            ›
+          </button>
         </div>
       </div>
     </section>
@@ -1543,130 +1442,31 @@
         </div>
         <div class="foot-links">
           <a href="#offerings">Offerings</a>
+          <a href="#whyus">Why Us</a>
           <a href="#ladebox">Our Story</a>
           <a href="#reviews">Reviews</a>
+          <a href="book.html">Book Now</a>
+        </div>
+        <div class="foot-social">
           <a
-            href="#"
-            onclick="
-              openModal('', '');
-              return false;
-            "
-            >Book Now</a
-          >
+            href="https://www.instagram.com/lade_writes?igsh=aWl1NGFiMXN5andi"
+            target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            href="https://www.tiktok.com/@ladewrites0?_r=1&_t=ZS-96bu0GZ6aZB"
+            target="_blank"
+            ><i class="fab fa-tiktok"></i
+          ></a>
+          <a href="https://wa.me/2347084291183" target="_blank"
+            ><i class="fab fa-whatsapp"></i
+          ></a>
         </div>
       </div>
       <div class="foot-bottom">
-        © 2025 Lade Writes. All rights reserved. Made with love ✦
+        © 2025 Lade Writes. All rights reserved. Made with love
       </div>
     </footer>
-
-    <!-- ══ BOOKING MODAL ══ -->
-    <div class="m-overlay" id="mOverlay" onclick="handleOvClick(event)">
-      <div class="modal">
-        <button class="m-close" onclick="closeModal()">✕</button>
-        <div class="m-title">Book a Letter</div>
-        <p class="m-sub">
-          Fill in the details below and I'll reach out shortly ✦
-        </p>
-        <div class="m-pill" id="mPill" style="display: none">
-          <span>Selected: <strong id="mName"></strong></span>
-          <span class="m-price" id="mPrice"></span>
-        </div>
-        <div class="fg">
-          <label>Choose offering *</label>
-          <select id="fOffering">
-            <option value="">Select…</option>
-            <option value="Single Letter — ₦5,000">
-              Single Letter — ₦5,000
-            </option>
-            <option value="Letter Polaroid — ₦7,000">
-              Letter Polaroid — ₦7,000
-            </option>
-            <option value="Polaroid Pocket — ₦2,000">
-              Polaroid Pocket — ₦2,000
-            </option>
-            <option value="Scroll Letter — ₦4,000">
-              Scroll Letter — ₦4,000
-            </option>
-          </select>
-        </div>
-        <div class="fg">
-          <label>Your Name *</label
-          ><input type="text" id="fName" placeholder="e.g. Amara Okafor" />
-        </div>
-        <div class="fg-row">
-          <div class="fg">
-            <label>WhatsApp Number *</label
-            ><input type="tel" id="fPhone" placeholder="+234 800 000 0000" />
-          </div>
-          <div class="fg">
-            <label>Instagram (optional)</label
-            ><input type="text" id="fInsta" placeholder="@username" />
-          </div>
-        </div>
-        <div class="fg">
-          <label>Who is the letter for?</label
-          ><input
-            type="text"
-            id="fRecipient"
-            placeholder="e.g. My mum, Tunde, Best friend…"
-          />
-        </div>
-        <div class="fg">
-          <label>Occasion</label>
-          <select id="fOccasion">
-            <option value="">Select…</option>
-            <option>Birthday</option>
-            <option>Anniversary</option>
-            <option>Graduation</option>
-            <option>Apology</option>
-            <option>Wedding / Proposal</option>
-            <option>Just because</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label>Give me the vibes ✨</label
-          ><textarea
-            id="fVibe"
-            placeholder="Tell me about the person, the tone you want — happy, emotional, romantic, funny… anything helps!"
-          ></textarea>
-        </div>
-        <div class="fg">
-          <label>Deadline (if any)</label
-          ><input
-            type="text"
-            id="fDeadline"
-            placeholder="e.g. Before Dec 25th"
-          />
-        </div>
-        <div class="fg">
-          <label>Anything else?</label
-          ><textarea
-            id="fExtra"
-            placeholder="Special requests, add-ons, questions…"
-            style="min-height: 65px"
-          ></textarea>
-        </div>
-        <button class="m-submit" onclick="sendWA()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="17"
-            height="17"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-            />
-          </svg>
-          Send to Lade's WhatsApp
-        </button>
-        <p class="m-note">
-          You'll be taken to WhatsApp to confirm your booking ✦
-        </p>
-      </div>
-    </div>
 
     <script>
       // ── NAV ──
@@ -1714,8 +1514,10 @@
         const dotsEl = document.getElementById("dots-" + id);
         const cntEl = document.getElementById("cnt-" + id);
         if (!imgs.length) {
-          wrap.querySelector(".gallery-nav.prev").style.display = "none";
-          wrap.querySelector(".gallery-nav.next").style.display = "none";
+          if (wrap.querySelector(".gallery-nav.prev"))
+            wrap.querySelector(".gallery-nav.prev").style.display = "none";
+          if (wrap.querySelector(".gallery-nav.next"))
+            wrap.querySelector(".gallery-nav.next").style.display = "none";
           if (dotsEl) dotsEl.style.display = "none";
           if (cntEl) cntEl.style.display = "none";
           return;
@@ -1735,14 +1537,13 @@
         }
         if (cntEl) cntEl.textContent = "1 / " + imgs.length;
         setGal(id, 0);
-        wrap.querySelector(".placeholder-gallery").style.display = "none";
+        if (wrap.querySelector(".placeholder-gallery"))
+          wrap.querySelector(".placeholder-gallery").style.display = "none";
       }
       function setGal(id, i) {
         const s = galState[id];
         if (!s) return;
-        s.imgs.forEach((img, idx) => {
-          img.classList.toggle("active", idx === i);
-        });
+        s.imgs.forEach((img, idx) => img.classList.toggle("active", idx === i));
         const dots = document.querySelectorAll("#dots-" + id + " .g-dot");
         dots.forEach((d, idx) => d.classList.toggle("active", idx === i));
         const cntEl = document.getElementById("cnt-" + id);
@@ -1752,36 +1553,25 @@
       function galPrev(e, id) {
         e.stopPropagation();
         const s = galState[id];
-        if (!s) return;
-        setGal(id, (s.cur - 1 + s.imgs.length) % s.imgs.length);
+        if (s) setGal(id, (s.cur - 1 + s.imgs.length) % s.imgs.length);
       }
       function galNext(e, id) {
         e.stopPropagation();
         const s = galState[id];
-        if (!s) return;
-        setGal(id, (s.cur + 1) % s.imgs.length);
+        if (s) setGal(id, (s.cur + 1) % s.imgs.length);
       }
       ["g-single", "g-polaroid", "g-pocket", "g-scroll"].forEach(initGallery);
 
-      // ── CAROUSEL ──
+      // ── CAROUSEL (SINGLE VIEW) ──
       const revTrack = document.getElementById("revTrack");
-      const cards = [...revTrack.children];
+      const reviewCards = [...revTrack.children];
       let carIdx = 0;
-      function getVisible() {
-        return 1;
-      }
       function updateCar() {
-        const v = getVisible();
-        const maxIdx = Math.max(0, cards.length - v);
-        carIdx = Math.min(carIdx, maxIdx);
-        const w = revTrack.parentElement.offsetWidth;
-        const gap = 24;
-        const cw = (w - (v - 1) * gap) / v;
-        revTrack.style.transform = `translateX(-${carIdx * (cw + gap)}px)`;
+        const cardWidth = revTrack.parentElement.offsetWidth;
+        revTrack.style.transform = `translateX(-${carIdx * cardWidth}px)`;
         const dotsEl = document.getElementById("carDots");
-        const pages = maxIdx + 1;
         dotsEl.innerHTML = "";
-        for (let i = 0; i < pages; i++) {
+        for (let i = 0; i < reviewCards.length; i++) {
           const d = document.createElement("button");
           d.className = "car-dot" + (i === carIdx ? " active" : "");
           d.onclick = () => {
@@ -1798,87 +1588,13 @@
         }
       }
       function carNext() {
-        const v = getVisible();
-        if (carIdx < cards.length - v) {
+        if (carIdx < reviewCards.length - 1) {
           carIdx++;
           updateCar();
         }
       }
       window.addEventListener("resize", updateCar);
       updateCar();
-
-      // ── MODAL ──
-      let _offer = "",
-        _price = "";
-      function openModal(name, price) {
-        _offer = name;
-        _price = price;
-        const pill = document.getElementById("mPill");
-        if (name) {
-          document.getElementById("mName").textContent = name;
-          document.getElementById("mPrice").textContent = price;
-          pill.style.display = "flex";
-          document.getElementById("fOffering").value = name + " — " + price;
-        } else {
-          pill.style.display = "none";
-        }
-        document.getElementById("mOverlay").classList.add("open");
-        document.body.style.overflow = "hidden";
-      }
-      function closeModal() {
-        document.getElementById("mOverlay").classList.remove("open");
-        document.body.style.overflow = "";
-      }
-      function handleOvClick(e) {
-        if (e.target === document.getElementById("mOverlay")) closeModal();
-      }
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
-
-      function sendWA() {
-        const name = document.getElementById("fName").value.trim();
-        const phone = document.getElementById("fPhone").value.trim();
-        const offering = document.getElementById("fOffering").value;
-        const recipient = document.getElementById("fRecipient").value.trim();
-        const occasion = document.getElementById("fOccasion").value;
-        const vibe = document.getElementById("fVibe").value.trim();
-        const deadline = document.getElementById("fDeadline").value.trim();
-        const insta = document.getElementById("fInsta").value.trim();
-        const extra = document.getElementById("fExtra").value.trim();
-        if (!name || !phone) {
-          alert("Please fill in your name and WhatsApp number ✦");
-          return;
-        }
-        const msg = [
-          `✉️ *New Booking — Lade Writes*`,
-          ``,
-          `*Offering:* ${offering || "Not selected"}`,
-          ``,
-          `*Client:* ${name}`,
-          `*Phone/WhatsApp:* ${phone}`,
-          insta ? `*Instagram:* ${insta}` : null,
-          ``,
-          `*Letter for:* ${recipient || "Not specified"}`,
-          `*Occasion:* ${occasion || "Not specified"}`,
-          ``,
-          `*Vibes / Direction:*`,
-          vibe || "Not specified",
-          ``,
-          deadline ? `*Deadline:* ${deadline}` : null,
-          extra ? `*Extra Notes:*\n${extra}` : null,
-          ``,
-          `_via ladewrites.com_`,
-        ]
-          .filter(Boolean)
-          .join("\n");
-        // ⚠️ Replace with Lade's actual WhatsApp number (international format, no + or spaces)
-        const waNum = "2348000000000";
-        window.open(
-          `https://wa.me/${waNum}?text=${encodeURIComponent(msg)}`,
-          "_blank",
-        );
-      }
     </script>
   </body>
 </html>
