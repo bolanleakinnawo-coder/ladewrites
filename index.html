@@ -67,7 +67,6 @@
         z-index: 9998;
       }
 
-      /* ══ NAV ══ */
       nav {
         position: fixed;
         top: 0;
@@ -219,7 +218,6 @@
         color: var(--brown-3);
       }
 
-      /* ══ HERO ══ */
       #hero {
         min-height: 100vh;
         display: grid;
@@ -369,7 +367,6 @@
         font-weight: 800;
       }
 
-      /* ══ SECTION HEADERS ══ */
       .sec-header-center {
         text-align: center;
         margin-bottom: 3.5rem;
@@ -393,7 +390,6 @@
         color: var(--brown-3);
       }
 
-      /* ══ WHY CHOOSE US ══ */
       #whyus {
         padding: 6rem 5vw;
         background: var(--cream);
@@ -448,7 +444,6 @@
         }
       }
 
-      /* ══ VIDEO SHOWCASE ══ */
       #video-showcase {
         padding: 6rem 5vw;
         background: var(--sand-2);
@@ -476,7 +471,6 @@
         font-weight: 500;
       }
 
-      /* ══ OFFERINGS ══ */
       #offerings {
         padding: 6rem 5vw;
         background: var(--cream);
@@ -501,7 +495,6 @@
         background: var(--cream);
         display: flex;
         flex-direction: column;
-        cursor: pointer;
         border: 1px solid var(--sand);
         transition:
           transform 0.25s,
@@ -682,7 +675,6 @@
         color: var(--sand-3);
       }
 
-      /* ══ LADE BOX ══ */
       #ladebox {
         background: linear-gradient(135deg, var(--soft-bg) 0%, #e6d9cc 100%);
         position: relative;
@@ -788,7 +780,6 @@
         color: var(--sand-3);
       }
 
-      /* ══ REVIEWS ══ */
       #reviews {
         padding: 6rem 5vw;
         background: var(--sand-2);
@@ -888,7 +879,6 @@
         transform: scale(1.2);
       }
 
-      /* ══ FOOTER ══ */
       footer {
         background: var(--soft-bg);
         color: var(--brown);
@@ -961,7 +951,6 @@
         text-align: center;
       }
 
-      /* ══ FADE IN ══ */
       .fi {
         opacity: 0;
         transform: translateY(24px);
@@ -983,7 +972,6 @@
         transition-delay: 0.3s;
       }
 
-      /* ══ RESPONSIVE ══ */
       @media (max-width: 900px) {
         #hero {
           grid-template-columns: 1fr;
@@ -1037,7 +1025,6 @@
         }
       }
 
-      /* Family Letter badge */
       .card-price.tbd {
         color: var(--brown-3);
         font-style: italic;
@@ -1045,7 +1032,6 @@
     </style>
   </head>
   <body>
-    <!-- ══ NAV ══ -->
     <nav id="navbar">
       <a class="nav-logo" href="#">Lade <span>Writes</span></a>
       <ul class="nav-center" id="navCenter">
@@ -1055,14 +1041,10 @@
         <li><a href="#reviews">Reviews</a></li>
       </ul>
       <div class="nav-social">
-        <a
-          href="https://www.instagram.com/lade_writes?igsh=aWl1NGFiMXN5andi"
-          target="_blank"
+        <a href="https://www.instagram.com/lade_writes" target="_blank"
           ><i class="fab fa-instagram"></i
         ></a>
-        <a
-          href="https://www.tiktok.com/@ladewrites0?_r=1&_t=ZS-96bu0GZ6aZB"
-          target="_blank"
+        <a href="https://www.tiktok.com/@ladewrites0" target="_blank"
           ><i class="fab fa-tiktok"></i
         ></a>
       </div>
@@ -1072,7 +1054,6 @@
       </button>
     </nav>
 
-    <!-- Mobile Drawer -->
     <div class="nav-drawer" id="navDrawer">
       <a href="#offerings" onclick="closeNav()">Offerings</a>
       <a href="#whyus" onclick="closeNav()">Why Us</a>
@@ -1080,20 +1061,15 @@
       <a href="#reviews" onclick="closeNav()">Reviews</a>
       <a href="book.html" onclick="closeNav()">Book Now</a>
       <div class="nav-drawer-social">
-        <a
-          href="https://www.instagram.com/lade_writes?igsh=aWl1NGFiMXN5andi"
-          target="_blank"
+        <a href="https://www.instagram.com/lade_writes" target="_blank"
           ><i class="fab fa-instagram"></i
         ></a>
-        <a
-          href="https://www.tiktok.com/@ladewrites0?_r=1&_t=ZS-96bu0GZ6aZB"
-          target="_blank"
+        <a href="https://www.tiktok.com/@ladewrites0" target="_blank"
           ><i class="fab fa-tiktok"></i
         ></a>
       </div>
     </div>
 
-    <!-- ══ HERO ══ -->
     <section id="hero">
       <div class="hero-left">
         <h1 class="hero-h1 fi d1">
@@ -1110,13 +1086,12 @@
       </div>
       <div class="hero-right">
         <div class="hero-img-wrap">
-          <img id="heroMainImg" src="hero.png" alt="Lade Writes — hero image" />
+          <img id="heroMainImg" src="hero.png" alt="Lade Writes hero image" />
         </div>
       </div>
       <div class="hero-deco" aria-hidden="true">L</div>
     </section>
 
-    <!-- ══ WHY CHOOSE US ══ -->
     <section id="whyus">
       <div class="sec-header-center">
         <div class="sec-tag">Why Lade Writes</div>
@@ -1158,7 +1133,6 @@
       </div>
     </section>
 
-    <!-- ══ VIDEO SHOWCASE ══ -->
     <section id="video-showcase">
       <div class="sec-header-center">
         <div class="sec-tag">Behind The Letters</div>
@@ -1167,7 +1141,6 @@
       <div class="video-container fi d2">
         <video preload="metadata">
           <source src="lade-vid.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
         <div
           class="video-overlay"
@@ -1202,18 +1175,15 @@
           </div>
         </div>
       </div>
-      <div class="video-caption">Watch the process — crafted with love ✦</div>
+      <div class="video-caption">Watch the process — crafted with love</div>
     </section>
 
-    <!-- ══ OFFERINGS ══ -->
     <section id="offerings">
       <div class="sec-header-center">
         <div class="sec-tag">Choose Your Keepsake</div>
         <h2 class="sec-title">What I <span>Offer</span></h2>
       </div>
-
       <div class="cards-grid">
-        <!-- 1. SINGLE LETTER -->
         <div class="offer-card fi">
           <div class="card-gallery" id="g-single">
             <div class="placeholder-gallery"><span>✉</span>Add photos here</div>
@@ -1221,19 +1191,16 @@
               class="gallery-img"
               src="SINGLE 1.jpeg"
               alt="Single letter 1"
-            />
-            <img
+            /><img
               class="gallery-img"
               src="SINGLE 2.jpeg"
               alt="Single letter 2"
-            />
-            <button
+            /><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-single')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-single')"
             >
@@ -1258,7 +1225,6 @@
           </div>
         </div>
 
-        <!-- 2. LETTER POLAROID -->
         <div class="offer-card fi d1">
           <div class="card-gallery" id="g-polaroid">
             <div class="placeholder-gallery">
@@ -1268,14 +1234,12 @@
               class="gallery-img"
               src="LETTERPOLAROID.jpeg"
               alt="Letter polaroid 1"
-            />
-            <button
+            /><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-polaroid')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-polaroid')"
             >
@@ -1300,7 +1264,6 @@
           </div>
         </div>
 
-        <!-- 3. POLAROID POCKET -->
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-pocket">
             <div class="placeholder-gallery">
@@ -1310,19 +1273,16 @@
               class="gallery-img"
               src="POLA 1.jpeg"
               alt="Polaroid pocket 1"
-            />
-            <img
+            /><img
               class="gallery-img"
               src="POLA 2.jpeg"
               alt="Polaroid pocket 2"
-            />
-            <button
+            /><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-pocket')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-pocket')"
             >
@@ -1333,7 +1293,7 @@
           </div>
           <div class="card-body">
             <div class="card-name">Polaroid Pocket</div>
-            <div class="card-price" id="ppPrice">
+            <div class="card-price">
               ₦2,000
               <span
                 style="
@@ -1367,8 +1327,7 @@
                   font-weight: 600;
                 "
                 >Qty:</span
-              >
-              <button
+              ><button
                 onclick="ppQtyChange(-1)"
                 style="
                   width: 28px;
@@ -1385,9 +1344,8 @@
                   font-weight: 700;
                 "
               >
-                −
-              </button>
-              <span
+                −</button
+              ><span
                 id="ppQty"
                 style="
                   font-family: var(--f-display);
@@ -1398,8 +1356,7 @@
                   text-align: center;
                 "
                 >1</span
-              >
-              <button
+              ><button
                 onclick="ppQtyChange(1)"
                 style="
                   width: 28px;
@@ -1416,9 +1373,8 @@
                   font-weight: 700;
                 "
               >
-                +
-              </button>
-              <span
+                +</button
+              ><span
                 id="ppTotal"
                 style="
                   font-family: var(--f-ui);
@@ -1436,7 +1392,6 @@
           </div>
         </div>
 
-        <!-- 4. SCROLL LETTER -->
         <div class="offer-card fi d3">
           <div class="card-gallery" id="g-scroll">
             <div class="placeholder-gallery">
@@ -1446,15 +1401,16 @@
               class="gallery-img"
               src="SCROLL 2.jpeg"
               alt="Scroll letter 1"
-            />
-            <img class="gallery-img" src="SCROLL1.jpeg" alt="Scroll letter 2" />
-            <button
+            /><img
+              class="gallery-img"
+              src="SCROLL1.jpeg"
+              alt="Scroll letter 2"
+            /><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-scroll')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-scroll')"
             >
@@ -1479,20 +1435,17 @@
           </div>
         </div>
 
-        <!-- 5. LOVE JAR -->
         <div class="offer-card fi d1">
           <div class="card-gallery" id="g-lovejar">
             <div class="placeholder-gallery">
               <span>🫙</span>Add photos here
             </div>
-            <!-- Add love jar images here -->
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-lovejar')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-lovejar')"
             >
@@ -1506,8 +1459,8 @@
             <div class="card-price">₦5,000</div>
             <p class="card-desc">
               A Love Jar is a highly customizable concept that ignites
-              self-love, acts as a manifestation tool, or serves as symbolic
-              home décor — a memory jar filled with one clear thought per note.
+              self-love, manifestation, or symbolic home decor. It is a memory
+              jar filled with one clear thought per note.
             </p>
             <a
               href="book.html?offering=Love%20Jar&price=%E2%82%A65%2C000"
@@ -1517,13 +1470,11 @@
           </div>
         </div>
 
-        <!-- 6. VINTAGE MEMORY BOOK -->
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-membook">
             <div class="placeholder-gallery">
               <span>📖</span>Add photos here
             </div>
-            <!-- Slide 1: video -->
             <video
               class="gallery-vid"
               src="memory-book.mp4"
@@ -1531,16 +1482,17 @@
               muted
               loop
               playsinline
-            ></video>
-            <!-- Slide 2: image -->
-            <img class="gallery-img" src="MEMORY BOOK.jpeg" alt="Memory Book" />
-            <button
+            ></video
+            ><img
+              class="gallery-img"
+              src="MEMORY BOOK.jpeg"
+              alt="Memory Book"
+            /><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-membook')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-membook')"
             >
@@ -1558,24 +1510,24 @@
               personal history — bound into a keepsake you'll cherish forever.
             </p>
             <a
-              href="book.html?offering=Vintage%20Memory%20Book&price=Contact%20for%20Price"
+              href="book.html?offering=Memory%20Book&price=Contact%20for%20Price"
               class="card-book"
               >Book This</a
             >
           </div>
         </div>
 
-        <!-- 7. CHOCOLATE BOX -->
         <div class="offer-card fi d3">
           <div class="card-gallery" id="g-choc">
             <div class="placeholder-gallery">
               <span>🍫</span>Add photos here
             </div>
-            <!-- Add chocolate box images here -->
             <button class="gallery-nav prev" onclick="galPrev(event, 'g-choc')">
-              ‹
-            </button>
-            <button class="gallery-nav next" onclick="galNext(event, 'g-choc')">
+              ‹</button
+            ><button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-choc')"
+            >
               ›
             </button>
             <div class="gallery-dots" id="dots-g-choc"></div>
@@ -1597,11 +1549,9 @@
           </div>
         </div>
 
-        <!-- 8. FAMILY LETTER -->
         <div class="offer-card fi d1">
           <div class="card-gallery" id="g-family">
             <div class="placeholder-gallery"><span>👨‍👩‍👧‍👦</span>Add video here</div>
-            <!-- Family letter video -->
             <video
               class="gallery-vid"
               src="family-letter.mp4"
@@ -1609,14 +1559,13 @@
               muted
               loop
               playsinline
-            ></video>
-            <button
+            ></video
+            ><button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-family')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-family')"
             >
@@ -1629,9 +1578,9 @@
             <div class="card-name">Family Letter</div>
             <div class="card-price tbd">Price on request</div>
             <p class="card-desc">
-              A group letter for 5–10 family members — one letter that holds
-              every heart. Written to honour your family's story, this is the
-              kind of gift that gets read aloud and remembered forever.
+              A Family Letter is a group letter for 5-10 members. We collect
+              group details in the booking form, and this service is coordinated
+              via WhatsApp rather than as a regular personal letter.
             </p>
             <a
               href="book.html?offering=Family%20Letter&price=Price%20on%20request"
@@ -1641,20 +1590,17 @@
           </div>
         </div>
 
-        <!-- 9. MEMORY FRAME -->
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-frame">
             <div class="placeholder-gallery">
               <span>🖼️</span>Add photos here
             </div>
-            <!-- Add memory frame images here -->
             <button
               class="gallery-nav prev"
               onclick="galPrev(event, 'g-frame')"
             >
-              ‹
-            </button>
-            <button
+              ‹</button
+            ><button
               class="gallery-nav next"
               onclick="galNext(event, 'g-frame')"
             >
@@ -1681,7 +1627,6 @@
       </div>
     </section>
 
-    <!-- ══ LADE BOX ══ -->
     <section id="ladebox">
       <div class="lbox-image fi">
         <img src="LADE BOX.jpeg" alt="Lade Box aesthetic" id="ladeBoxImg" />
@@ -1718,7 +1663,6 @@
       <div class="lbox-deco" aria-hidden="true">L</div>
     </section>
 
-    <!-- ══ REVIEWS ══ -->
     <section id="reviews">
       <div class="sec-header-center">
         <div class="sec-tag">Love Notes</div>
@@ -1801,7 +1745,6 @@
       </div>
     </section>
 
-    <!-- ══ FOOTER ══ -->
     <footer>
       <div class="foot-inner">
         <div>
@@ -1811,35 +1754,26 @@
           </div>
         </div>
         <div class="foot-links">
-          <a href="#offerings">Offerings</a>
-          <a href="#whyus">Why Us</a>
-          <a href="#ladebox">Our Story</a>
-          <a href="#reviews">Reviews</a>
-          <a href="book.html">Book Now</a>
+          <a href="#offerings">Offerings</a><a href="#whyus">Why Us</a
+          ><a href="#ladebox">Our Story</a><a href="#reviews">Reviews</a
+          ><a href="book.html">Book Now</a>
         </div>
         <div class="foot-social">
-          <a
-            href="https://www.instagram.com/lade_writes?igsh=aWl1NGFiMXN5andi"
-            target="_blank"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a
-            href="https://www.tiktok.com/@ladewrites0?_r=1&_t=ZS-96bu0GZ6aZB"
-            target="_blank"
-            ><i class="fab fa-tiktok"></i
-          ></a>
-          <a href="https://wa.me/2347084291183" target="_blank"
+          <a href="https://www.instagram.com/lade_writes" target="_blank"
+            ><i class="fab fa-instagram"></i></a
+          ><a href="https://www.tiktok.com/@ladewrites0" target="_blank"
+            ><i class="fab fa-tiktok"></i></a
+          ><a href="https://wa.me/2347084291183" target="_blank"
             ><i class="fab fa-whatsapp"></i
           ></a>
         </div>
       </div>
       <div class="foot-bottom">
-        © 2025 Lade Writes. All rights reserved. Made with love ✦
+        © 2025 Lade Writes. All rights reserved. Made with love
       </div>
     </footer>
 
     <script>
-      // ── NAV ──
       const navbar = document.getElementById("navbar");
       window.addEventListener("scroll", () =>
         navbar.classList.toggle("solid", scrollY > 30),
@@ -1859,7 +1793,6 @@
         document.body.style.overflow = "";
       }
 
-      // ── FADE IN ──
       const fis = document.querySelectorAll(".fi");
       const fiObs = new IntersectionObserver(
         (es) =>
@@ -1873,7 +1806,6 @@
       );
       fis.forEach((f) => fiObs.observe(f));
 
-      // ── VIDEO PLAY OVERLAY ──
       function playVideo(overlay) {
         const video = overlay.previousElementSibling;
         overlay.style.display = "none";
@@ -1881,22 +1813,16 @@
         video.play();
       }
 
-      // ── GALLERY (supports images + videos) ──
       const galState = {};
       function initGallery(id) {
         const wrap = document.getElementById(id);
         if (!wrap) return;
-        // Collect both images and videos as slides
         const imgEls = [...wrap.querySelectorAll(".gallery-img")].filter(
           (i) => i.src && !i.src.endsWith("#") && i.src !== location.href,
         );
         const vidEls = [...wrap.querySelectorAll(".gallery-vid")].filter(
           (v) => v.src && !v.src.endsWith("#") && v.src !== location.href,
         );
-
-        // Build unified slides array: {el, type}
-        // For memory book: video is slide 0, image is slide 1
-        // We detect by DOM order
         const allSlides = [];
         [...wrap.children].forEach((child) => {
           if (child.classList.contains("gallery-img") && imgEls.includes(child))
@@ -1904,10 +1830,8 @@
           if (child.classList.contains("gallery-vid") && vidEls.includes(child))
             allSlides.push({ el: child, type: "vid" });
         });
-
         const dotsEl = document.getElementById("dots-" + id);
         const cntEl = document.getElementById("cnt-" + id);
-
         if (!allSlides.length) {
           if (wrap.querySelector(".gallery-nav.prev"))
             wrap.querySelector(".gallery-nav.prev").style.display = "none";
@@ -1917,7 +1841,6 @@
           if (cntEl) cntEl.style.display = "none";
           return;
         }
-
         galState[id] = { slides: allSlides, cur: 0 };
         if (dotsEl) {
           dotsEl.innerHTML = "";
@@ -1936,7 +1859,6 @@
           wrap.querySelector(".placeholder-gallery").style.display = "none";
         setGal(id, 0);
       }
-
       function setGal(id, i) {
         const s = galState[id];
         if (!s) return;
@@ -1957,7 +1879,6 @@
         if (cntEl) cntEl.textContent = i + 1 + " / " + s.slides.length;
         s.cur = i;
       }
-
       function galPrev(e, id) {
         e.stopPropagation();
         const s = galState[id];
@@ -1968,7 +1889,6 @@
         const s = galState[id];
         if (s) setGal(id, (s.cur + 1) % s.slides.length);
       }
-
       [
         "g-single",
         "g-polaroid",
@@ -1981,7 +1901,6 @@
         "g-frame",
       ].forEach(initGallery);
 
-      // ── POLAROID POCKET QTY ──
       let ppQtyVal = 1;
       const PP_PRICE = 2000;
       function ppQtyChange(delta) {
@@ -1993,15 +1912,13 @@
       function ppBook(e) {
         e.preventDefault();
         const total = ppQtyVal * PP_PRICE;
-        const url =
+        window.location.href =
           "book.html?offering=Polaroid%20Pocket&price=%E2%82%A6" +
           total.toLocaleString() +
           "&qty=" +
           ppQtyVal;
-        window.location.href = url;
       }
 
-      // ── CAROUSEL ──
       const revTrack = document.getElementById("revTrack");
       const reviewCards = [...revTrack.children];
       let carIdx = 0;

@@ -54,8 +54,6 @@
         min-height: 100vh;
         padding: 2rem 1.5rem;
       }
-
-      /* Simple header */
       .booking-header {
         text-align: center;
         margin-bottom: 2.5rem;
@@ -86,8 +84,6 @@
         font-size: 0.95rem;
         color: var(--brown-2);
       }
-
-      /* Modal-style card */
       .booking-card {
         max-width: 720px;
         margin: 0 auto;
@@ -164,13 +160,8 @@
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
       }
-      .fg-row-3 {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
-      }
 
-      /* Delivery/Pickup toggle styling */
+      /* Delivery toggle */
       .delivery-toggle {
         display: flex;
         gap: 1rem;
@@ -205,12 +196,53 @@
         color: var(--brown);
       }
 
-      /* Conditional field */
-      .conditional-field {
-        display: none;
+      /* Quantity row */
+      .qty-row {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
       }
-      .conditional-field.show {
-        display: block;
+      .qty-label {
+        font-family: var(--f-ui);
+        font-size: 0.65rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brown-3);
+        font-weight: 600;
+      }
+      .qty-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid var(--brown);
+        background: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: var(--brown);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+      .qty-btn:hover {
+        background: var(--brown);
+        color: var(--sand-3);
+      }
+      .qty-val {
+        font-family: var(--f-display);
+        font-size: 1.1rem;
+        font-weight: 800;
+        color: var(--brown);
+        min-width: 24px;
+        text-align: center;
+      }
+      .qty-total {
+        font-family: var(--f-ui);
+        font-size: 0.8rem;
+        color: var(--gold);
+        font-weight: 700;
       }
 
       /* Word counter */
@@ -226,6 +258,37 @@
       }
       .word-counter.limit {
         color: #dc2626;
+      }
+
+      /* Dynamic fields container */
+      .dynamic-fields {
+        margin-top: 0.5rem;
+      }
+      .dfield {
+        display: none;
+      }
+      .dfield.show {
+        display: block;
+      }
+      .dfield-row {
+        display: none;
+      }
+      .dfield-row.show {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      /* Info note */
+      .info-note {
+        background: var(--sand-2);
+        border-left: 3px solid var(--gold);
+        padding: 0.7rem 1rem;
+        font-family: var(--f-body);
+        font-size: 0.85rem;
+        color: var(--brown-2);
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 1.2rem;
       }
 
       .m-submit {
@@ -268,22 +331,14 @@
         border: none;
         border-top: 1px solid var(--sand);
       }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      .section-title,
-      label {
-        font-family: var(--f-body);
-      }
       .section-title {
         font-family: var(--f-body);
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--brown);
         margin-bottom: 1rem;
-        font-weight: 600;
+        font-weight: 700;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px solid var(--sand);
       }
 
       @media (max-width: 650px) {
@@ -294,7 +349,7 @@
           padding: 1.8rem;
         }
         .fg-row,
-        .fg-row-3 {
+        .dfield-row {
           grid-template-columns: 1fr;
           gap: 0;
         }
@@ -309,63 +364,60 @@
     </div>
 
     <div class="booking-card">
+      <!-- Selected offering pill -->
       <div class="m-pill" id="mPill" style="display: none">
         <span>Selected: <strong id="mName"></strong></span>
-        <span class="m-price" id="mPrice"></span>
+        <span class="m-price" id="mPrice" style="display: none"></span>
       </div>
 
-      <!-- OFFERING -->
+      <!-- ── OFFERING ── -->
       <div class="fg">
         <label>Choose offering <span class="required-star">*</span></label>
         <select id="fOffering">
           <option value="">Select…</option>
-          <option value="Love Jar" data-price="">Love Jar</option>
-          <option value="Memory Book" data-price="">Memory Book</option>
-          <option value="Polaroid Pocket" data-price="2000">
-            Polaroid Pocket — ₦2,000
-          </option>
-          <option value="Chocolate Box" data-price="">Chocolate Box</option>
-          <option value="Family Letter" data-price="" data-video="true">
-            Family Letter — Video
-          </option>
-          <option value="Memory Frame" data-price="5000">
-            Memory Frame — ₦5,000
-          </option>
           <option value="Single Letter" data-price="5000">
             Single Letter — ₦5,000
-          </option>
-          <option value="Letter Polaroid" data-price="7000">
-            Letter Polaroid — ₦7,000
           </option>
           <option value="Scroll Letter" data-price="4000">
             Scroll Letter — ₦4,000
           </option>
+          <option value="Letter Polaroid" data-price="7000">
+            Letter Polaroid — ₦7,000
+          </option>
+          <option value="Memory Frame" data-price="5000">
+            Memory Frame — ₦5,000
+          </option>
+          <option value="Polaroid Pocket" data-price="2000">
+            Polaroid Pocket — ₦2,000 per piece
+          </option>
+          <option value="Love Jar" data-price="5000">Love Jar — ₦5,000</option>
+          <option value="Vintage Memory Book" data-price="">
+            Vintage Memory Book — Contact for Price
+          </option>
+          <option value="Chocolate Box" data-price="4000">
+            Chocolate Box — ₦4,000 per box
+          </option>
+          <option value="Family Letter" data-price="">
+            Family Letter — Price on request
+          </option>
         </select>
-        <small
-          id="videoHint"
-          style="
-            display: none;
-            font-size: 0.8rem;
-            color: var(--brown-2);
-            margin-top: 0.5rem;
-          "
-          >Family Letter is a video service and is coordinated by
-          WhatsApp.</small
-        >
       </div>
 
-      <!-- CLIENT INFO -->
+      <!-- ── ALWAYS PRESENT: Client Info ── -->
+      <div class="section-title">Your Info</div>
       <div class="fg-row">
         <div class="fg">
           <label>Your Name <span class="required-star">*</span></label>
           <input type="text" id="fName" placeholder="e.g. Amara Okafor" />
         </div>
         <div class="fg">
-          <label>Recipient Number <span class="required-star">*</span></label>
+          <label
+            >Recipient's WhatsApp Number
+            <span class="required-star">*</span></label
+          >
           <input type="tel" id="fRecipientNumber" placeholder="0800 000 0000" />
         </div>
       </div>
-
       <div class="fg-row">
         <div class="fg">
           <label>Instagram (optional)</label>
@@ -377,10 +429,11 @@
         </div>
       </div>
 
-      <!-- DELIVERY OPTIONS -->
+      <!-- ── ALWAYS PRESENT: Delivery ── -->
+      <div class="section-title">Delivery</div>
       <div class="fg">
         <label>Delivery method <span class="required-star">*</span></label>
-        <div class="delivery-toggle" id="deliveryToggle">
+        <div class="delivery-toggle">
           <div class="delivery-option">
             <input
               type="radio"
@@ -402,28 +455,15 @@
           </div>
         </div>
       </div>
-
-      <!-- Pickup location (always visible, pre-filled) -->
-      <div class="fg" id="pickupLocation">
+      <div class="fg" id="pickupLocationWrap">
         <label>Pickup Location</label>
-        <input
-          type="text"
-          id="fPickupLocation"
-          value="Ikola, Lagos, Nigeria"
-          placeholder="Pickup location"
-        />
+        <input type="text" id="fPickupLocation" value="Ikola, Lagos, Nigeria" />
         <small style="font-size: 0.7rem; color: var(--brown-4)"
-          >Pickup available at Ikola, Lagos — you'll receive exact address after
-          booking</small
+          >You'll receive the exact address after booking</small
         >
       </div>
-
-      <!-- Delivery address (conditional - hidden by default) -->
-      <div class="fg conditional-field" id="deliveryAddress">
-        <label
-          >Delivery Address
-          <span class="required-star" id="deliveryStar">*</span></label
-        >
+      <div class="fg" id="deliveryAddressWrap" style="display: none">
+        <label>Delivery Address <span class="required-star">*</span></label>
         <textarea
           id="fDeliveryAddress"
           rows="3"
@@ -434,505 +474,796 @@
         >
       </div>
 
-      <!-- LETTER DETAILS -->
+      <!-- ── ALWAYS PRESENT: Deadline ── -->
       <div class="fg">
-        <label id="fRecipientLabel">Who is it for?</label>
-        <input
-          type="text"
-          id="fRecipient"
-          placeholder="e.g. My mum, Tunde, Best friend…"
-        />
+        <label>Deadline (if any)</label>
+        <input type="text" id="fDeadline" placeholder="e.g. Before Dec 25th" />
       </div>
 
-      <div class="fg-row">
-        <div class="fg">
-          <label>Occasion</label>
-          <select id="fOccasion">
-            <option value="">Select…</option>
-            <option>Birthday</option>
-            <option>Anniversary</option>
-            <option>Graduation</option>
-            <option>Apology</option>
-            <option>Wedding / Proposal</option>
-            <option>Just because</option>
-            <option>Other</option>
-          </select>
+      <!-- ══════════════════════════════════════════════
+           DYNAMIC SECTION — changes per offering
+      ══════════════════════════════════════════════ -->
+      <div id="dynamicSection" style="display: none">
+        <div class="section-title" id="dynamicTitle">Order Details</div>
+
+        <!-- LETTER FIELDS (Single Letter, Scroll Letter, Letter Polaroid) -->
+        <div class="dfield" id="df-letter-recipient">
+          <div class="fg">
+            <label
+              >Who is the letter for?
+              <span class="required-star">*</span></label
+            >
+            <input
+              type="text"
+              id="fLetterRecipient"
+              placeholder="e.g. My mum, Tunde, Best friend…"
+            />
+          </div>
         </div>
-        <div class="fg">
-          <label>Deadline (if any)</label>
-          <input
-            type="text"
-            id="fDeadline"
-            placeholder="e.g. Before Dec 25th"
-          />
+        <div class="dfield" id="df-letter-occasion">
+          <div class="fg">
+            <label>Occasion</label>
+            <select id="fOccasion">
+              <option value="">Select…</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Graduation</option>
+              <option>Apology</option>
+              <option>Wedding / Proposal</option>
+              <option>Just because</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="dfield" id="df-letter-words">
+          <div class="fg">
+            <label
+              >Your own words / message
+              <span class="required-star">*</span></label
+            >
+            <textarea
+              id="fCustomWords"
+              rows="7"
+              placeholder="Write your message here (up to 450 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: paragraphs, special memories, inside jokes — pour your heart out!"
+            ></textarea>
+            <div class="word-counter" id="wordCounter">0 / 450 words</div>
+          </div>
+        </div>
+        <div class="dfield" id="df-letter-vibe">
+          <div class="fg">
+            <label>Give me the vibes / directions</label>
+            <textarea
+              id="fVibe"
+              rows="3"
+              placeholder="Tell me about the person, the tone you want — happy, emotional, romantic, funny…"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- MEMORY FRAME -->
+        <div class="dfield" id="df-frame-recipient">
+          <div class="fg">
+            <label>Who is it for? <span class="required-star">*</span></label>
+            <input
+              type="text"
+              id="fFrameRecipient"
+              placeholder="e.g. My mum, Tunde…"
+            />
+          </div>
+        </div>
+        <div class="dfield" id="df-frame-date">
+          <div class="fg">
+            <label
+              >Date to feature on the frame
+              <span class="required-star">*</span></label
+            >
+            <input
+              type="text"
+              id="fFrameDate"
+              placeholder="e.g. Dec 25, 2024 | Our 3rd anniversary | The day we met"
+            />
+            <small style="font-size: 0.7rem; color: var(--brown-4)"
+              >This date will be featured on the Memory Frame</small
+            >
+          </div>
+        </div>
+        <div class="dfield" id="df-frame-occasion">
+          <div class="fg">
+            <label>Occasion</label>
+            <select id="fFrameOccasion">
+              <option value="">Select…</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Graduation</option>
+              <option>Wedding / Proposal</option>
+              <option>Just because</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="dfield" id="df-frame-vibe">
+          <div class="fg">
+            <label>Give me the vibes / directions</label>
+            <textarea
+              id="fFrameVibe"
+              rows="3"
+              placeholder="Describe the mood or theme you want for the frame…"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- POLAROID POCKET -->
+        <div class="dfield" id="df-pocket-qty">
+          <div class="fg">
+            <label
+              >How many Polaroids would you like to order?
+              <span class="required-star">*</span></label
+            >
+            <div class="qty-row">
+              <span class="qty-label">Qty:</span>
+              <button
+                class="qty-btn"
+                onclick="pocketQtyChange(-1)"
+                type="button"
+              >
+                −
+              </button>
+              <span class="qty-val" id="pocketQtyVal">1</span>
+              <button
+                class="qty-btn"
+                onclick="pocketQtyChange(1)"
+                type="button"
+              >
+                +
+              </button>
+              <span class="qty-total" id="pocketQtyTotal">= ₦2,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="dfield" id="df-pocket-date">
+          <div class="fg">
+            <label>Date to write on the Polaroid</label>
+            <input
+              type="text"
+              id="fPocketDate"
+              placeholder="e.g. Dec 25, 2024 | The day we met"
+            />
+            <small style="font-size: 0.7rem; color: var(--brown-4)"
+              >This date will be written on each Polaroid</small
+            >
+          </div>
+        </div>
+        <div class="dfield" id="df-pocket-pics">
+          <div class="info-note">
+            📸 Please send your photos to Lade on WhatsApp after booking. She'll
+            confirm receipt.
+          </div>
+        </div>
+
+        <!-- LOVE JAR -->
+        <div class="dfield" id="df-lovejar-recipient">
+          <div class="fg">
+            <label
+              >Who is the Love Jar for?
+              <span class="required-star">*</span></label
+            >
+            <input
+              type="text"
+              id="fLoveJarRecipient"
+              placeholder="e.g. Myself, My sister, Adaeze…"
+            />
+          </div>
+        </div>
+        <div class="dfield" id="df-lovejar-words">
+          <div class="fg">
+            <label
+              >Send 20 beautiful words you would love to share
+              <span class="required-star">*</span></label
+            >
+            <textarea
+              id="fLoveJarWords"
+              rows="4"
+              placeholder="Write 20 beautiful words you will love to share in the jar…"
+            ></textarea>
+            <div class="word-counter" id="loveJarCounter">0 / 20 words</div>
+          </div>
+        </div>
+
+        <!-- VINTAGE MEMORY BOOK -->
+        <div class="dfield" id="df-membook-recipient">
+          <div class="fg">
+            <label
+              >Who is the Memory Book for?
+              <span class="required-star">*</span></label
+            >
+            <input
+              type="text"
+              id="fMemBookRecipient"
+              placeholder="e.g. My mum, Tunde, Best friend…"
+            />
+          </div>
+        </div>
+        <div class="dfield" id="df-membook-occasion">
+          <div class="fg">
+            <label>Occasion</label>
+            <select id="fMemBookOccasion">
+              <option value="">Select…</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Graduation</option>
+              <option>Wedding</option>
+              <option>Just because</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="dfield" id="df-membook-photos">
+          <div class="info-note">
+            📷 Send 10 beautiful moments photographs you would love to share to
+            Lade on WhatsApp after booking. She'll confirm receipt and guide you
+            from there.
+          </div>
+        </div>
+        <div class="dfield" id="df-membook-vibe">
+          <div class="fg">
+            <label>Give me the vibes / directions</label>
+            <textarea
+              id="fMemBookVibe"
+              rows="3"
+              placeholder="Tell me the story — people, places, memories you want captured…"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- CHOCOLATE BOX -->
+        <div class="dfield" id="df-choc-qty">
+          <div class="fg">
+            <label
+              >How many boxes do you need?
+              <span class="required-star">*</span></label
+            >
+            <div class="qty-row">
+              <span class="qty-label">Qty:</span>
+              <button class="qty-btn" onclick="chocQtyChange(-1)" type="button">
+                −
+              </button>
+              <span class="qty-val" id="chocQtyVal">1</span>
+              <button class="qty-btn" onclick="chocQtyChange(1)" type="button">
+                +
+              </button>
+              <span class="qty-total" id="chocQtyTotal">= ₦4,000</span>
+            </div>
+          </div>
+        </div>
+        <div class="dfield" id="df-choc-context">
+          <div class="fg">
+            <label>Context for the chocolates</label>
+            <textarea
+              id="fChocContext"
+              rows="3"
+              placeholder="e.g. Birthday for a 25 year old who loves pink and butterflies…"
+            ></textarea>
+          </div>
+        </div>
+        <div class="dfield" id="df-choc-vibe">
+          <div class="fg">
+            <label>Give me the vibes / directions</label>
+            <textarea
+              id="fChocVibe"
+              rows="3"
+              placeholder="Tell me the mood, theme or aesthetic for the box…"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- FAMILY LETTER -->
+        <div class="dfield" id="df-family-note">
+          <div class="info-note">
+            👨‍👩‍👧‍👦 Family Letter is a group letter for 5–10 members. This service is
+            coordinated via WhatsApp. Lade will reach out to guide you through
+            the process.
+          </div>
+        </div>
+        <div class="dfield" id="df-family-count">
+          <div class="fg">
+            <label
+              >How many family members?
+              <span class="required-star">*</span></label
+            >
+            <input
+              type="number"
+              id="fFamilyCount"
+              min="5"
+              max="10"
+              placeholder="e.g. 6"
+            />
+            <small style="font-size: 0.7rem; color: var(--brown-4)"
+              >Minimum 5, maximum 10 members</small
+            >
+          </div>
+        </div>
+        <div class="dfield" id="df-family-vibe">
+          <div class="fg">
+            <label>Give me the vibes / directions</label>
+            <textarea
+              id="fFamilyVibe"
+              rows="3"
+              placeholder="Tell me about the family, the occasion, the tone you want…"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- SHARED: Extra notes -->
+        <div class="dfield" id="df-extra">
+          <div class="fg">
+            <label>Anything else?</label>
+            <textarea
+              id="fExtra"
+              rows="2"
+              placeholder="Special requests, add-ons, questions…"
+              style="min-height: 65px"
+            ></textarea>
+          </div>
         </div>
       </div>
+      <!-- /dynamicSection -->
 
-      <div
-        class="fg conditional-field"
-        id="dateDetailGroup"
-        style="display: none"
-      >
-        <label>Date detail</label>
-        <input
-          type="text"
-          id="fDateDetail"
-          placeholder="e.g. Dec 25, 2024 | Our 3rd anniversary | The day we met"
-        />
-        <small style="font-size: 0.7rem; color: var(--brown-4)">
-          This date will be used for the Memory Frame.
-        </small>
-      </div>
-
-      <div
-        class="fg conditional-field"
-        id="quantityGroup"
-        style="display: none"
-      >
-        <label>Quantity <span class="required-star">*</span></label>
-        <input type="number" id="fQuantity" min="1" value="1" placeholder="1" />
-      </div>
-
-      <div
-        class="fg conditional-field"
-        id="memberCountGroup"
-        style="display: none"
-      >
-        <label>Member count <span class="required-star">*</span></label>
-        <input type="number" id="fMemberCount" min="1" placeholder="e.g. 4" />
-      </div>
-
-      <div
-        class="fg conditional-field"
-        id="memoryBookPhotoGroup"
-        style="display: none"
-      >
-        <label>Send 10 photos</label>
-        <textarea
-          id="fPhotoDetails"
-          rows="3"
-          placeholder="Write notes about the 10 photos and when you'll send them via WhatsApp."
-        ></textarea>
-        <small style="font-size: 0.7rem; color: var(--brown-4)">
-          Prepare 10 photos and share them on WhatsApp after booking.
-        </small>
-      </div>
-
-      <div
-        class="fg conditional-field"
-        id="loveJarWordsGroup"
-        style="display: none"
-      >
-        <label>Send 20 words <span class="required-star">*</span></label>
-        <textarea
-          id="fLoveJarWords"
-          rows="3"
-          placeholder="Write 20 words about the person or memory."
-        ></textarea>
-        <div class="word-counter" id="loveJarCounter">0 / 20 words</div>
-      </div>
-
-      <div class="fg conditional-field" id="contextGroup" style="display: none">
-        <label>Context</label>
-        <textarea
-          id="fContext"
-          rows="3"
-          placeholder="Tell me the mood, theme or notes for the box."
-        ></textarea>
-      </div>
-
-      <!-- THEIR OWN WORDS (450 words max) -->
-      <div class="fg" id="customWordsGroup">
-        <label>Your own words / message (optional)</label>
-        <textarea
-          id="fCustomWords"
-          rows="6"
-          placeholder="Write your message here (up to 450 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: You can write in paragraphs, include special memories, inside jokes, or just pour your heart out!"
-        ></textarea>
-        <div class="word-counter" id="wordCounter">0 / 450 words</div>
-      </div>
-
-      <div class="fg">
-        <label>Give me the vibes / direction</label>
-        <textarea
-          id="fVibe"
-          rows="3"
-          placeholder="Tell me about the person, the tone you want — happy, emotional, romantic, funny… anything helps!"
-        ></textarea>
-      </div>
-
-      <div class="fg">
-        <label>Anything else?</label>
-        <textarea
-          id="fExtra"
-          rows="2"
-          placeholder="Special requests, add-ons, questions…"
-          style="min-height: 65px"
-        ></textarea>
-      </div>
-
-      <button class="m-submit" onclick="sendWA()">
+      <button class="m-submit" onclick="sendWA()" type="button">
         <i class="fab fa-whatsapp"></i> Send to Lade's WhatsApp
       </button>
       <p class="m-note">You'll be taken to WhatsApp to confirm your booking</p>
     </div>
 
     <script>
-      // URL parameters
+      // ─── Offering config ───────────────────────────────────────────────
+      // Each offering lists which dynamic field IDs to show
+      const OFFERING_CONFIG = {
+        "Single Letter": {
+          title: "Letter Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+        },
+        "Scroll Letter": {
+          title: "Letter Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+        },
+        "Letter Polaroid": {
+          title: "Letter Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+        },
+        "Memory Frame": {
+          title: "Frame Details",
+          fields: [
+            "df-frame-recipient",
+            "df-frame-date",
+            "df-frame-occasion",
+            "df-frame-vibe",
+            "df-extra",
+          ],
+          requireRecipient: "df-frame-recipient",
+          requireFrameDate: true,
+        },
+        "Polaroid Pocket": {
+          title: "Polaroid Details",
+          fields: [
+            "df-pocket-qty",
+            "df-pocket-date",
+            "df-pocket-pics",
+            "df-extra",
+          ],
+          requireQty: "pocket",
+        },
+        "Love Jar": {
+          title: "Love Jar Details",
+          fields: ["df-lovejar-recipient", "df-lovejar-words", "df-extra"],
+          requireRecipient: "df-lovejar-recipient",
+          requireLoveJarWords: true,
+        },
+        "Vintage Memory Book": {
+          title: "Memory Book Details",
+          fields: [
+            "df-membook-recipient",
+            "df-membook-occasion",
+            "df-membook-photos",
+            "df-membook-vibe",
+            "df-extra",
+          ],
+          requireRecipient: "df-membook-recipient",
+        },
+        "Chocolate Box": {
+          title: "Chocolate Box Details",
+          fields: [
+            "df-choc-qty",
+            "df-choc-context",
+            "df-choc-vibe",
+            "df-extra",
+          ],
+          requireQty: "choc",
+        },
+        "Family Letter": {
+          title: "Family Letter Details",
+          fields: [
+            "df-family-note",
+            "df-family-count",
+            "df-family-vibe",
+            "df-extra",
+          ],
+          requireFamilyCount: true,
+        },
+      };
+
+      // ─── State ────────────────────────────────────────────────────────
+      let pocketQty = 1;
+      let chocQty = 1;
+      const POCKET_PRICE = 2000;
+      const CHOC_PRICE = 4000;
+
+      // ─── Init from URL params ─────────────────────────────────────────
       const urlParams = new URLSearchParams(window.location.search);
-      const offeringParam = urlParams.get("offering");
-      const priceParam = urlParams.get("price");
+      let offeringParam = urlParams.get("offering") || "";
+      const qtyParam = urlParams.get("qty");
 
-      if (offeringParam && priceParam) {
-        const fullOffering = offeringParam + " — " + priceParam;
-        const selectEl = document.getElementById("fOffering");
-        for (let i = 0; i < selectEl.options.length; i++) {
-          if (selectEl.options[i].value === fullOffering) {
-            selectEl.selectedIndex = i;
-            break;
+      // Alias
+      if (offeringParam === "Memory Book")
+        offeringParam = "Vintage Memory Book";
+
+      window.addEventListener("DOMContentLoaded", () => {
+        if (offeringParam) {
+          const sel = document.getElementById("fOffering");
+          sel.value = offeringParam;
+        }
+        // Qty from URL for Polaroid Pocket
+        if (offeringParam === "Polaroid Pocket" && qtyParam) {
+          const q = parseInt(qtyParam, 10);
+          if (!isNaN(q) && q > 0) {
+            pocketQty = q;
+            renderPocketQty();
           }
         }
-        document.getElementById("mName").textContent = offeringParam;
-        document.getElementById("mPrice").textContent = priceParam;
-        document.getElementById("mPill").style.display = "flex";
+        updateOffering();
+      });
+
+      // ─── Delivery toggle ──────────────────────────────────────────────
+      document
+        .getElementById("optPickup")
+        .addEventListener("change", toggleDelivery);
+      document
+        .getElementById("optDelivery")
+        .addEventListener("change", toggleDelivery);
+
+      function toggleDelivery() {
+        const isDelivery = document.getElementById("optDelivery").checked;
+        document.getElementById("deliveryAddressWrap").style.display =
+          isDelivery ? "block" : "none";
+        document.getElementById("pickupLocationWrap").style.opacity = isDelivery
+          ? "0.5"
+          : "1";
       }
 
-      // Delivery/Pickup toggle logic
-      const optPickup = document.getElementById("optPickup");
-      const optDelivery = document.getElementById("optDelivery");
-      const deliveryAddressDiv = document.getElementById("deliveryAddress");
-      const pickupLocationDiv = document.getElementById("pickupLocation");
-      const deliveryStar = document.getElementById("deliveryStar");
+      // ─── Offering change ──────────────────────────────────────────────
+      document
+        .getElementById("fOffering")
+        .addEventListener("change", updateOffering);
 
-      function toggleDeliveryFields() {
-        if (optDelivery.checked) {
-          deliveryAddressDiv.classList.add("show");
-          pickupLocationDiv.style.opacity = "0.5";
-          deliveryStar.style.display = "inline";
-        } else {
-          deliveryAddressDiv.classList.remove("show");
-          pickupLocationDiv.style.opacity = "1";
-          deliveryStar.style.display = "none";
-        }
-      }
+      function updateOffering() {
+        const sel = document.getElementById("fOffering");
+        const offering = sel.value;
+        const cfg = OFFERING_CONFIG[offering];
+        const mPill = document.getElementById("mPill");
+        const mName = document.getElementById("mName");
+        const mPrice = document.getElementById("mPrice");
+        const dynSec = document.getElementById("dynamicSection");
+        const dynTitle = document.getElementById("dynamicTitle");
 
-      optPickup.addEventListener("change", toggleDeliveryFields);
-      optDelivery.addEventListener("change", toggleDeliveryFields);
-      toggleDeliveryFields();
+        // Hide all dynamic fields first
+        document
+          .querySelectorAll(".dfield")
+          .forEach((el) => el.classList.remove("show"));
 
-      // Show/hide conditional fields based on offering selection
-      const offeringSelect = document.getElementById("fOffering");
-      const dateDetailGroup = document.getElementById("dateDetailGroup");
-      const quantityGroup = document.getElementById("quantityGroup");
-      const quantityInput = document.getElementById("fQuantity");
-      const contextGroup = document.getElementById("contextGroup");
-      const memberCountGroup = document.getElementById("memberCountGroup");
-      const photoDetailsGroup = document.getElementById("memoryBookPhotoGroup");
-      const loveJarWordsGroup = document.getElementById("loveJarWordsGroup");
-      const loveJarWordsTextarea = document.getElementById("fLoveJarWords");
-      const loveJarCounter = document.getElementById("loveJarCounter");
-      const customWordsGroup = document.getElementById("customWordsGroup");
-      const videoHint = document.getElementById("videoHint");
-      const recipientLabel = document.getElementById("fRecipientLabel");
-      const mPill = document.getElementById("mPill");
-      const mPrice = document.getElementById("mPrice");
-      const mName = document.getElementById("mName");
-
-      function formatNaira(value) {
-        return Number(value).toLocaleString("en-NG");
-      }
-
-      function toggleOfferingFields() {
-        const selectedOption = offeringSelect.selectedOptions[0];
-        const offering = selectedOption ? selectedOption.value : "";
-        const price = selectedOption ? selectedOption.dataset.price : "";
-        const isPolaroidPocket = offering === "Polaroid Pocket";
-        const isChocolateBox = offering === "Chocolate Box";
-        const isFamilyLetter = offering === "Family Letter";
-        const isMemoryBook = offering === "Memory Book";
-        const isLoveJar = offering === "Love Jar";
-        const isMemoryFrame = offering === "Memory Frame";
-
-        const showQuantity = isPolaroidPocket || isChocolateBox;
-        quantityGroup.style.display = showQuantity ? "block" : "none";
-        contextGroup.style.display = isChocolateBox ? "block" : "none";
-        memberCountGroup.style.display = isFamilyLetter ? "block" : "none";
-        photoDetailsGroup.style.display = isMemoryBook ? "block" : "none";
-        loveJarWordsGroup.style.display = isLoveJar ? "block" : "none";
-        dateDetailGroup.style.display = isMemoryFrame ? "block" : "none";
-        videoHint.style.display = isFamilyLetter ? "block" : "none";
-
-        recipientLabel.textContent = isChocolateBox
-          ? "Who is the box for?"
-          : "Who is it for?";
-
-        const showCustomWords =
-          !isChocolateBox && !isFamilyLetter && !isLoveJar && !isMemoryBook;
-        customWordsGroup.style.display = showCustomWords ? "block" : "none";
-
-        if (offering) {
-          mPill.style.display = "flex";
-          mName.textContent = offering;
-          if (price) {
-            const count = showQuantity
-              ? parseInt(quantityInput.value, 10) || 1
-              : 1;
-            mPrice.textContent = "₦" + formatNaira(price * count);
-            mPrice.style.display = "inline-block";
-          } else {
-            mPrice.style.display = "none";
-          }
-        } else {
+        if (!offering || !cfg) {
           mPill.style.display = "none";
-        }
-      }
-
-      function updateLoveJarCounter() {
-        const text = loveJarWordsTextarea.value;
-        const wordCount = countWords(text);
-        const maxWords = 20;
-
-        loveJarCounter.textContent = `${wordCount} / ${maxWords} words`;
-
-        if (wordCount > maxWords) {
-          loveJarCounter.classList.add("limit");
-          loveJarCounter.classList.remove("warning");
-        } else if (wordCount > maxWords * 0.8) {
-          loveJarCounter.classList.add("warning");
-          loveJarCounter.classList.remove("limit");
-        } else {
-          loveJarCounter.classList.remove("warning", "limit");
-        }
-      }
-
-      offeringSelect.addEventListener("change", toggleOfferingFields);
-      quantityInput.addEventListener("input", toggleOfferingFields);
-      loveJarWordsTextarea.addEventListener("input", updateLoveJarCounter);
-      toggleOfferingFields();
-      updateLoveJarCounter();
-
-      // Word counter (450 words max)
-      const customWordsTextarea = document.getElementById("fCustomWords");
-      const wordCounterDiv = document.getElementById("wordCounter");
-
-      function countWords(str) {
-        return str.trim() === "" ? 0 : str.trim().split(/\s+/).length;
-      }
-
-      function updateWordCounter() {
-        const text = customWordsTextarea.value;
-        const wordCount = countWords(text);
-        const maxWords = 450;
-
-        wordCounterDiv.textContent = `${wordCount} / ${maxWords} words`;
-
-        if (wordCount > maxWords) {
-          wordCounterDiv.classList.add("limit");
-          wordCounterDiv.classList.remove("warning");
-        } else if (wordCount > maxWords * 0.8) {
-          wordCounterDiv.classList.add("warning");
-          wordCounterDiv.classList.remove("limit");
-        } else {
-          wordCounterDiv.classList.remove("warning", "limit");
-        }
-      }
-
-      customWordsTextarea.addEventListener("input", updateWordCounter);
-      updateWordCounter();
-
-      // WhatsApp message
-      function sendWA() {
-        const name = document.getElementById("fName").value.trim();
-        const recipientNumber = document
-          .getElementById("fRecipientNumber")
-          .value.trim();
-        const email = document.getElementById("fEmail").value.trim();
-        const offering = document.getElementById("fOffering").value;
-        const recipient = document.getElementById("fRecipient").value.trim();
-        const occasion = document.getElementById("fOccasion").value;
-        const vibe = document.getElementById("fVibe").value.trim();
-        const deadline = document.getElementById("fDeadline").value.trim();
-        const insta = document.getElementById("fInsta").value.trim();
-        const extra = document.getElementById("fExtra").value.trim();
-        const customWords = document
-          .getElementById("fCustomWords")
-          .value.trim();
-        const loveJarWords = document
-          .getElementById("fLoveJarWords")
-          .value.trim();
-        const photoDetails = document
-          .getElementById("fPhotoDetails")
-          .value.trim();
-        const quantity = document.getElementById("fQuantity").value.trim();
-        const memberCount = document
-          .getElementById("fMemberCount")
-          .value.trim();
-        const dateDetail = document.getElementById("fDateDetail").value.trim();
-
-        // Delivery info
-        const deliveryMethod = optDelivery.checked ? "Delivery" : "Pickup";
-        const pickupLocation = document
-          .getElementById("fPickupLocation")
-          .value.trim();
-        const deliveryAddress = document
-          .getElementById("fDeliveryAddress")
-          .value.trim();
-
-        const selectedOption = offeringSelect.selectedOptions[0];
-        const price = selectedOption ? selectedOption.dataset.price : "";
-        const isPolaroidPocket = offering === "Polaroid Pocket";
-        const isChocolateBox = offering === "Chocolate Box";
-        const isFamilyLetter = offering === "Family Letter";
-        const isMemoryBook = offering === "Memory Book";
-        const isLoveJar = offering === "Love Jar";
-        const showCustomWords =
-          !isChocolateBox && !isFamilyLetter && !isLoveJar && !isMemoryBook;
-
-        if (!name || !recipientNumber) {
-          alert("Please fill in your name and recipient number ✦");
+          dynSec.style.display = "none";
           return;
         }
 
+        // Pill
+        mPill.style.display = "flex";
+        mName.textContent = offering;
+
+        // Price in pill
+        const opt = sel.selectedOptions[0];
+        const rawPrice = opt ? opt.dataset.price : "";
+        if (rawPrice) {
+          const count =
+            offering === "Polaroid Pocket"
+              ? pocketQty
+              : offering === "Chocolate Box"
+                ? chocQty
+                : 1;
+          mPrice.textContent =
+            "₦" + formatNaira(parseInt(rawPrice, 10) * count);
+          mPrice.style.display = "inline-block";
+        } else {
+          mPrice.style.display = "none";
+        }
+
+        // Dynamic title
+        dynTitle.textContent = cfg.title;
+        dynSec.style.display = "block";
+
+        // Show relevant fields
+        cfg.fields.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.classList.add("show");
+        });
+      }
+
+      // ─── Qty helpers ─────────────────────────────────────────────────
+      function renderPocketQty() {
+        document.getElementById("pocketQtyVal").textContent = pocketQty;
+        document.getElementById("pocketQtyTotal").textContent =
+          "= ₦" + formatNaira(pocketQty * POCKET_PRICE);
+        updateOffering(); // refresh pill price
+      }
+      function pocketQtyChange(d) {
+        pocketQty = Math.max(1, pocketQty + d);
+        renderPocketQty();
+      }
+
+      function renderChocQty() {
+        document.getElementById("chocQtyVal").textContent = chocQty;
+        document.getElementById("chocQtyTotal").textContent =
+          "= ₦" + formatNaira(chocQty * CHOC_PRICE);
+        updateOffering();
+      }
+      function chocQtyChange(d) {
+        chocQty = Math.max(1, chocQty + d);
+        renderChocQty();
+      }
+
+      // ─── Word counters ────────────────────────────────────────────────
+      function countWords(str) {
+        return str.trim() === "" ? 0 : str.trim().split(/\s+/).length;
+      }
+      function applyCounter(el, counterEl, max) {
+        const wc = countWords(el.value);
+        counterEl.textContent = `${wc} / ${max} words`;
+        counterEl.classList.toggle("limit", wc > max);
+        counterEl.classList.toggle("warning", wc > max * 0.8 && wc <= max);
+      }
+      document
+        .getElementById("fCustomWords")
+        .addEventListener("input", function () {
+          applyCounter(this, document.getElementById("wordCounter"), 450);
+        });
+      document
+        .getElementById("fLoveJarWords")
+        .addEventListener("input", function () {
+          applyCounter(this, document.getElementById("loveJarCounter"), 20);
+        });
+
+      // ─── Utility ──────────────────────────────────────────────────────
+      function formatNaira(n) {
+        return Number(n).toLocaleString("en-NG");
+      }
+      function val(id) {
+        return document.getElementById(id).value.trim();
+      }
+
+      // ─── Send to WhatsApp ─────────────────────────────────────────────
+      function sendWA() {
+        const offering =
+          val("fOffering") || document.getElementById("fOffering").value;
+        const cfg = OFFERING_CONFIG[offering];
+
+        // Always-required fields
+        if (!val("fName")) {
+          alert("Please fill in your name ✦");
+          return;
+        }
+        if (!val("fRecipientNumber")) {
+          alert("Please fill in the recipient's WhatsApp number ✦");
+          return;
+        }
         if (!offering) {
           alert("Please select an offering ✦");
           return;
         }
 
-        if (showCustomWords && !customWords) {
-          alert(
-            "Please write your message (up to 450 words) — this is what will be handwritten ✦",
-          );
-          return;
-        }
-
-        if (showCustomWords) {
-          const wordCount = countWords(customWords);
-          if (wordCount > 450) {
-            alert(
-              `Your message has ${wordCount} words. Please shorten it to 450 words or less.`,
-            );
-            return;
-          }
-        }
-
-        if (isLoveJar) {
-          const loveJarWordCount = countWords(loveJarWords);
-          if (!loveJarWords) {
-            alert("Please share 20 words for the Love Jar ✦");
-            return;
-          }
-          if (loveJarWordCount > 20) {
-            alert(
-              `Your Love Jar words are ${loveJarWordCount}. Please shorten to 20 words or less.`,
-            );
-            return;
-          }
-        }
-
-        if (isFamilyLetter && !memberCount) {
-          alert("Please add a member count for the Family Letter ✦");
-          return;
-        }
-
-        if (isMemoryBook && !photoDetails) {
-          alert("Please add notes for the 10 photos for the Memory Book ✦");
-          return;
-        }
-
-        if (
-          (isPolaroidPocket || isChocolateBox) &&
-          (!quantity || parseInt(quantity, 10) < 1)
-        ) {
-          alert("Please choose a quantity ✦");
-          return;
-        }
-
-        if (optDelivery.checked && !deliveryAddress) {
+        // Delivery
+        const isDelivery = document.getElementById("optDelivery").checked;
+        if (isDelivery && !val("fDeliveryAddress")) {
           alert("Please provide your delivery address ✦");
           return;
         }
 
-        const msgSegments = [
-          " *NEW BOOKING — LADE WRITES*",
-          "",
-          "*OFFERING DETAILS*",
-          "*Offering:* " + offering,
-        ];
-
-        if (isPolaroidPocket || isChocolateBox) {
-          msgSegments.push("*Quantity:* " + quantity);
-          if (price) {
-            const total = parseInt(price, 10) * parseInt(quantity, 10);
-            msgSegments.push("*Total:* ₦" + formatNaira(total));
+        // Per-offering validation
+        if (cfg) {
+          if (cfg.requireWords) {
+            const wc = countWords(val("fCustomWords"));
+            if (!val("fCustomWords")) {
+              alert(
+                "Please write your message — this is what will be handwritten ✦",
+              );
+              return;
+            }
+            if (wc > 450) {
+              alert(
+                `Your message has ${wc} words. Please shorten to 450 words or less.`,
+              );
+              return;
+            }
+          }
+          if (cfg.requireLoveJarWords) {
+            if (!val("fLoveJarWords")) {
+              alert("Please share 20 words for the Love Jar ✦");
+              return;
+            }
+            if (countWords(val("fLoveJarWords")) > 20) {
+              alert("Please shorten your Love Jar words to 20 or less ✦");
+              return;
+            }
+          }
+          if (cfg.requireFrameDate && !val("fFrameDate")) {
+            alert("Please provide a date for the Memory Frame ✦");
+            return;
+          }
+          if (cfg.requireFamilyCount) {
+            const fc = parseInt(val("fFamilyCount"), 10);
+            if (!val("fFamilyCount") || isNaN(fc)) {
+              alert("Please add the member count for the Family Letter ✦");
+              return;
+            }
+            if (fc < 5 || fc > 10) {
+              alert("Family Letter is for 5–10 members ✦");
+              return;
+            }
+          }
+          if (cfg.requireRecipient) {
+            const recipientEl =
+              cfg.requireRecipient === "df-letter-recipient"
+                ? "fLetterRecipient"
+                : cfg.requireRecipient === "df-frame-recipient"
+                  ? "fFrameRecipient"
+                  : cfg.requireRecipient === "df-lovejar-recipient"
+                    ? "fLoveJarRecipient"
+                    : "fMemBookRecipient";
+            if (!val(recipientEl)) {
+              alert("Please fill in who this is for ✦");
+              return;
+            }
           }
         }
 
-        if (dateDetail) {
-          msgSegments.push("*Date detail:* " + dateDetail);
+        // Build message
+        const lines = [" *NEW BOOKING — LADE WRITES*", ""];
+
+        lines.push("*OFFERING*");
+        lines.push("*Offering:* " + offering);
+
+        // Offering-specific details
+        if (offering === "Polaroid Pocket") {
+          lines.push("*Quantity:* " + pocketQty);
+          lines.push("*Total:* ₦" + formatNaira(pocketQty * POCKET_PRICE));
+          if (val("fPocketDate"))
+            lines.push("*Polaroid date:* " + val("fPocketDate"));
         }
-
-        msgSegments.push("", "*CLIENT INFO*");
-        msgSegments.push("*Name:* " + name);
-        msgSegments.push("*Recipient number:* " + recipientNumber);
-        if (email) msgSegments.push("*Email:* " + email);
-        if (insta) msgSegments.push("*Instagram:* " + insta);
-
-        msgSegments.push("", "*DELIVERY*");
-        msgSegments.push("*Method:* " + deliveryMethod);
-        msgSegments.push(
-          optDelivery.checked
-            ? "*Delivery Address:*\n" + deliveryAddress
-            : "*Pickup:* " + pickupLocation,
-        );
-
-        msgSegments.push("", "*DETAILS*");
-        if (recipient) msgSegments.push("*For:* " + recipient);
-        if (occasion !== "Select…" && occasion)
-          msgSegments.push("*Occasion:* " + occasion);
-        if (deadline) msgSegments.push("*Deadline:* " + deadline);
-        if (isMemoryBook)
-          msgSegments.push(
-            "*Photos:* 10 photos to be sent via WhatsApp after booking.",
+        if (offering === "Chocolate Box") {
+          lines.push("*Quantity:* " + chocQty);
+          lines.push("*Total:* ₦" + formatNaira(chocQty * CHOC_PRICE));
+          if (val("fChocContext"))
+            lines.push("*Context:* " + val("fChocContext"));
+        }
+        if (offering === "Memory Frame") {
+          lines.push("*Date for frame:* " + val("fFrameDate"));
+          const occ = val("fFrameOccasion");
+          if (occ) lines.push("*Occasion:* " + occ);
+        }
+        if (offering === "Family Letter") {
+          lines.push("*Member count:* " + val("fFamilyCount"));
+        }
+        if (offering === "Love Jar") {
+          lines.push("*20 words:* " + val("fLoveJarWords"));
+        }
+        if (offering === "Vintage Memory Book") {
+          lines.push(
+            "*Photos:* 10 photos to be sent on WhatsApp after booking",
           );
-        if (isChocolateBox && context)
-          msgSegments.push("*Context:* " + context);
-        if (isFamilyLetter)
-          msgSegments.push("*Family members:* " + memberCount);
-        if (isLoveJar) msgSegments.push("*Love Jar words:* " + loveJarWords);
-
-        if (showCustomWords && customWords) {
-          const customWordCount = countWords(customWords);
-          msgSegments.push("", `*MESSAGE (${customWordCount}/450 words)*`);
-          msgSegments.push(customWords);
+          const occ = val("fMemBookOccasion");
+          if (occ) lines.push("*Occasion:* " + occ);
+        }
+        if (
+          ["Single Letter", "Scroll Letter", "Letter Polaroid"].includes(
+            offering,
+          )
+        ) {
+          const occ = val("fOccasion");
+          if (occ) lines.push("*Occasion:* " + occ);
         }
 
+        lines.push("", "*CLIENT INFO*");
+        lines.push("*Name:* " + val("fName"));
+        lines.push("*Recipient's WhatsApp:* " + val("fRecipientNumber"));
+        if (val("fEmail")) lines.push("*Email:* " + val("fEmail"));
+        if (val("fInsta")) lines.push("*Instagram:* " + val("fInsta"));
+
+        lines.push("", "*DELIVERY*");
+        if (isDelivery) {
+          lines.push("*Method:* Delivery");
+          lines.push("*Address:*\n" + val("fDeliveryAddress"));
+        } else {
+          lines.push("*Method:* Pickup — " + val("fPickupLocation"));
+        }
+
+        if (val("fDeadline")) lines.push("", "*Deadline:* " + val("fDeadline"));
+
+        // Recipient name
+        const recipientName =
+          val("fLetterRecipient") ||
+          val("fFrameRecipient") ||
+          val("fLoveJarRecipient") ||
+          val("fMemBookRecipient");
+        if (recipientName) lines.push("*For:* " + recipientName);
+
+        // Message / words
+        const customWords = val("fCustomWords");
+        if (customWords) {
+          lines.push("", `━━━━━━━━━━━━━━━━━━`);
+          lines.push(`*MESSAGE (${countWords(customWords)}/450 words)*`);
+          lines.push(`━━━━━━━━━━━━━━━━━━`);
+          lines.push(customWords);
+        }
+
+        // Vibes
+        const vibe =
+          val("fVibe") ||
+          val("fFrameVibe") ||
+          val("fMemBookVibe") ||
+          val("fChocVibe") ||
+          val("fFamilyVibe");
         if (vibe) {
-          msgSegments.push(
-            "",
-            "━━━━━━━━━━━━━━━━━━",
-            "*VIBES / DIRECTION*",
-            "━━━━━━━━━━━━━━━━━━",
-            vibe,
-          );
+          lines.push("", "━━━━━━━━━━━━━━━━━━");
+          lines.push("*VIBES / DIRECTION*");
+          lines.push("━━━━━━━━━━━━━━━━━━");
+          lines.push(vibe);
         }
 
+        const extra = val("fExtra");
         if (extra) {
-          msgSegments.push(
-            "",
-            "━━━━━━━━━━━━━━━━━━",
-            "*EXTRA NOTES*",
-            "━━━━━━━━━━━━━━━━━━",
-            extra,
-          );
+          lines.push("", "━━━━━━━━━━━━━━━━━━");
+          lines.push("*EXTRA NOTES*");
+          lines.push("━━━━━━━━━━━━━━━━━━");
+          lines.push(extra);
         }
 
-        msgSegments.push("", "_— Sent from LadeWrites booking form_");
+        lines.push("", "_— Sent from LadeWrites booking form_");
 
-        const msg = msgSegments.filter(Boolean).join("\n");
-        const waNum = "2347084291183";
-
+        const msg = lines.filter((l) => l !== null).join("\n");
         window.open(
-          "https://wa.me/" + waNum + "?text=" + encodeURIComponent(msg),
+          "https://wa.me/2347084291183?text=" + encodeURIComponent(msg),
           "_blank",
         );
       }
