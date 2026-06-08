@@ -18,1018 +18,14 @@
       href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --brown: #3b1a08;
-        --brown-2: #5c2e10;
-        --brown-3: #8a4f2a;
-        --brown-4: #b8845a;
-        --sand: #e8d5ba;
-        --sand-2: #f2e6d4;
-        --sand-3: #faf5ee;
-        --cream: #fffcf7;
-        --gold: #c4923a;
-        --gold-2: #e8b86d;
-        --ink: #1c0d04;
-        --soft-bg: #f5ede3;
-        --warm-accent: #d4a373;
-        --radius: 16px;
-        --radius-sm: 10px;
-        --radius-btn: 40px;
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
 
-        --f-display: "Nunito", sans-serif;
-        --f-script: "Arizonia", cursive;
-        --f-body: "Nunito", sans-serif;
-        --f-ui: "Outfit", "Segoe UI", sans-serif;
-      }
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        background: var(--cream);
-        color: var(--ink);
-        font-family: var(--f-body);
-        overflow-x: hidden;
-      }
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 9998;
-      }
-
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 500;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 5vw;
-        height: 72px;
-        background: var(--brown);
-        transition: box-shadow 0.3s;
-      }
-      nav.solid {
-        box-shadow: 0 4px 24px rgba(28, 13, 4, 0.3);
-      }
-      .nav-logo {
-        font-family: var(--f-display);
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: var(--sand-3);
-        text-decoration: none;
-        letter-spacing: 0.01em;
-      }
-      .nav-logo span {
-        color: var(--gold-2);
-        font-weight: 700;
-      }
-      .nav-center {
-        display: flex;
-        gap: 2.4rem;
-        list-style: none;
-        align-items: center;
-      }
-      .nav-center a {
-        font-family: var(--f-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: rgba(250, 245, 238, 0.75);
-        text-decoration: none;
-        transition: color 0.2s;
-        font-weight: 500;
-      }
-      .nav-center a:hover {
-        color: var(--sand-3);
-      }
-      .nav-social {
-        display: flex;
-        gap: 1.2rem;
-        align-items: center;
-      }
-      .nav-social a {
-        color: var(--sand);
-        font-size: 1rem;
-        transition:
-          color 0.2s,
-          transform 0.2s;
-      }
-      .nav-social a:hover {
-        color: var(--gold-2);
-        transform: translateY(-2px);
-      }
-      .nav-book {
-        font-family: var(--f-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 700;
-        padding: 0.55rem 1.3rem;
-        border: none;
-        cursor: pointer;
-        transition: background 0.2s;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: var(--radius-btn);
-      }
-      .nav-book:hover {
-        background: var(--gold-2);
-        transform: translateY(-1px);
-      }
-
-      .ham {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 4px;
-        flex-direction: column;
-        gap: 5px;
-        z-index: 600;
-        position: relative;
-      }
-      .ham span {
-        display: block;
-        width: 22px;
-        height: 1.5px;
-        background: var(--sand-3);
-        transition: all 0.3s;
-      }
-      .ham.open span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      .ham.open span:nth-child(2) {
-        opacity: 0;
-      }
-      .ham.open span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
-
-      .nav-drawer {
-        position: fixed;
-        inset: 0;
-        background: var(--cream);
-        z-index: 499;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transform: translateX(-100%);
-        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-      }
-      .nav-drawer.open {
-        transform: translateX(0);
-      }
-      .nav-drawer a,
-      .nav-drawer button {
-        font-family: var(--f-display);
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--brown);
-        text-decoration: none;
-        letter-spacing: 0.02em;
-        background: none;
-        border: none;
-        cursor: pointer;
-      }
-      .nav-drawer-social {
-        display: flex;
-        gap: 1.8rem;
-        margin-top: 1rem;
-      }
-      .nav-drawer-social a {
-        font-size: 1.8rem;
-        color: var(--brown-3);
-      }
-
-      #hero {
-        min-height: 100vh;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding: 0 5vw;
-        padding-top: 72px;
-        position: relative;
-        background: var(--sand-3);
-      }
-      .hero-left {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 6vw 4vw 6vw 0;
-        position: relative;
-        z-index: 2;
-      }
-      .hero-eyebrow {
-        font-family: var(--f-ui);
-        font-size: 0.68rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        margin-bottom: 1.6rem;
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-      }
-      .hero-eyebrow::before {
-        content: "";
-        width: 2rem;
-        height: 1px;
-        background: var(--brown-3);
-        display: inline-block;
-      }
-      .hero-h1 {
-        font-size: clamp(3rem, 6.5vw, 6.5rem);
-        font-family: var(--f-display);
-        font-weight: 800;
-        line-height: 1.02;
-        color: var(--brown);
-        margin-bottom: 1.6rem;
-      }
-      .hero-h1 span {
-        color: var(--brown-3);
-        display: block;
-      }
-      .hero-p {
-        font-family: var(--f-body);
-        font-size: 1rem;
-        line-height: 1.85;
-        color: var(--brown-2);
-        max-width: 420px;
-        margin-bottom: 2.4rem;
-        font-weight: 400;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-
-      .btn-primary {
-        font-family: var(--f-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 700;
-        padding: 0.85rem 2rem;
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: var(--radius-btn);
-      }
-      .btn-primary:hover {
-        background: var(--brown-2);
-        transform: translateY(-2px);
-        color: var(--sand-3);
-      }
-
-      .btn-ghost {
-        font-family: var(--f-ui);
-        font-size: 0.72rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        border: 1.5px solid var(--brown-2);
-        color: var(--brown-2);
-        padding: 0.85rem 2rem;
-        cursor: pointer;
-        background: none;
-        transition: all 0.2s;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: var(--radius-btn);
-      }
-      .btn-ghost:hover {
-        background: var(--gold);
-        color: var(--brown);
-        font-weight: 700;
-        border-color: var(--brown);
-      }
-
-      .hero-right {
-        position: relative;
-        display: flex;
-        align-items: stretch;
-        overflow: hidden;
-      }
-      .hero-img-wrap {
-        width: 100%;
-        height: 100%;
-        min-height: 530px;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 0 0 var(--radius) 0;
-      }
-      #heroMainImg {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transform: scaleX(-1);
-        margin-top: -60px;
-        position: absolute;
-        inset: 0;
-      }
-      .hero-deco {
-        position: absolute;
-        right: -2vw;
-        top: 50%;
-        transform: translateY(-50%);
-        font-family: var(--f-display);
-        font-size: 28vw;
-        color: rgba(59, 26, 8, 0.03);
-        line-height: 1;
-        pointer-events: none;
-        user-select: none;
-        z-index: 0;
-        font-weight: 800;
-      }
-
-      .sec-header-center {
-        text-align: center;
-        margin-bottom: 3.5rem;
-      }
-      .sec-tag {
-        font-family: var(--f-ui);
-        font-size: 0.68rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        margin-bottom: 0.6rem;
-      }
-      .sec-title {
-        font-family: var(--f-display);
-        font-size: clamp(2rem, 4.5vw, 3.5rem);
-        color: var(--brown);
-        font-weight: 800;
-        line-height: 1.1;
-      }
-      .sec-title span {
-        color: var(--brown-3);
-      }
-
-      #whyus {
-        padding: 6rem 5vw;
-        background: var(--cream);
-      }
-      .why-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-        margin-top: 2rem;
-      }
-      .why-card {
-        text-align: center;
-        padding: 2rem 1.5rem;
-        background: var(--sand-3);
-        transition:
-          transform 0.3s,
-          box-shadow 0.3s;
-        border: 1px solid var(--sand);
-        border-radius: var(--radius);
-      }
-      .why-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 32px rgba(59, 26, 8, 0.08);
-      }
-      .why-icon {
-        font-size: 2.5rem;
-        color: var(--gold);
-        margin-bottom: 1rem;
-      }
-      .why-title {
-        font-family: var(--f-display);
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: var(--brown);
-        margin-bottom: 0.75rem;
-      }
-      .why-desc {
-        font-family: var(--f-body);
-        font-size: 0.9rem;
-        line-height: 1.7;
-        color: var(--brown-2);
-      }
-
-      @media (max-width: 900px) {
-        .why-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (max-width: 500px) {
-        .why-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      #video-showcase {
-        padding: 6rem 5vw;
-        background: var(--sand-2);
-      }
-      .video-container {
-        max-width: 700px;
-        margin: 0 auto;
-        position: relative;
-        border-radius: var(--radius);
-        overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      }
-      .video-container video {
-        width: 100%;
-        display: block;
-      }
-      .video-caption {
-        text-align: center;
-        margin-top: 1.2rem;
-        font-family: var(--f-ui);
-        font-size: 0.8rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        font-weight: 500;
-      }
-
-      #offerings {
-        padding: 6rem 5vw;
-        background: var(--cream);
-      }
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-      @media (max-width: 1000px) {
-        .cards-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (max-width: 600px) {
-        .cards-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .offer-card {
-        background: var(--cream);
-        display: flex;
-        flex-direction: column;
-        border: 1px solid var(--sand);
-        transition:
-          transform 0.25s,
-          box-shadow 0.25s;
-        position: relative;
-        overflow: hidden;
-        border-radius: var(--radius);
-      }
-      .offer-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 16px 48px rgba(59, 26, 8, 0.1);
-      }
-
-      .card-gallery {
-        height: 240px;
-        position: relative;
-        overflow: hidden;
-        background: var(--sand-2);
-        border-radius: var(--radius) var(--radius) 0 0;
-      }
-      .card-gallery img.gallery-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.4s;
-        pointer-events: none;
-      }
-      .card-gallery img.gallery-img.active {
-        opacity: 1;
-      }
-      .card-gallery video.gallery-vid {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0;
-        transition: opacity 0.4s;
-        pointer-events: none;
-      }
-      .card-gallery video.gallery-vid.active {
-        opacity: 1;
-      }
-      .card-gallery .placeholder-gallery {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        color: var(--brown-4);
-        font-family: var(--f-ui);
-        font-size: 0.75rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      .card-gallery .placeholder-gallery span {
-        font-size: 2.5rem;
-        opacity: 0.35;
-      }
-      .gallery-dots {
-        position: absolute;
-        bottom: 0.75rem;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 0.4rem;
-        z-index: 2;
-      }
-      .g-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        transition: all 0.2s;
-      }
-      .g-dot.active {
-        background: var(--cream);
-        transform: scale(1.3);
-      }
-      .gallery-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 252, 247, 0.85);
-        border: none;
-        cursor: pointer;
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-        color: var(--brown);
-        z-index: 2;
-        transition: background 0.2s;
-      }
-      .gallery-nav:hover {
-        background: var(--cream);
-      }
-      .gallery-nav.prev {
-        left: 0.7rem;
-      }
-      .gallery-nav.next {
-        right: 0.7rem;
-      }
-      .gallery-count {
-        position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
-        background: rgba(59, 26, 8, 0.65);
-        color: var(--sand-3);
-        font-family: var(--f-ui);
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        padding: 0.2rem 0.55rem;
-        z-index: 2;
-        border-radius: var(--radius-sm);
-      }
-
-      .card-body {
-        padding: 1.6rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .card-name {
-        font-family: var(--f-display);
-        font-size: 1.25rem;
-        font-weight: 800;
-        color: var(--brown);
-        margin-bottom: 0.2rem;
-      }
-      .card-price {
-        font-family: var(--f-ui);
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--gold);
-        font-weight: 700;
-        margin-bottom: 0.8rem;
-      }
-      .card-desc {
-        font-family: var(--f-body);
-        font-size: 0.9rem;
-        line-height: 1.8;
-        color: var(--brown-2);
-        flex: 1;
-        margin-bottom: 1.4rem;
-      }
-      .card-book {
-        align-self: flex-start;
-        font-family: var(--f-ui);
-        font-size: 0.68rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        border: 1.5px solid var(--brown);
-        color: var(--brown);
-        padding: 0.6rem 1.3rem;
-        background: none;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-block;
-        border-radius: var(--radius-btn);
-      }
-      .card-book:hover {
-        background: var(--brown);
-        color: var(--sand-3);
-      }
-
-      #ladebox {
-        background: linear-gradient(135deg, var(--soft-bg) 0%, #e6d9cc 100%);
-        position: relative;
-        overflow: hidden;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        min-height: 600px;
-      }
-      .lbox-image {
-        position: relative;
-        overflow: hidden;
-        background: #d4c5b3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 520px;
-        height: 700px;
-        border-radius: 0 var(--radius) var(--radius) 0;
-      }
-      #ladeBoxImg {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
-        inset: 0;
-      }
-      .lbox-content {
-        padding: 5rem 5vw 5rem 4rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-      }
-      .lbox-deco {
-        position: absolute;
-        right: -3vw;
-        bottom: -4rem;
-        font-family: var(--f-display);
-        font-size: 22vw;
-        color: rgba(59, 26, 8, 0.03);
-        line-height: 1;
-        pointer-events: none;
-        font-weight: 800;
-      }
-      .lbox-tag {
-        font-family: var(--f-ui);
-        font-size: 0.65rem;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        margin-bottom: 0.8rem;
-      }
-      .lbox-title {
-        font-family: var(--f-display);
-        font-size: clamp(2rem, 4vw, 3.4rem);
-        font-weight: 800;
-        color: var(--brown);
-        margin-bottom: 1.6rem;
-        line-height: 1.1;
-      }
-      .lbox-title span {
-        color: var(--brown-2);
-      }
-      .lbox-body p {
-        font-family: var(--f-body);
-        font-size: 0.98rem;
-        line-height: 1.9;
-        color: var(--brown-2);
-        margin-bottom: 1rem;
-      }
-      .lbox-quote {
-        font-family: var(--f-display);
-        font-size: 1.15rem;
-        color: var(--brown-3);
-        line-height: 1.6;
-        border-left: 2px solid var(--gold);
-        padding-left: 1.2rem;
-        margin: 1.6rem 0;
-        font-weight: 700;
-      }
-      .btn-gold {
-        align-self: flex-start;
-        margin-top: 0.4rem;
-        font-family: var(--f-ui);
-        font-size: 0.7rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        border: 1.5px solid var(--gold);
-        color: var(--brown);
-        padding: 0.8rem 1.8rem;
-        background: var(--gold);
-        cursor: pointer;
-        transition: all 0.2s;
-        text-decoration: none;
-        display: inline-block;
-        font-weight: 700;
-        border-radius: var(--radius-btn);
-      }
-      .btn-gold:hover {
-        background: var(--brown-2);
-        border-color: var(--brown-2);
-        color: var(--sand-3);
-      }
-
-      #reviews {
-        padding: 6rem 5vw;
-        background: var(--sand-2);
-        overflow: hidden;
-      }
-      .reviews-carousel-wrap {
-        margin-top: 2rem;
-        position: relative;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .reviews-track-outer {
-        overflow: hidden;
-        border-radius: var(--radius);
-      }
-      .reviews-track {
-        display: flex;
-        transition: transform 0.5s cubic-bezier(0.77, 0, 0.18, 1);
-      }
-      .review-card {
-        flex: 0 0 100%;
-        background: var(--cream);
-        padding: 3rem;
-        border-top: 4px solid var(--brown);
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        border-radius: var(--radius);
-        text-align: center;
-      }
-      .r-stars {
-        display: flex;
-        gap: 4px;
-        justify-content: center;
-      }
-      .r-stars span {
-        color: var(--gold);
-        font-size: 1rem;
-      }
-      .r-text {
-        font-family: var(--f-body);
-        font-size: 1.05rem;
-        line-height: 1.85;
-        color: var(--brown-2);
-      }
-      .r-author {
-        font-family: var(--f-ui);
-        font-size: 0.7rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--brown-3);
-        margin-top: auto;
-        font-weight: 600;
-      }
-      .carousel-controls {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-        align-items: center;
-        justify-content: center;
-      }
-      .car-btn {
-        width: 48px;
-        height: 48px;
-        border: 1.5px solid var(--brown);
-        background: none;
-        cursor: pointer;
-        font-size: 1.2rem;
-        color: var(--brown);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.2s;
-        border-radius: 50%;
-      }
-      .car-btn:hover {
-        background: var(--brown);
-        color: var(--sand-3);
-      }
-      .car-dots {
-        display: flex;
-        gap: 0.6rem;
-      }
-      .car-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--sand);
-        border: none;
-        cursor: pointer;
-        transition: all 0.2s;
-        padding: 0;
-      }
-      .car-dot.active {
-        background: var(--brown);
-        transform: scale(1.2);
-      }
-
-      footer {
-        background: var(--soft-bg);
-        color: var(--brown);
-        padding: 4rem 5vw;
-        border-top: 1px solid var(--sand);
-      }
-      .foot-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        gap: 2rem;
-        margin-bottom: 3rem;
-      }
-      .foot-brand {
-        font-family: var(--f-display);
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--brown);
-      }
-      .foot-tagline {
-        font-family: var(--f-body);
-        font-size: 0.9rem;
-        color: var(--brown-3);
-        margin-top: 0.3rem;
-      }
-      .foot-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-      }
-      .foot-links a {
-        font-family: var(--f-ui);
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: var(--brown);
-        text-decoration: none;
-        opacity: 0.7;
-        transition: opacity 0.2s;
-        font-weight: 500;
-      }
-      .foot-links a:hover {
-        opacity: 1;
-      }
-      .foot-social {
-        display: flex;
-        gap: 1.5rem;
-        margin-top: 0.5rem;
-      }
-      .foot-social a {
-        color: var(--brown);
-        font-size: 1.3rem;
-        opacity: 0.6;
-        transition:
-          opacity 0.2s,
-          transform 0.2s;
-      }
-      .foot-social a:hover {
-        opacity: 1;
-        transform: translateY(-2px);
-      }
-      .foot-bottom {
-        border-top: 1px solid rgba(59, 26, 8, 0.1);
-        padding-top: 1.5rem;
-        font-family: var(--f-ui);
-        font-size: 0.65rem;
-        letter-spacing: 0.08em;
-        opacity: 0.5;
-        text-align: center;
-      }
-
-      .fi {
-        opacity: 0;
-        transform: translateY(24px);
-        transition:
-          opacity 0.65s ease,
-          transform 0.65s ease;
-      }
-      .fi.on {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .fi.d1 {
-        transition-delay: 0.1s;
-      }
-      .fi.d2 {
-        transition-delay: 0.2s;
-      }
-      .fi.d3 {
-        transition-delay: 0.3s;
-      }
-
-      @media (max-width: 900px) {
-        #hero {
-          grid-template-columns: 1fr;
-          min-height: auto;
-          padding-top: 56px;
-        }
-        .hero-right {
-          min-height: 48vw;
-        }
-        .hero-left {
-          padding: 3.5rem 0 2.5rem;
-        }
-        #heroMainImg {
-          margin-top: -85px;
-        }
-        #ladebox {
-          grid-template-columns: 1fr;
-        }
-        .lbox-image {
-          min-height: 300px;
-          height: auto;
-        }
-        .lbox-content {
-          padding: 3.5rem 5vw;
-        }
-        .nav-center {
-          display: none;
-        }
-        .ham {
-          display: flex;
-        }
-        .nav-book {
-          display: none;
-        }
-        .nav-social {
-          display: none;
-        }
-      }
-      @media (max-width: 600px) {
-        #hero {
-          padding-top: 48px;
-        }
-        #heroMainImg {
-          margin-top: -100px;
-        }
-        .review-card {
-          padding: 2rem;
-        }
-        .r-text {
-          font-size: 0.95rem;
-        }
-      }
-
-      .card-price.tbd {
-        color: var(--brown-3);
-        font-style: italic;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <nav id="navbar">
@@ -1076,7 +72,7 @@
           Words that<br /><span>stay forever.</span>
         </h1>
         <p class="hero-p fi d2">
-          Bespoke handcrafted letters, scroll keepsakes and polaroid mementos —
+          Bespoke handcrafted letters, scroll keepsakes and polaroid mementos,
           written for the moments that matter most.
         </p>
         <div class="hero-actions fi d3">
@@ -1086,7 +82,7 @@
       </div>
       <div class="hero-right">
         <div class="hero-img-wrap">
-          <img id="heroMainImg" src="hero.png" alt="Lade Writes hero image" />
+          <img id="heroMainImg" src="bg.jpeg" alt="Lade Writes hero image" />
         </div>
       </div>
       <div class="hero-deco" aria-hidden="true">L</div>
@@ -1214,7 +210,7 @@
             <div class="card-price">₦5,000</div>
             <p class="card-desc">
               A deeply personal handwritten letter, thoughtfully composed for
-              any moment — birthdays, anniversaries, apologies, or simply saying
+              any moment, birthdays, anniversaries, apologies, or simply saying
               what your heart couldn't quite find the words for.
             </p>
             <a
@@ -1399,11 +395,11 @@
             </div>
             <img
               class="gallery-img"
-              src="SCROLL 2.jpeg"
+              src="SCROLL1.jpeg"
               alt="Scroll letter 1"
             /><img
               class="gallery-img"
-              src="SCROLL1.jpeg"
+              src="SCROLL 2.jpeg"
               alt="Scroll letter 2"
             /><button
               class="gallery-nav prev"
@@ -1438,22 +434,17 @@
         <div class="offer-card fi d1">
           <div class="card-gallery" id="g-lovejar">
             <div class="placeholder-gallery">
-              <span>🫙</span>Add photos here
+              <span></span>
             </div>
-            <button
-              class="gallery-nav prev"
-              onclick="galPrev(event, 'g-lovejar')"
-            >
-              ‹</button
-            ><button
-              class="gallery-nav next"
-              onclick="galNext(event, 'g-lovejar')"
-            >
-              ›
-            </button>
-            <div class="gallery-dots" id="dots-g-lovejar"></div>
-            <div class="gallery-count" id="cnt-g-lovejar"></div>
+
+            <img class="gallery-img" src="love jar.jpeg" alt="Love Jar" />
+
+            <!-- removed prev/next buttons -->
+
+            <!-- removed dots -->
+            <!-- removed counter -->
           </div>
+
           <div class="card-body">
             <div class="card-name">Love Jar</div>
             <div class="card-price">₦5,000</div>
@@ -1477,7 +468,7 @@
             </div>
             <video
               class="gallery-vid"
-              src="memory-book.mp4"
+              src="vintage-memory-book-vid.mp4"
               preload="metadata"
               muted
               loop
@@ -1485,7 +476,7 @@
             ></video
             ><img
               class="gallery-img"
-              src="MEMORY BOOK.jpeg"
+              src="vintage-memory-book.jpeg"
               alt="Memory Book"
             /><button
               class="gallery-nav prev"
@@ -1522,17 +513,24 @@
             <div class="placeholder-gallery">
               <span>🍫</span>Add photos here
             </div>
+
+            <img class="gallery-img" src="choco 1.jpeg" alt="Chocolate Box 1" />
+
+            <img class="gallery-img" src="choco 2.jpeg" alt="Chocolate Box 2" />
+
             <button class="gallery-nav prev" onclick="galPrev(event, 'g-choc')">
-              ‹</button
-            ><button
-              class="gallery-nav next"
-              onclick="galNext(event, 'g-choc')"
-            >
+              ‹
+            </button>
+
+            <button class="gallery-nav next" onclick="galNext(event, 'g-choc')">
               ›
             </button>
+
             <div class="gallery-dots" id="dots-g-choc"></div>
+
             <div class="gallery-count" id="cnt-g-choc"></div>
           </div>
+
           <div class="card-body">
             <div class="card-name">Chocolate Box</div>
             <div class="card-price">₦4,000 per box</div>
@@ -1549,66 +547,19 @@
           </div>
         </div>
 
-        <div class="offer-card fi d1">
-          <div class="card-gallery" id="g-family">
-            <div class="placeholder-gallery"><span>👨‍👩‍👧‍👦</span>Add video here</div>
-            <video
-              class="gallery-vid"
-              src="family-letter.mp4"
-              preload="metadata"
-              muted
-              loop
-              playsinline
-            ></video
-            ><button
-              class="gallery-nav prev"
-              onclick="galPrev(event, 'g-family')"
-            >
-              ‹</button
-            ><button
-              class="gallery-nav next"
-              onclick="galNext(event, 'g-family')"
-            >
-              ›
-            </button>
-            <div class="gallery-dots" id="dots-g-family"></div>
-            <div class="gallery-count" id="cnt-g-family">1 / 1</div>
-          </div>
-          <div class="card-body">
-            <div class="card-name">Family Letter</div>
-            <div class="card-price tbd">Price on request</div>
-            <p class="card-desc">
-              A Family Letter is a group letter for 5-10 members. We collect
-              group details in the booking form, and this service is coordinated
-              via WhatsApp rather than as a regular personal letter.
-            </p>
-            <a
-              href="book.html?offering=Family%20Letter&price=Price%20on%20request"
-              class="card-book"
-              >Book This</a
-            >
-          </div>
-        </div>
-
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-frame">
-            <div class="placeholder-gallery">
-              <span>🖼️</span>Add photos here
-            </div>
-            <button
-              class="gallery-nav prev"
-              onclick="galPrev(event, 'g-frame')"
-            >
-              ‹</button
-            ><button
-              class="gallery-nav next"
-              onclick="galNext(event, 'g-frame')"
-            >
-              ›
-            </button>
-            <div class="gallery-dots" id="dots-g-frame"></div>
-            <div class="gallery-count" id="cnt-g-frame"></div>
+            <div class="placeholder-gallery"></div>
+
+            <img
+              class="gallery-img"
+              src="memory-book.jpeg"
+              alt="Memory Frame"
+            />
+
+            <!-- removed carousel controls (if any were planned) -->
           </div>
+
           <div class="card-body">
             <div class="card-name">Memory Frame</div>
             <div class="card-price">₦5,000</div>
@@ -1619,6 +570,49 @@
             </p>
             <a
               href="book.html?offering=Memory%20Frame&price=%E2%82%A65%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
+
+        <div class="offer-card fi d3">
+          <div class="card-gallery" id="g-bdaybook">
+            <div class="placeholder-gallery">
+              <span>🎁</span>Send birthday photos to Lade's DM after booking
+            </div>
+            <img
+              class="gallery-img"
+              src="birthday 1.jpeg"
+              alt="Birthday letter book 1"
+            /><img
+              class="gallery-img"
+              src="birthday 2.jpeg"
+              alt="Birthday letter book 2"
+            /><button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-bdaybook')"
+            >
+              ‹</button
+            ><button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-bdaybook')"
+            >
+              ›
+            </button>
+            <div class="gallery-dots" id="dots-g-bdaybook"></div>
+            <div class="gallery-count" id="cnt-g-bdaybook">1 / 2</div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Birthday Letter Book</div>
+            <div class="card-price">₦8,000</div>
+            <p class="card-desc">
+              A birthday keepsake combining a handwritten letter with a photo
+              memory prompt. Share your message and then send the picture to
+              Lade via DM after booking.
+            </p>
+            <a
+              href="book.html?offering=Birthday%20Letter%20Book&price=%E2%82%A68%2C000"
               class="card-book"
               >Book This</a
             >
@@ -1891,6 +885,7 @@
       }
       [
         "g-single",
+        "g-bdaybook",
         "g-polaroid",
         "g-pocket",
         "g-scroll",

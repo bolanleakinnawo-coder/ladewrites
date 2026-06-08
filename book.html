@@ -378,6 +378,9 @@
           <option value="Single Letter" data-price="5000">
             Single Letter — ₦5,000
           </option>
+          <option value="Birthday Letter Book" data-price="8000">
+            Birthday Letter Book — ₦8,000
+          </option>
           <option value="Scroll Letter" data-price="4000">
             Scroll Letter — ₦4,000
           </option>
@@ -391,8 +394,8 @@
             Polaroid Pocket — ₦2,000 per piece
           </option>
           <option value="Love Jar" data-price="5000">Love Jar — ₦5,000</option>
-          <option value="Vintage Memory Book" data-price="">
-            Vintage Memory Book — Contact for Price
+          <option value="Vintage Memory Book" data-price="12000">
+            Vintage Memory Book — ₦12,000
           </option>
           <option value="Chocolate Box" data-price="4000">
             Chocolate Box — ₦4,000 per box
@@ -524,9 +527,9 @@
             <textarea
               id="fCustomWords"
               rows="7"
-              placeholder="Write your message here (up to 450 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: paragraphs, special memories, inside jokes — pour your heart out!"
+              placeholder="Write your message here (up to 300 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: paragraphs, special memories, inside jokes — pour your heart out!"
             ></textarea>
-            <div class="word-counter" id="wordCounter">0 / 450 words</div>
+            <div class="word-counter" id="wordCounter">0 / 300 words</div>
           </div>
         </div>
         <div class="dfield" id="df-letter-vibe">
@@ -537,6 +540,12 @@
               rows="3"
               placeholder="Tell me about the person, the tone you want — happy, emotional, romantic, funny…"
             ></textarea>
+          </div>
+        </div>
+        <div class="dfield" id="df-birthdaybook-pics">
+          <div class="info-note">
+            📸 Please send your birthday photos to Lade on WhatsApp after booking.
+            She'll confirm receipt in her DM.
           </div>
         </div>
 
@@ -854,6 +863,19 @@
           requireWords: true,
           requireRecipient: "df-letter-recipient",
         },
+        "Birthday Letter Book": {
+          title: "Birthday Letter Book Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-birthdaybook-pics",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+        },
         "Memory Frame": {
           title: "Frame Details",
           fields: [
@@ -1057,7 +1079,7 @@
       document
         .getElementById("fCustomWords")
         .addEventListener("input", function () {
-          applyCounter(this, document.getElementById("wordCounter"), 450);
+          applyCounter(this, document.getElementById("wordCounter"), 300);
         });
       document
         .getElementById("fLoveJarWords")
@@ -1110,9 +1132,9 @@
               );
               return;
             }
-            if (wc > 450) {
+            if (wc > 300) {
               alert(
-                `Your message has ${wc} words. Please shorten to 450 words or less.`,
+                `Your message has ${wc} words. Please shorten to 300 words or less.`,
               );
               return;
             }
@@ -1196,12 +1218,21 @@
           if (occ) lines.push("*Occasion:* " + occ);
         }
         if (
-          ["Single Letter", "Scroll Letter", "Letter Polaroid"].includes(
-            offering,
-          )
+          [
+            "Single Letter",
+            "Birthday Letter Book",
+            "Scroll Letter",
+            "Letter Polaroid",
+          ].includes(offering)
         ) {
           const occ = val("fOccasion");
           if (occ) lines.push("*Occasion:* " + occ);
+        }
+
+        if (offering === "Birthday Letter Book") {
+          lines.push(
+            "*Photos:* Birthday photos to be sent via WhatsApp DM after booking",
+          );
         }
 
         lines.push("", "*CLIENT INFO*");
@@ -1232,7 +1263,7 @@
         const customWords = val("fCustomWords");
         if (customWords) {
           lines.push("", `━━━━━━━━━━━━━━━━━━`);
-          lines.push(`*MESSAGE (${countWords(customWords)}/450 words)*`);
+          lines.push(`*MESSAGE (${countWords(customWords)}/300 words)*`);
           lines.push(`━━━━━━━━━━━━━━━━━━`);
           lines.push(customWords);
         }

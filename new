@@ -1,0 +1,79 @@
+   <div class="offer-card fi d3">
+          <div class="card-gallery" id="g-bdaybook">
+            <div class="placeholder-gallery">
+              <span>🎁</span>Send birthday photos to Lade's DM after booking
+            </div>
+            <img
+              class="gallery-img"
+              src="birthday 1.jpeg"
+              alt="Birthday letter book 1"
+            /><img
+              class="gallery-img"
+              src="birthday 2.jpeg"
+              alt="Birthday letter book 2"
+            /><button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-bdaybook')"
+            >
+              ‹</button
+            ><button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-bdaybook')"
+            >
+              ›
+            </button>
+            <div class="gallery-dots" id="dots-g-bdaybook"></div>
+            <div class="gallery-count" id="cnt-g-bdaybook">1 / 2</div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Birthday Letter Book</div>
+            <div class="card-price">₦8,000</div>
+            <p class="card-desc">
+              A birthday keepsake combining a handwritten letter with a photo
+              memory prompt. Share your message and then send the picture to
+              Lade via DM after booking.
+            </p>
+            <a
+              href="book.html?offering=Birthday%20Letter%20Book&price=%E2%82%A68%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
+
+
+               <div class="offer-card fi d1">
+          <div class="card-gallery" id="g-lovejar">
+            <div class="placeholder-gallery">
+              <span></span>
+            </div>
+            <img src="love jar.jpeg" alt="" />
+            <button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-lovejar')"
+            >
+              ‹</button
+            ><button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-lovejar')"
+            >
+              ›
+            </button>
+            <div class="gallery-dots" id="dots-g-lovejar"></div>
+            <div class="gallery-count" id="cnt-g-lovejar"></div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">Love Jar</div>
+            <div class="card-price">₦5,000</div>
+            <p class="card-desc">
+              A Love Jar is a highly customizable concept that ignites
+              self-love, manifestation, or symbolic home decor. It is a memory
+              jar filled with one clear thought per note.
+            </p>
+            <a
+              href="book.html?offering=Love%20Jar&price=%E2%82%A65%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
