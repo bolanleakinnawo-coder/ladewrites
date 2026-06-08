@@ -415,7 +415,7 @@
         </div>
         <div class="fg">
           <label
-            >Recipient's WhatsApp Number
+            >Recipient's calling Number
             <span class="required-star">*</span></label
           >
           <input type="tel" id="fRecipientNumber" placeholder="0800 000 0000" />
@@ -503,6 +503,21 @@
             />
           </div>
         </div>
+        <div class="dfield" id="df-birthday-date">
+          <div class="fg">
+            <label
+              >Person's birthday <span class="required-star">*</span></label
+            >
+            <input
+              type="text"
+              id="fBirthdayDate"
+              placeholder="e.g. Jan 3, 1990 or June 20"
+            />
+            <small style="font-size: 0.7rem; color: var(--brown-4)">
+              This helps me write the greeting and timing.
+            </small>
+          </div>
+        </div>
         <div class="dfield" id="df-letter-occasion">
           <div class="fg">
             <label>Occasion</label>
@@ -518,6 +533,25 @@
             </select>
           </div>
         </div>
+        <div class="dfield" id="df-letterpolaroid-date">
+          <div class="fg">
+            <label>Date to write on the Polaroid</label>
+            <input
+              type="text"
+              id="fLetterPolaroidDate"
+              placeholder="e.g. Dec 25, 2024 | The day we met"
+            />
+            <small style="font-size: 0.7rem; color: var(--brown-4)">
+              This date will be written on the Polaroid.
+            </small>
+          </div>
+        </div>
+        <div class="dfield" id="df-letterpolaroid-pics">
+          <div class="info-note">
+            📸 Please send the image for the Polaroid to Lade on WhatsApp after
+            booking. She'll confirm receipt in her DM.
+          </div>
+        </div>
         <div class="dfield" id="df-letter-words">
           <div class="fg">
             <label
@@ -529,6 +563,7 @@
               rows="7"
               placeholder="Write your message here (up to 300 words) — This will be handwritten exactly as you've written it.&#10;&#10;Tip: paragraphs, special memories, inside jokes — pour your heart out!"
             ></textarea>
+            <p>Note: Additional text requires extra fee</p>
             <div class="word-counter" id="wordCounter">0 / 300 words</div>
           </div>
         </div>
@@ -544,8 +579,8 @@
         </div>
         <div class="dfield" id="df-birthdaybook-pics">
           <div class="info-note">
-            📸 Please send your birthday photos to Lade on WhatsApp after booking.
-            She'll confirm receipt in her DM.
+            📸 Please send your birthday photos to Lade on WhatsApp after
+            booking. She'll confirm receipt in her DM.
           </div>
         </div>
 
@@ -856,17 +891,21 @@
           fields: [
             "df-letter-recipient",
             "df-letter-occasion",
+            "df-letterpolaroid-date",
             "df-letter-words",
+            "df-letterpolaroid-pics",
             "df-letter-vibe",
             "df-extra",
           ],
           requireWords: true,
           requireRecipient: "df-letter-recipient",
+          requirePolaroidDate: true,
         },
         "Birthday Letter Book": {
           title: "Birthday Letter Book Details",
           fields: [
             "df-letter-recipient",
+            "df-birthday-date",
             "df-letter-occasion",
             "df-letter-words",
             "df-birthdaybook-pics",
@@ -875,6 +914,7 @@
           ],
           requireWords: true,
           requireRecipient: "df-letter-recipient",
+          requireBirthday: true,
         },
         "Memory Frame": {
           title: "Frame Details",
@@ -1164,6 +1204,16 @@
               return;
             }
           }
+          if (cfg.requireBirthday && !val("fBirthdayDate")) {
+            alert(
+              "Please add the person's birthday for the Birthday Letter Book ✦",
+            );
+            return;
+          }
+          if (cfg.requirePolaroidDate && !val("fLetterPolaroidDate")) {
+            alert("Please add the date to write on the Polaroid ✦");
+            return;
+          }
           if (cfg.requireRecipient) {
             const recipientEl =
               cfg.requireRecipient === "df-letter-recipient"
@@ -1229,7 +1279,15 @@
           if (occ) lines.push("*Occasion:* " + occ);
         }
 
+        if (offering === "Letter Polaroid") {
+          if (val("fLetterPolaroidDate"))
+            lines.push("*Polaroid date:* " + val("fLetterPolaroidDate"));
+          lines.push(
+            "*Photos:* Please send the image for the Polaroid to Lade via WhatsApp DM after booking",
+          );
+        }
         if (offering === "Birthday Letter Book") {
+          lines.push("*Birthday:* " + val("fBirthdayDate"));
           lines.push(
             "*Photos:* Birthday photos to be sent via WhatsApp DM after booking",
           );
