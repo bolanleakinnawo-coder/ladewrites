@@ -400,6 +400,12 @@
           <option value="Chocolate Box" data-price="4000">
             Chocolate Box — ₦4,000 per box
           </option>
+          <option value="Flower Bouquet" data-price="12000">
+            Flower Bouquet — ₦12,000 per bouquet
+          </option>
+          <option value="Handwritten Letter Frame" data-price="12000">
+            Handwritten Letter Frame — ₦12,000
+          </option>
           <option value="Family Letter" data-price="">
             Family Letter — Price on request
           </option>
@@ -800,6 +806,35 @@
           </div>
         </div>
 
+        <!-- FLOWER BOUQUET -->
+        <div class="dfield" id="df-flower-qty">
+          <div class="fg">
+            <label
+              >How many bouquets would you like to order?
+              <span class="required-star">*</span></label
+            >
+            <div class="qty-row">
+              <span class="qty-label">Qty:</span>
+              <button
+                class="qty-btn"
+                onclick="flowerQtyChange(-1)"
+                type="button"
+              >
+                −
+              </button>
+              <span class="qty-val" id="flowerQtyVal">1</span>
+              <button
+                class="qty-btn"
+                onclick="flowerQtyChange(1)"
+                type="button"
+              >
+                +
+              </button>
+              <span class="qty-total" id="flowerQtyTotal">= ₦12,000</span>
+            </div>
+          </div>
+        </div>
+
         <!-- FAMILY LETTER -->
         <div class="dfield" id="df-family-note">
           <div class="info-note">
@@ -965,6 +1000,23 @@
           ],
           requireQty: "choc",
         },
+        "Flower Bouquet": {
+          title: "Bouquet Details",
+          fields: ["df-flower-qty", "df-extra"],
+          requireQty: "flower",
+        },
+        "Handwritten Letter Frame": {
+          title: "Letter Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+        },
         "Family Letter": {
           title: "Family Letter Details",
           fields: [
@@ -980,8 +1032,10 @@
       // ─── State ────────────────────────────────────────────────────────
       let pocketQty = 1;
       let chocQty = 1;
+      let flowerQty = 1;
       const POCKET_PRICE = 2000;
       const CHOC_PRICE = 4000;
+      const FLOWER_PRICE = 12000;
 
       // ─── Init from URL params ─────────────────────────────────────────
       const urlParams = new URLSearchParams(window.location.search);
@@ -997,12 +1051,21 @@
           const sel = document.getElementById("fOffering");
           sel.value = offeringParam;
         }
-        // Qty from URL for Polaroid Pocket
-        if (offeringParam === "Polaroid Pocket" && qtyParam) {
+        // Qty from URL for quantity-based offerings
+        if (
+          (offeringParam === "Polaroid Pocket" ||
+            offeringParam === "Flower Bouquet") &&
+          qtyParam
+        ) {
           const q = parseInt(qtyParam, 10);
           if (!isNaN(q) && q > 0) {
-            pocketQty = q;
-            renderPocketQty();
+            if (offeringParam === "Polaroid Pocket") {
+              pocketQty = q;
+              renderPocketQty();
+            } else {
+              flowerQty = q;
+              renderFlowerQty();
+            }
           }
         }
         updateOffering();
@@ -1064,7 +1127,9 @@
               ? pocketQty
               : offering === "Chocolate Box"
                 ? chocQty
-                : 1;
+                : offering === "Flower Bouquet"
+                  ? flowerQty
+                  : 1;
           mPrice.textContent =
             "₦" + formatNaira(parseInt(rawPrice, 10) * count);
           mPrice.style.display = "inline-block";
@@ -1104,6 +1169,17 @@
       function chocQtyChange(d) {
         chocQty = Math.max(1, chocQty + d);
         renderChocQty();
+      }
+
+      function renderFlowerQty() {
+        document.getElementById("flowerQtyVal").textContent = flowerQty;
+        document.getElementById("flowerQtyTotal").textContent =
+          "= ₦" + formatNaira(flowerQty * FLOWER_PRICE);
+        updateOffering();
+      }
+      function flowerQtyChange(d) {
+        flowerQty = Math.max(1, flowerQty + d);
+        renderFlowerQty();
       }
 
       // ─── Word counters ────────────────────────────────────────────────
@@ -1248,6 +1324,10 @@
           lines.push("*Total:* ₦" + formatNaira(chocQty * CHOC_PRICE));
           if (val("fChocContext"))
             lines.push("*Context:* " + val("fChocContext"));
+        }
+        if (offering === "Flower Bouquet") {
+          lines.push("*Quantity:* " + flowerQty);
+          lines.push("*Total:* ₦" + formatNaira(flowerQty * FLOWER_PRICE));
         }
         if (offering === "Memory Frame") {
           lines.push("*Date for frame:* " + val("fFrameDate"));

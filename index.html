@@ -584,6 +584,88 @@
             >
           </div>
         </div>
+
+        <div class="offer-card fi d2">
+          <div class="card-gallery" id="g-flower">
+            <div class="placeholder-gallery"></div>
+
+            <img class="gallery-img" src="flower.jpeg" alt="Flower Bouquet" />
+
+            <!-- removed carousel controls (if any were planned) -->
+          </div>
+
+          <div class="card-body">
+            <div class="card-name">Flower Bouquet</div>
+            <div class="card-price">₦12,000</div>
+            <p class="card-desc">
+              A vintage flower bouquet is a timeless arrangement inspired by
+              old-world romance and delicate beauty. Featuring soft, muted
+              tones, dried blooms,and classic florals, it carries a sense of
+              nostalgia, warmth, and enduring love. Every bouquet tells a story,
+              making it a beautiful keepsake for heartfelt moments and cherished
+              memories.
+            </p>
+            <a
+              href="book.html?offering=Flower%20Bouquet&price=%E2%82%A612%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
+
+        <div class="offer-card fi d2">
+          <div class="card-gallery" id="g-handwritten">
+            <div class="placeholder-gallery">
+              <span>🍫</span>Add photos here
+            </div>
+
+            <img
+              class="gallery-img"
+              src="hand2.jpeg"
+              alt="Handwritten Letter Frame 1"
+            />
+
+            <img
+              class="gallery-img"
+              src="handwritten frame.jpeg"
+              alt="Handwritten Letter Frame 2"
+            />
+
+            <button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-handwritten')"
+            >
+              ‹
+            </button>
+
+            <button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-handwritten')"
+            >
+              ›
+            </button>
+
+            <div class="gallery-dots" id="dots-g-handwritten"></div>
+
+            <div class="gallery-count" id="cnt-g-handwritten">1 / 2</div>
+          </div>
+
+          <div class="card-body">
+            <div class="card-name">Handwritten Letter Frame</div>
+            <div class="card-price">₦12,000</div>
+            <p class="card-desc">
+              A handwritten letter frame is a beautiful way to preserve
+              heartfelt words and meaningful memories. Elegantly displayed, it
+              transforms a personal letter into a timeless keepsake that can be
+              treasured and admired for years to come.
+            </p>
+            <a
+              href="book.html?offering=Flower%20Bouquet&price=%E2%82%A612%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
       </div>
     </section>
 
@@ -858,6 +940,8 @@
         "g-choc",
         "g-family",
         "g-frame",
+        "g-flower",
+        "g-handwritten",
       ].forEach(initGallery);
 
       let ppQtyVal = 1;
