@@ -578,7 +578,7 @@
               Lade via DM after booking.
             </p>
             <a
-              href="book.html?offering=Birthday%20Letter%20Book&price=%E2%82%A68%2C000"
+              href="book.html?offering=Birthday%20Letter%20Book&price=%E2%82%A67%2C000"
               class="card-book"
               >Book This</a
             >
@@ -723,7 +723,7 @@
             </p>
 
             <a
-              href="book.html?offering=Scan%20%26%20Vintage%20Letter&price=%E2%82%A612%2C000"
+             href="book.html?offering=Music%20Scan%20%26%20Vintage%20Letter&price=%E2%82%A612%2C000"
               class="card-book"
             >
               Book This
@@ -770,7 +770,19 @@
 
           <div class="card-body">
             <div class="card-name">Write a Letter Yourself</div>
-            <div class="card-price">₦5,000</div>
+
+            <div class="card-price">
+              ₦5,000
+              <span
+                style="
+                  font-weight: 400;
+                  color: var(--brown-4);
+                  font-size: 0.65rem;
+                "
+              >
+                per letter
+              </span>
+            </div>
 
             <p class="card-desc">
               There is something deeply personal about putting your own thoughts
@@ -781,8 +793,99 @@
               that they were truly worth slowing down for.
             </p>
 
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.8rem;
+                margin-bottom: 1.2rem;
+              "
+            >
+              <span
+                style="
+                  font-family: var(--f-ui);
+                  font-size: 0.65rem;
+                  letter-spacing: 0.12em;
+                  text-transform: uppercase;
+                  color: var(--brown-3);
+                  font-weight: 600;
+                "
+              >
+                Qty:
+              </span>
+
+              <button
+                onclick="wlQtyChange(-1)"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  border: 1.5px solid var(--brown);
+                  background: none;
+                  cursor: pointer;
+                  font-size: 1rem;
+                  color: var(--brown);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 700;
+                "
+              >
+                −
+              </button>
+
+              <span
+                id="wlQty"
+                style="
+                  font-family: var(--f-display);
+                  font-size: 1.1rem;
+                  font-weight: 800;
+                  color: var(--brown);
+                  min-width: 20px;
+                  text-align: center;
+                "
+              >
+                1
+              </span>
+
+              <button
+                onclick="wlQtyChange(1)"
+                style="
+                  width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  border: 1.5px solid var(--brown);
+                  background: none;
+                  cursor: pointer;
+                  font-size: 1rem;
+                  color: var(--brown);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 700;
+                "
+              >
+                +
+              </button>
+
+              <span
+                id="wlTotal"
+                style="
+                  font-family: var(--f-ui);
+                  font-size: 0.75rem;
+                  color: var(--gold);
+                  font-weight: 700;
+                  margin-left: 0.3rem;
+                "
+              >
+                = ₦5,000
+              </span>
+            </div>
+
             <a
-              href="book.html?offering=Write%20a%20Letter%20Yourself&price=%E2%82%A65%2C000"
+              href="#"
+              id="wlBookBtn"
+              onclick="wlBook(event)"
               class="card-book"
             >
               Book This
@@ -1086,7 +1189,29 @@
           "&qty=" +
           ppQtyVal;
       }
+      let wlQtyVal = 1;
+      const WL_PRICE = 5000;
 
+      function wlQtyChange(delta) {
+        wlQtyVal = Math.max(1, wlQtyVal + delta);
+
+        document.getElementById("wlQty").textContent = wlQtyVal;
+
+        document.getElementById("wlTotal").textContent =
+          "= ₦" + (wlQtyVal * WL_PRICE).toLocaleString();
+      }
+
+      function wlBook(e) {
+        e.preventDefault();
+
+        const total = wlQtyVal * WL_PRICE;
+
+        window.location.href =
+          "book.html?offering=Write%20a%20Letter%20Yourself&price=%E2%82%A6" +
+          total.toLocaleString() +
+          "&qty=" +
+          wlQtyVal;
+      }
       const revTrack = document.getElementById("revTrack");
       const reviewCards = [...revTrack.children];
       let carIdx = 0;

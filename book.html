@@ -696,6 +696,47 @@
           </div>
         </div>
 
+        <!-- WRITE A LETTER YOURSELF -->
+        <div class="dfield" id="df-selfletter-qty">
+          <div class="fg">
+            <label>
+              How many letters would you like to order?
+              <span class="required-star">*</span>
+            </label>
+
+            <div class="qty-row">
+              <span class="qty-label">Qty:</span>
+
+              <button
+                class="qty-btn"
+                onclick="selfLetterQtyChange(-1)"
+                type="button"
+              >
+                −
+              </button>
+
+              <span class="qty-val" id="selfLetterQtyVal">1</span>
+
+              <button
+                class="qty-btn"
+                onclick="selfLetterQtyChange(1)"
+                type="button"
+              >
+                +
+              </button>
+
+              <span class="qty-total" id="selfLetterQtyTotal">= ₦5,000</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dfield" id="df-selfletter-note">
+          <div class="info-note">
+            💌 Each kit contains everything you need to write your own
+            handwritten letter beautifully.
+          </div>
+        </div>
+
         <!-- LOVE JAR -->
         <div class="dfield" id="df-lovejar-recipient">
           <div class="fg">
@@ -942,18 +983,7 @@
           requireRecipient: "df-letter-recipient",
           requirePolaroidDate: true,
         },
-        "Write a Letter Yourself": {
-          title: "Letter Details",
-          fields: [
-            "df-letter-recipient",
-            "df-letter-occasion",
-            "df-letter-words",
-            "df-letter-vibe",
-            "df-extra",
-          ],
-          requireWords: true,
-          requireRecipient: "df-letter-recipient",
-        },
+
         "Birthday Letter Book": {
           title: "Birthday Letter Book Details",
           fields: [
@@ -969,7 +999,7 @@
           requireRecipient: "df-letter-recipient",
           requireBirthday: true,
         },
-        " Music Scan & Vintage Letter": {
+        "Music Scan & Vintage Letter": {
           title: "Music Scan & Vintage Letter Details",
           fields: [
             "df-letter-recipient",
@@ -1002,6 +1032,12 @@
             "df-extra",
           ],
           requireQty: "pocket",
+        },
+
+        "Write a Letter Yourself": {
+          title: "Write a Letter Yourself",
+          fields: ["df-selfletter-qty", "df-selfletter-note", "df-extra"],
+          requireQty: "selfLetter",
         },
         "Love Jar": {
           title: "Love Jar Details",
@@ -1062,10 +1098,27 @@
       // ─── State ────────────────────────────────────────────────────────
       let pocketQty = 1;
       let chocQty = 1;
+      let selfLetterQty = 1;
       let flowerQty = 1;
+      const SELFLETTER_PRICE = 5000;
+
       const POCKET_PRICE = 2000;
       const CHOC_PRICE = 4000;
       const FLOWER_PRICE = 12000;
+
+      function renderSelfLetterQty() {
+        document.getElementById("selfLetterQtyVal").textContent = selfLetterQty;
+
+        document.getElementById("selfLetterQtyTotal").textContent =
+          "= ₦" + formatNaira(selfLetterQty * SELFLETTER_PRICE);
+
+        updateOffering();
+      }
+
+      function selfLetterQtyChange(d) {
+        selfLetterQty = Math.max(1, selfLetterQty + d);
+        renderSelfLetterQty();
+      }
 
       // ─── Init from URL params ─────────────────────────────────────────
       const urlParams = new URLSearchParams(window.location.search);
@@ -1155,11 +1208,13 @@
           const count =
             offering === "Polaroid Pocket"
               ? pocketQty
-              : offering === "Chocolate Box"
-                ? chocQty
-                : offering === "Flower Bouquet"
-                  ? flowerQty
-                  : 1;
+              : offering === "Write a Letter Yourself"
+                ? selfLetterQty
+                : offering === "Chocolate Box"
+                  ? chocQty
+                  : offering === "Flower Bouquet"
+                    ? flowerQty
+                    : 1;
           mPrice.textContent =
             "₦" + formatNaira(parseInt(rawPrice, 10) * count);
           mPrice.style.display = "inline-block";
@@ -1346,9 +1401,15 @@
         if (offering === "Polaroid Pocket") {
           lines.push("*Quantity:* " + pocketQty);
           lines.push("*Total:* ₦" + formatNaira(pocketQty * POCKET_PRICE));
-          if (val("fPocketDate"))
-            lines.push("*Polaroid date:* " + val("fPocketDate"));
         }
+
+        if (offering === "Write a Letter Yourself") {
+          lines.push("*Quantity:* " + selfLetterQty);
+          lines.push(
+            "*Total:* ₦" + formatNaira(selfLetterQty * SELFLETTER_PRICE),
+          );
+        }
+    
         if (offering === "Chocolate Box") {
           lines.push("*Quantity:* " + chocQty);
           lines.push("*Total:* ₦" + formatNaira(chocQty * CHOC_PRICE));
