@@ -723,7 +723,7 @@
             </p>
 
             <a
-             href="book.html?offering=Music%20Scan%20%26%20Vintage%20Letter&price=%E2%82%A612%2C000"
+              href="book.html?offering=Music%20Scan%20%26%20Vintage%20Letter&price=%E2%82%A612%2C000"
               class="card-book"
             >
               Book This
@@ -886,6 +886,172 @@
               href="#"
               id="wlBookBtn"
               onclick="wlBook(event)"
+              class="card-book"
+            >
+              Book This
+            </a>
+          </div>
+        </div>
+
+        <div class="offer-card fi d2">
+          <div class="card-gallery" id="g-card-custom">
+            <div class="placeholder-gallery">
+              <span>💌</span>Add photos here
+            </div>
+
+            <img
+              class="gallery-img"
+              src="card 1.jpeg"
+              alt="LÁDÉ Card Letters Custom Made 1"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 2.jpeg"
+              alt="LÁDÉ Card Letters Custom Made 2"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 3.jpeg"
+              alt="LÁDÉ Card Letters Custom Made 3"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 4.jpeg"
+              alt="LÁDÉ Card Letters Custom Made 4"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 5.jpeg"
+              alt="LÁDÉ Card Letters Custom Made 5"
+            />
+
+            <button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-card-custom')"
+            >
+              ‹
+            </button>
+
+            <button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-card-custom')"
+            >
+              ›
+            </button>
+
+            <div class="gallery-dots" id="dots-g-card-custom"></div>
+
+            <div class="gallery-count" id="cnt-g-card-custom">1 / 5</div>
+          </div>
+
+          <div class="card-body">
+            <div class="card-name">LÁDÉ Card Letters — Custom Made</div>
+
+            <div class="card-price">₦6,000</div>
+
+            <p class="card-desc">
+              LÁDÉ Card Letters are little pieces of love, appreciation, and
+              thoughtful words, beautifully handwritten and created to make
+              someone feel special. For the Custom Made Card Letter, simply
+              share your message with us and LÁDÉ will beautifully handwrite it
+              for you. Whether it’s a birthday, a thank-you, a celebration, an
+              apology, or simply a reminder that someone matters, your words
+              become something they can hold, keep, and read again.
+              <br /><br />
+              Small card. Meaningful words. A memory to keep.
+            </p>
+
+            <a
+              href="#"
+              id="customCardBookBtn"
+              onclick="customCardBook(event)"
+              class="card-book"
+            >
+              Book This
+            </a>
+          </div>
+        </div>
+
+        <div class="offer-card fi d2">
+          <div class="card-gallery" id="g-card-blank">
+            <div class="placeholder-gallery">
+              <span>💌</span>Add photos here
+            </div>
+
+            <img
+              class="gallery-img"
+              src="card 1.jpeg"
+              alt="LÁDÉ Card Letters Blank Card 1"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 2.jpeg"
+              alt="LÁDÉ Card Letters Blank Card 2"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 3.jpeg"
+              alt="LÁDÉ Card Letters Blank Card 3"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 4.jpeg"
+              alt="LÁDÉ Card Letters Blank Card 4"
+            />
+
+            <img
+              class="gallery-img"
+              src="card 5.jpeg"
+              alt="LÁDÉ Card Letters Blank Card 5"
+            />
+
+            <button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-card-blank')"
+            >
+              ‹
+            </button>
+
+            <button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-card-blank')"
+            >
+              ›
+            </button>
+
+            <div class="gallery-dots" id="dots-g-card-blank"></div>
+
+            <div class="gallery-count" id="cnt-g-card-blank">1 / 5</div>
+          </div>
+
+          <div class="card-body">
+            <div class="card-name">LÁDÉ Card Letters — Blank Card</div>
+
+            <div class="card-price">₦4,000</div>
+
+            <p class="card-desc">
+              LÁDÉ Card Letters are little pieces of love, appreciation, and
+              thoughtful words, beautifully created to make someone feel
+              special. With the Blank Card, you get to put your own feelings
+              into words and write the message yourself. Whether it’s a
+              birthday, a thank-you, a celebration, an apology, or simply a
+              reminder that someone matters, your own handwriting makes the card
+              even more personal and meaningful.
+              <br /><br />
+              Small card. Your words. A memory to keep.
+            </p>
+
+            <a
+              href="#"
+              id="blankCardBookBtn"
+              onclick="blankCardBook(event)"
               class="card-book"
             >
               Book This
@@ -1171,6 +1337,8 @@
         "g-handwritten",
         "g-scan-vintage",
         "g-write-letter",
+        "g-card-custom",
+        "g-card-blank",
       ].forEach(initGallery);
       let ppQtyVal = 1;
       const PP_PRICE = 2000;
@@ -1211,6 +1379,16 @@
           total.toLocaleString() +
           "&qty=" +
           wlQtyVal;
+      }
+      function customCardBook(e) {
+        e.preventDefault();
+        window.location.href =
+          "book.html?offering=L%C3%81D%C3%89%20Card%20Letters%20%E2%80%94%20Custom%20Made&price=%E2%82%A66%2C000";
+      }
+      function blankCardBook(e) {
+        e.preventDefault();
+        window.location.href =
+          "book.html?offering=L%C3%81D%C3%89%20Card%20Letters%20%E2%80%94%20Blank%20Card&price=%E2%82%A64%2C000";
       }
       const revTrack = document.getElementById("revTrack");
       const reviewCards = [...revTrack.children];
