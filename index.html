@@ -893,6 +893,55 @@
           </div>
         </div>
 
+        <div class="offer-card fi d1">
+          <div class="card-gallery" id="g-puzzle-game">
+            <div class="placeholder-gallery">
+              <span>🧩</span>Add puzzle photos here
+            </div>
+            <img
+              class="gallery-img"
+              src="puzzle 1.jpeg"
+              alt="Puzzle Game keepsake 1"
+            />
+            <img
+              class="gallery-img"
+              src="puzzle 2.jpeg"
+              alt="Puzzle Game keepsake 2"
+            />
+            <button
+              class="gallery-nav prev"
+              onclick="galPrev(event, 'g-puzzle-game')"
+              aria-label="Previous Puzzle Game photo"
+            >
+              ‹
+            </button>
+            <button
+              class="gallery-nav next"
+              onclick="galNext(event, 'g-puzzle-game')"
+              aria-label="Next Puzzle Game photo"
+            >
+              ›
+            </button>
+            <div class="gallery-dots" id="dots-g-puzzle-game"></div>
+            <div class="gallery-count" id="cnt-g-puzzle-game">1 / 2</div>
+          </div>
+          <div class="card-body">
+            <div class="card-name">The Puzzle Game 🧩</div>
+            <div class="card-price">₦4,000</div>
+            <p class="card-desc">
+              Some things are more beautiful when you put the pieces together. A
+              little game of names, memories and connection, carefully designed
+              to make you pause, ask deep questions, learn more about yourself
+              and smile when the answer finally comes together.
+            </p>
+            <a
+              href="book.html?offering=The%20Puzzle%20Game&price=%E2%82%A64%2C000"
+              class="card-book"
+              >Book This</a
+            >
+          </div>
+        </div>
+
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-card-custom">
             <div class="placeholder-gallery">
@@ -1337,6 +1386,7 @@
         "g-handwritten",
         "g-scan-vintage",
         "g-write-letter",
+        "g-puzzle-game",
         "g-card-custom",
         "g-card-blank",
       ].forEach(initGallery);

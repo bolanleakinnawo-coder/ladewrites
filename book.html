@@ -421,6 +421,9 @@
           <option value="LÁDÉ Card Letters — Blank Card" data-price="4000">
             LÁDÉ Card Letters — Blank Card — ₦4,000
           </option>
+          <option value="The Puzzle Game" data-price="4000">
+            The Puzzle Game 🧩 — ₦4,000
+          </option>
         </select>
       </div>
 
@@ -433,8 +436,7 @@
         </div>
         <div class="fg">
           <label
-            >Recipient's calling Number
-            <span class="required-star">*</span></label
+            >Recipient phone number <span class="required-star">*</span></label
           >
           <input type="tel" id="fRecipientNumber" placeholder="0800 000 0000" />
         </div>
@@ -599,6 +601,28 @@
           <div class="info-note">
             📸 Please send your birthday photos to Lade on WhatsApp after
             booking. She'll confirm receipt in her DM.
+          </div>
+        </div>
+
+        <div class="dfield" id="df-puzzle-details">
+          <div class="fg">
+            <label
+              >Names and memories to include
+              <span class="required-star">*</span></label
+            >
+            <textarea
+              id="fPuzzleMemories"
+              rows="5"
+              placeholder="Share the names, memories, inside jokes or meaningful moments that should become part of the puzzle…"
+            ></textarea>
+          </div>
+          <div class="fg">
+            <label>How should it feel?</label>
+            <textarea
+              id="fPuzzleVibe"
+              rows="3"
+              placeholder="Thoughtful, romantic, playful, deep, surprising…"
+            ></textarea>
           </div>
         </div>
 
@@ -1005,6 +1029,11 @@
           requireRecipient: "df-letter-recipient",
           requireBirthday: true,
         },
+        "The Puzzle Game": {
+          title: "Puzzle Game Details",
+          fields: ["df-puzzle-details", "df-extra"],
+          requirePuzzleMemories: true,
+        },
         "Music Scan & Vintage Letter": {
           title: "Music Scan & Vintage Letter Details",
           fields: [
@@ -1364,6 +1393,10 @@
               return;
             }
           }
+          if (cfg.requirePuzzleMemories && !val("fPuzzleMemories")) {
+            alert("Please share the names and memories for the Puzzle Game ✦");
+            return;
+          }
           if (cfg.requireFrameDate && !val("fFrameDate")) {
             alert("Please provide a date for the Memory Frame ✦");
             return;
@@ -1478,6 +1511,10 @@
           lines.push(
             "*Photos:* Birthday photos to be sent via WhatsApp DM after booking",
           );
+        }
+        if (offering === "The Puzzle Game") {
+          lines.push("*Names and memories:* " + val("fPuzzleMemories"));
+          if (val("fPuzzleVibe")) lines.push("*Feel:* " + val("fPuzzleVibe"));
         }
 
         lines.push("", "*CLIENT INFO*");
