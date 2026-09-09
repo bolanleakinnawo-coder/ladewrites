@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Products — Lade Writes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="catalog-page">
+    <header class="catalog-header">
+      <a href="index.html" class="catalog-back">← Back to Home</a>
+      <div class="sec-tag">The Full Collection</div>
+      <h1 class="sec-title">All <span>Products</span></h1>
+      <p>
+        Thoughtful letters, keepsakes, and gifts made for meaningful moments.
+      </p>
+      <div class="catalog-search">
+        <label for="productSearch">Find a product</label>
+        <div class="catalog-search-box">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="productSearch"
+            type="search"
+            placeholder="Try “birthday”, “romantic”, “photos”, or “gift”"
+            autocomplete="off"
+          />
+        </div>
+        <p class="catalog-search-hint" id="searchStatus" aria-live="polite">
+          Showing all products
+        </p>
+      </div>
+    </header>
+
+    <main class="catalog-grid" id="catalogGrid"></main>
+  </body>
+  <script>
+    const products = [
+      [
+        "Single Letter",
+        "₦8,000",
+        ["SINGLE 2.jpeg", "SINGLE 1.jpeg"],
+        "A deeply personal handwritten letter, thoughtfully composed for any moment, birthdays, anniversaries, apologies, or simply saying what your heart couldn't quite find the words for.",
+      ],
+      [
+        "Letter Polaroid",
+        "₦10,000",
+        ["LETTERPOLAROID.jpeg"],
+        "A heartfelt letter paired with a cherished printed polaroid — your words and a memory, bound together in one beautiful keepsake to hold for a lifetime.",
+      ],
+      [
+        "Polaroid Pocket",
+        "₦2,000 per piece",
+        ["POLA 1.jpeg", "POLA 2.jpeg"],
+        "A small, sweet polaroid pocket — compact, but enormous in feeling. The perfect gesture when you want to say something real without saying too much.",
+      ],
+      [
+        "Scroll Letter",
+        "₦6,000",
+        ["SCROLL1.jpeg"],
+        "Long, luxurious, and dramatic — a scroll-style letter for when ordinary paper simply isn't enough. Pour everything you've been meaning to say into a format built to last.",
+      ],
+      [
+        "Love Jar",
+        "₦8,000",
+        ["love jar.jpeg"],
+        "A Love Jar is a highly customizable concept that ignites self-love, manifestation, or symbolic home decor. It is a memory jar filled with one clear thought per note.",
+      ],
+      [
+        "Vintage Memory Book",
+        "₦15,000",
+        ["vintage-memory-book 2.jpeg", "vintage-memory-book.jpeg"],
+        "A personalized collection of photographs, mementos, stories, and memorabilia that documents a specific life event, relationship, or personal history — bound into a keepsake you'll cherish forever.",
+      ],
+      [
+        "Chocolate Box",
+        "₦4,000 per box",
+        ["choco 1.jpeg", "choco 2.jpeg"],
+        "A beautifully curated chocolate gift box, dressed up with intention and care. Perfect for anniversaries, celebrations, or just because — sweet on the outside, sweeter on the inside.",
+      ],
+      [
+        "Memory Frame",
+        "₦5,000",
+        ["memory-book.jpeg"],
+        "A framed keepsake that holds a memory, a date, and a feeling — made to hang on a wall and stay on a heart. Beautiful, simple, and forever.",
+      ],
+      [
+        "Birthday Letter Book",
+        "₦10,000",
+        ["birthday 1.jpeg"],
+        "A birthday keepsake combining a handwritten letter with a photo memory prompt. Share your message and then send the picture to Lade via DM after booking.",
+      ],
+      [
+        "Handwritten Letter Frame",
+        "₦12,000",
+        ["handwrittenframe2.jpeg", "hand2.jpeg", "handwritten frame.jpeg"],
+        "A handwritten letter frame is a beautiful way to preserve heartfelt words and meaningful memories. Elegantly displayed, it transforms a personal letter into a timeless keepsake that can be treasured and admired for years to come.",
+      ],
+      [
+        "Music Scan & Vintage Letter",
+        "₦12,000",
+        ["music 1.jpeg", "music 2.jpeg", "music 3.jpeg"],
+        "Some songs say the words our hearts cannot. A music scan paired with a vintage letter creates a timeless keepsake—one that lets someone read your heart and hear the soundtrack behind it. Every note, every lyric, and every handwritten word becomes a memory they can hold onto long after the music fades.",
+      ],
+      [
+        "Write a Letter Yourself",
+        "₦5,000 per letter",
+        ["personalletter1.jpeg", "personalletter2.jpeg"],
+        "There is something deeply personal about putting your own thoughts on paper. A handwritten letter doesn't need perfect words—it only needs honesty. When you write a letter yourself, you give someone a piece of your heart, your time, and your presence. In a world of quick messages, your own handwriting becomes a lasting reminder that they were truly worth slowing down for.",
+      ],
+      [
+        "The Puzzle Game",
+        "₦4,000",
+        ["puzzle 1.jpeg", "puzzle 2.jpeg"],
+        "Some things are more beautiful when you put the pieces together. A little game of names, memories and connection, carefully designed to make you pause, ask deep questions, learn more about yourself and smile when the answer finally comes together.",
+      ],
+      [
+        "LÁDÉ Card Letters — Custom Made",
+        "₦6,000",
+        [
+          "card 1.jpeg",
+          "card 2.jpeg",
+          "card 3.jpeg",
+          "card 4.jpeg",
+          "card 5.jpeg",
+        ],
+        "LÁDÉ Card Letters are little pieces of love, appreciation, and thoughtful words, beautifully handwritten and created to make someone feel special. For the Custom Made Card Letter, simply share your message with us and LÁDÉ will beautifully handwrite it for you. Whether it's a birthday, a thank-you, a celebration, an apology, or simply a reminder that someone matters, your words become something they can hold, keep, and read again.\n\nSmall card. Meaningful words. A memory to keep.",
+      ],
+      [
+        "LÁDÉ Card Letters — Blank Card",
+        "₦4,000",
+        [
+          "card 1.jpeg",
+          "card 2.jpeg",
+          "card 3.jpeg",
+          "card 4.jpeg",
+          "card 5.jpeg",
+        ],
+        "LÁDÉ Card Letters are little pieces of love, appreciation, and thoughtful words, beautifully created to make someone feel special. With the Blank Card, you get to put your own feelings into words and write the message yourself. Whether it's a birthday, a thank-you, a celebration, an apology, or simply a reminder that someone matters, your own handwriting makes the card even more personal and meaningful.\n\nSmall card. Your words. A memory to keep.",
+      ],
+    ];
+
+    const productKeywords = {
+      "Single Letter":
+        "gift romantic love apology anniversary personal message",
+      "Letter Polaroid": "gift romantic love photo memory anniversary keepsake",
+      "Polaroid Pocket": "gift photo picture memory small keepsake",
+      "Scroll Letter": "gift romantic dramatic long letter keepsake",
+      "Love Jar": "gift romantic love self love notes manifestation decor",
+      "Vintage Memory Book":
+        "gift photos memories family relationship anniversary keepsake",
+      "Chocolate Box": "gift birthday anniversary celebration sweet chocolate",
+      "Memory Frame": "gift photo memory date wall keepsake anniversary",
+      "Birthday Letter Book": "birthday gift photos keepsake celebration",
+      "Handwritten Letter Frame":
+        "gift handwritten romantic love photo frame keepsake",
+      "Music Scan & Vintage Letter":
+        "gift romantic music song lyrics handwritten letter",
+      "Write a Letter Yourself": "DIY gift handwritten personal message letter",
+      "The Puzzle Game": "game gift romantic questions memories relationship",
+      "LÁDÉ Card Letters — Custom Made":
+        "gift birthday thank you appreciation custom handwritten card",
+      "LÁDÉ Card Letters — Blank Card":
+        "gift birthday thank you DIY blank card write message",
+    };
+
+    const grid = document.getElementById("catalogGrid");
+    const searchInput = document.getElementById("productSearch");
+    const searchStatus = document.getElementById("searchStatus");
+
+    function renderProducts(searchTerm = "") {
+      const query = searchTerm.trim().toLowerCase();
+      const matchingProducts = products.filter(
+        ([name, price, , description]) => {
+          const searchableText =
+            `${name} ${price} ${description} ${productKeywords[name] || ""}`.toLowerCase();
+          return (
+            !query ||
+            query.split(/\s+/).every((word) => searchableText.includes(word))
+          );
+        },
+      );
+      grid.innerHTML = "";
+      searchStatus.textContent = query
+        ? `${matchingProducts.length} product${matchingProducts.length === 1 ? "" : "s"} found`
+        : "Showing all products";
+
+      matchingProducts.forEach(
+        ([name, price, images, description], productIndex) => {
+          const galleryId = "catalog-gallery-" + productIndex;
+          const encodedName = encodeURIComponent(name);
+          const article = document.createElement("article");
+          article.className = "catalog-card";
+          article.innerHTML = `
+        <div class="catalog-gallery" id="${galleryId}">
+          ${images.map((image, index) => `<img class="catalog-slide ${index === 0 ? "active" : ""}" src="${image}" alt="${name} ${index + 1}">`).join("")}
+          ${images.length > 1 ? `<button class="catalog-prev" aria-label="Previous image">‹</button><button class="catalog-next" aria-label="Next image">›</button><div class="catalog-dots">${images.map((_, index) => `<button class="catalog-dot ${index === 0 ? "active" : ""}" aria-label="Show image ${index + 1}"></button>`).join("")}</div><span class="catalog-count">1 / ${images.length}</span>` : ""}
+        </div>
+        <div class="catalog-card-body"><h2>${name}</h2><strong>${price}</strong><p>${description.replaceAll("\n\n", "<br><br>")}</p><a href="book.html?offering=${encodedName}">Book This</a></div>`;
+          grid.appendChild(article);
+          const slides = [...article.querySelectorAll(".catalog-slide")];
+          if (slides.length > 1) {
+            let current = 0;
+            const count = article.querySelector(".catalog-count");
+            const dots = [...article.querySelectorAll(".catalog-dot")];
+            const show = (next) => {
+              current = (next + slides.length) % slides.length;
+              slides.forEach((slide, index) =>
+                slide.classList.toggle("active", index === current),
+              );
+              dots.forEach((dot, index) =>
+                dot.classList.toggle("active", index === current),
+              );
+              count.textContent = `${current + 1} / ${slides.length}`;
+            };
+            article.querySelector(".catalog-prev").onclick = () =>
+              show(current - 1);
+            article.querySelector(".catalog-next").onclick = () =>
+              show(current + 1);
+            dots.forEach((dot, index) => (dot.onclick = () => show(index)));
+          }
+        },
+      );
+
+      if (!matchingProducts.length) {
+        grid.innerHTML = `<div class="catalog-empty"><strong>No matching products</strong><span>Try “letter”, “photo”, “birthday”, “card”, or “gift”.</span></div>`;
+      }
+    }
+
+    searchInput.addEventListener("input", (event) =>
+      renderProducts(event.target.value),
+    );
+    renderProducts();
+  </script>
+</html>
