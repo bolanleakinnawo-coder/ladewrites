@@ -212,7 +212,7 @@
           </div>
           <div class="card-body">
             <div class="card-name">Single Letter</div>
-            <div class="card-price">₦8,000</div>
+            <div class="card-price">₦12,000</div>
             <p class="card-desc">
               A deeply personal handwritten letter, thoughtfully composed for
               any moment, birthdays, anniversaries, apologies, or simply saying
@@ -251,7 +251,7 @@
           </div>
           <div class="card-body">
             <div class="card-name">Letter Polaroid</div>
-            <div class="card-price">₦10,000</div>
+            <div class="card-price">₦13,500</div>
             <p class="card-desc">
               A heartfelt letter paired with a cherished printed polaroid — your
               words and a memory, bound together in one beautiful keepsake to
@@ -402,7 +402,7 @@
           </div>
           <div class="card-body">
             <div class="card-name">Scroll Letter</div>
-            <div class="card-price">₦6,000</div>
+            <div class="card-price">₦9,500</div>
             <p class="card-desc">
               Long, luxurious, and dramatic — a scroll-style letter for when
               ordinary paper simply isn't enough. Pour everything you've been
@@ -432,7 +432,7 @@
 
           <div class="card-body">
             <div class="card-name">Love Jar</div>
-            <div class="card-price">₦8,000</div>
+            <div class="card-price">₦15,000</div>
             <p class="card-desc">
               A Love Jar is a highly customizable concept that ignites
               self-love, manifestation, or symbolic home decor. It is a memory
@@ -490,45 +490,6 @@
           </div>
         </div>
 
-        <div class="offer-card fi d3">
-          <div class="card-gallery" id="g-choc">
-            <div class="placeholder-gallery">
-              <span>🍫</span>Add photos here
-            </div>
-
-            <img class="gallery-img" src="choco 1.jpeg" alt="Chocolate Box 1" />
-
-            <img class="gallery-img" src="choco 2.jpeg" alt="Chocolate Box 2" />
-
-            <button class="gallery-nav prev" onclick="galPrev(event, 'g-choc')">
-              ‹
-            </button>
-
-            <button class="gallery-nav next" onclick="galNext(event, 'g-choc')">
-              ›
-            </button>
-
-            <div class="gallery-dots" id="dots-g-choc"></div>
-
-            <div class="gallery-count" id="cnt-g-choc"></div>
-          </div>
-
-          <div class="card-body">
-            <div class="card-name">Chocolate Box</div>
-            <div class="card-price">₦4,000 per box</div>
-            <p class="card-desc">
-              A beautifully curated chocolate gift box, dressed up with
-              intention and care. Perfect for anniversaries, celebrations, or
-              just because — sweet on the outside, sweeter on the inside.
-            </p>
-            <a
-              href="book.html?offering=Chocolate%20Box&price=%E2%82%A64%2C000%20per%20box"
-              class="card-book"
-              >Book This</a
-            >
-          </div>
-        </div>
-
         <div class="offer-card fi d2">
           <div class="card-gallery" id="g-frame">
             <div class="placeholder-gallery"></div>
@@ -544,7 +505,7 @@
 
           <div class="card-body">
             <div class="card-name">Memory Frame</div>
-            <div class="card-price">₦5,000</div>
+            <div class="card-price">₦12,000</div>
             <p class="card-desc">
               A framed keepsake that holds a memory, a date, and a feeling —
               made to hang on a wall and stay on a heart. Beautiful, simple, and
@@ -690,7 +651,7 @@
 
           <div class="card-body">
             <div class="card-name">Music Scan &amp; Vintage Letter</div>
-            <div class="card-price">₦12,000</div>
+            <div class="card-price">₦15,000</div>
 
             <p class="card-desc">
               Some songs say the words our hearts cannot. A music scan paired
@@ -747,10 +708,12 @@
           </div>
 
           <div class="card-body">
-            <div class="card-name">Write a Letter Yourself</div>
+            <div class="card-name" id="wlName">
+              Write a Letter Yourself — Wax Seal Kit
+            </div>
 
             <div class="card-price">
-              ₦5,000
+              <span id="wlPrice">₦6,000</span>
               <span
                 style="
                   font-weight: 400;
@@ -978,16 +941,13 @@
           <div class="card-body">
             <div class="card-name">LÁDÉ Card Letters — Custom Made</div>
 
-            <div class="card-price">₦6,000</div>
+            <div class="card-price">₦8,000</div>
 
             <p class="card-desc">
-              LÁDÉ Card Letters are little pieces of love, appreciation, and
-              thoughtful words, beautifully handwritten and created to make
-              someone feel special. For the Custom Made Card Letter, simply
-              share your message with us and LÁDÉ will beautifully handwrite it
-              for you. Whether it’s a birthday, a thank-you, a celebration, an
-              apology, or simply a reminder that someone matters, your words
-              become something they can hold, keep, and read again.
+              LÁDÉ Card Letters** turn your heartfelt words into beautifully
+              handwritten keepsakes—perfect for birthdays, celebrations,
+              thank-yous, apologies, or simply saying, “you matter.”
+
               <br /><br />
               Small card. Meaningful words. A memory to keep.
             </p>
@@ -1061,7 +1021,7 @@
           <div class="card-body">
             <div class="card-name">LÁDÉ Card Letters — Blank Card</div>
 
-            <div class="card-price">₦4,000</div>
+            <div class="card-price">₦5,000</div>
 
             <p class="card-desc">
               LÁDÉ Card Letters are little pieces of love, appreciation, and
@@ -1308,6 +1268,12 @@
         video.play();
       }
 
+      const WL_VARIANTS = [
+        { name: "Write a Letter Yourself — Wax Seal Kit", price: 6000 },
+        { name: "Write a Letter Yourself — Dried Flowers Kit", price: 5000 },
+      ];
+      let wlVariant = 0;
+
       const galState = {};
       function initGallery(id) {
         const wrap = document.getElementById(id);
@@ -1373,6 +1339,7 @@
         const cntEl = document.getElementById("cnt-" + id);
         if (cntEl) cntEl.textContent = i + 1 + " / " + s.slides.length;
         s.cur = i;
+        if (id === "g-write-letter") wlSetVariant(i);
       }
       function galPrev(e, id) {
         e.stopPropagation();
@@ -1421,26 +1388,29 @@
           "&qty=" +
           ppQtyVal;
       }
-      let wlQtyVal = 1;
-      const WL_PRICE = 5000;
-
+      function wlRender() {
+        const v = WL_VARIANTS[wlVariant];
+        document.getElementById("wlName").textContent = v.name;
+        document.getElementById("wlPrice").textContent =
+          "₦" + v.price.toLocaleString();
+        document.getElementById("wlQty").textContent = wlQtyVal;
+        document.getElementById("wlTotal").textContent =
+          "= ₦" + (wlQtyVal * v.price).toLocaleString();
+      }
+      function wlSetVariant(i) {
+        wlVariant = i;
+        wlRender();
+      }
       function wlQtyChange(delta) {
         wlQtyVal = Math.max(1, wlQtyVal + delta);
-
-        document.getElementById("wlQty").textContent = wlQtyVal;
-
-        document.getElementById("wlTotal").textContent =
-          "= ₦" + (wlQtyVal * WL_PRICE).toLocaleString();
+        wlRender();
       }
-
       function wlBook(e) {
         e.preventDefault();
-
-        const total = wlQtyVal * WL_PRICE;
-
+        const v = WL_VARIANTS[wlVariant];
         window.location.href =
-          "book.html?offering=Write%20a%20Letter%20Yourself&price=%E2%82%A6" +
-          total.toLocaleString() +
+          "book.html?offering=" +
+          encodeURIComponent(v.name) +
           "&qty=" +
           wlQtyVal;
       }

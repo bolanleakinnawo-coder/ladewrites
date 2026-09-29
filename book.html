@@ -375,36 +375,48 @@
         <label>Choose offering <span class="required-star">*</span></label>
         <select id="fOffering">
           <option value="">Select…</option>
-          <option value="Single Letter" data-price="8000">
-            Single Letter — ₦8,000
+          <option value="Single Letter" data-price="12000">
+            Single Letter — ₦12,000
           </option>
-          <option value="Write a Letter Yourself" data-price="5000">
-            Write a Letter Yourself — ₦5,000
+          <option
+            value="Write a Letter Yourself — Wax Seal Kit"
+            data-price="6000"
+          >
+            Write a Letter Yourself (Wax Seal Kit) — ₦6,000
           </option>
-          <option value="Music Scan & Vintage Letter" data-price="12000">
-            Music Scan &amp; Vintage Letter — ₦12,000
+          <option
+            value="Write a Letter Yourself — Dried Flowers Kit"
+            data-price="5000"
+          >
+            Write a Letter Yourself (Dried Flowers Kit) — ₦5,000
           </option>
-          <option value="Birthday Letter Book" data-price="10000">
-            Birthday Letter Book — ₦10,000
+          <option value="Music Scan & Vintage Letter" data-price="15000">
+            Music Scan &amp; Vintage Letter — ₦15,000
           </option>
-          <option value="Scroll Letter" data-price="6000">
-            Scroll Letter — ₦6,000
+          <option value="Birthday Letter Book" data-price="12000">
+            Birthday Letter Book — ₦12,000
           </option>
-          <option value="Letter Polaroid" data-price="10000">
-            Letter Polaroid — ₦10,000
+          <option value="Scroll Letter" data-price="9500">
+            Scroll Letter — ₦9,500
           </option>
-          <option value="Memory Frame" data-price="5000">
-            Memory Frame — ₦5,000
+          <option value="Letter Polaroid" data-price="13500">
+            Letter Polaroid — ₦13,500
+          </option>
+
+          <option value="Letter & Add-ons" data-price="10000">
+            Letter &amp; Add-ons — ₦10,000 (add-ons extra)
+          </option>
+          <option value="Memory Frame" data-price="12000">
+            Memory Frame — ₦12,000
           </option>
           <option value="Polaroid Pocket" data-price="2000">
             Polaroid Pocket — ₦2,000 per piece
           </option>
-          <option value="Love Jar" data-price="8000">Love Jar — ₦8,000</option>
+          <option value="Love Jar" data-price="15000">
+            Love Jar — ₦15,000
+          </option>
           <option value="Vintage Memory Book" data-price="15000">
             Vintage Memory Book — ₦15,000
-          </option>
-          <option value="Chocolate Box" data-price="4000">
-            Chocolate Box — ₦4,000 per box
           </option>
 
           <option value="Handwritten Letter Frame" data-price="12000">
@@ -413,11 +425,11 @@
           <option value="Family Letter" data-price="">
             Family Letter — Price on request
           </option>
-          <option value="LÁDÉ Card Letters — Custom Made" data-price="6000">
-            LÁDÉ Card Letters — Custom Made — ₦6,000
+          <option value="LÁDÉ Card Letters — Custom Made" data-price="8000">
+            LÁDÉ Card Letters — Custom Made — ₦8,000
           </option>
-          <option value="LÁDÉ Card Letters — Blank Card" data-price="4000">
-            LÁDÉ Card Letters — Blank Card — ₦4,000
+          <option value="LÁDÉ Card Letters — Blank Card" data-price="5000">
+            LÁDÉ Card Letters — Blank Card — ₦5,000
           </option>
           <option value="The Puzzle Game" data-price="4000">
             The Puzzle Game 🧩 — ₦4,000
@@ -840,47 +852,6 @@
           </div>
         </div>
 
-        <!-- CHOCOLATE BOX -->
-        <div class="dfield" id="df-choc-qty">
-          <div class="fg">
-            <label
-              >How many boxes do you need?
-              <span class="required-star">*</span></label
-            >
-            <div class="qty-row">
-              <span class="qty-label">Qty:</span>
-              <button class="qty-btn" onclick="chocQtyChange(-1)" type="button">
-                −
-              </button>
-              <span class="qty-val" id="chocQtyVal">1</span>
-              <button class="qty-btn" onclick="chocQtyChange(1)" type="button">
-                +
-              </button>
-              <span class="qty-total" id="chocQtyTotal">= ₦4,000</span>
-            </div>
-          </div>
-        </div>
-        <div class="dfield" id="df-choc-context">
-          <div class="fg">
-            <label>Context for the chocolates</label>
-            <textarea
-              id="fChocContext"
-              rows="3"
-              placeholder="e.g. Birthday for a 25 year old who loves pink and butterflies…"
-            ></textarea>
-          </div>
-        </div>
-        <div class="dfield" id="df-choc-vibe">
-          <div class="fg">
-            <label>Give me the vibes / directions</label>
-            <textarea
-              id="fChocVibe"
-              rows="3"
-              placeholder="Tell me the mood, theme or aesthetic for the box…"
-            ></textarea>
-          </div>
-        </div>
-
         <!-- FAMILY LETTER -->
         <div class="dfield" id="df-family-note">
           <div class="info-note">
@@ -929,6 +900,51 @@
               style="min-height: 65px"
             ></textarea>
           </div>
+        </div>
+      </div>
+
+      <div class="dfield" id="df-addons">
+        <div class="fg">
+          <label
+            >Choose your add-ons <span class="required-star">*</span></label
+          >
+          <div class="addon-grid">
+            <label
+              ><input type="checkbox" name="addon" value="Perfume" />
+              Perfume</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Lip gloss" /> Lip
+              gloss</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Cookies" />
+              Cookies</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Chocolate" />
+              Chocolate</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Necklace" />
+              Necklace</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Bracelet" />
+              Bracelet</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="Mini jotter" /> Mini
+              jotter</label
+            >
+            <label
+              ><input type="checkbox" name="addon" value="You pick" /> You
+              pick</label
+            >
+          </div>
+          <small style="font-size: 0.7rem; color: var(--brown-4)">
+            ₦10,000 covers the box and letter. Add-ons are priced separately.
+          </small>
         </div>
       </div>
       <!-- /dynamicSection -->
@@ -981,6 +997,21 @@
           requireWords: true,
           requireRecipient: "df-letter-recipient",
           requirePolaroidDate: true,
+        },
+
+        "Letter & Add-ons": {
+          title: "Letter & Add-ons Details",
+          fields: [
+            "df-letter-recipient",
+            "df-letter-occasion",
+            "df-letter-words",
+            "df-addons",
+            "df-letter-vibe",
+            "df-extra",
+          ],
+          requireWords: true,
+          requireRecipient: "df-letter-recipient",
+          requireAddons: true,
         },
 
         "Birthday Letter Book": {
@@ -1038,7 +1069,12 @@
           requireQty: "pocket",
         },
 
-        "Write a Letter Yourself": {
+        "Write a Letter Yourself — Wax Seal Kit": {
+          title: "Write a Letter Yourself",
+          fields: ["df-selfletter-qty", "df-selfletter-note", "df-extra"],
+          requireQty: "selfLetter",
+        },
+        "Write a Letter Yourself — Dried Flowers Kit": {
           title: "Write a Letter Yourself",
           fields: ["df-selfletter-qty", "df-selfletter-note", "df-extra"],
           requireQty: "selfLetter",
@@ -1059,16 +1095,6 @@
             "df-extra",
           ],
           requireRecipient: "df-membook-recipient",
-        },
-        "Chocolate Box": {
-          title: "Chocolate Box Details",
-          fields: [
-            "df-choc-qty",
-            "df-choc-context",
-            "df-choc-vibe",
-            "df-extra",
-          ],
-          requireQty: "choc",
         },
 
         "Handwritten Letter Frame": {
@@ -1107,7 +1133,6 @@
       let pocketQty = 1;
       let chocQty = 1;
       let selfLetterQty = 1;
-      const SELFLETTER_PRICE = 5000;
 
       const POCKET_PRICE = 2000;
       const CHOC_PRICE = 4000;
@@ -1124,6 +1149,11 @@
       function selfLetterQtyChange(d) {
         selfLetterQty = Math.max(1, selfLetterQty + d);
         renderSelfLetterQty();
+      }
+      const isSelfLetter = (o) => o.startsWith("Write a Letter Yourself");
+      function selfLetterPrice() {
+        const o = document.getElementById("fOffering").selectedOptions[0];
+        return parseInt(o?.dataset.price || 5000, 10);
       }
 
       // ─── Init from URL params ─────────────────────────────────────────
@@ -1151,6 +1181,13 @@
         updateOffering();
       });
 
+      if (isSelfLetter(offeringParam) && qtyParam) {
+        const q = parseInt(qtyParam, 10);
+        if (!isNaN(q) && q > 0) {
+          selfLetterQty = q;
+        }
+        renderSelfLetterQty();
+      }
       // ─── Delivery toggle ──────────────────────────────────────────────
       document
         .getElementById("optPickup")
@@ -1207,9 +1244,7 @@
               ? pocketQty
               : offering === "Write a Letter Yourself"
                 ? selfLetterQty
-                : offering === "Chocolate Box"
-                  ? chocQty
-                  : 1;
+                : 1;
           mPrice.textContent =
             "₦" + formatNaira(parseInt(rawPrice, 10) * count);
           mPrice.style.display = "inline-block";
@@ -1353,6 +1388,14 @@
               return;
             }
           }
+
+          if (
+            cfg.requireAddons &&
+            !document.querySelector('input[name="addon"]:checked')
+          ) {
+            alert("Please choose at least one add-on (or “You pick”) ✦");
+            return;
+          }
           if (cfg.requireBirthday && !val("fBirthdayDate")) {
             alert(
               "Please add the person's birthday for the Birthday Letter Book ✦",
@@ -1398,12 +1441,6 @@
           );
         }
 
-        if (offering === "Chocolate Box") {
-          lines.push("*Quantity:* " + chocQty);
-          lines.push("*Total:* ₦" + formatNaira(chocQty * CHOC_PRICE));
-          if (val("fChocContext"))
-            lines.push("*Context:* " + val("fChocContext"));
-        }
         if (offering === "Memory Frame") {
           lines.push("*Date for frame:* " + val("fFrameDate"));
           const occ = val("fFrameOccasion");
@@ -1434,6 +1471,14 @@
         ) {
           const occ = val("fOccasion");
           if (occ) lines.push("*Occasion:* " + occ);
+        }
+
+        if (offering === "Letter & Add-ons") {
+          const picked = [
+            ...document.querySelectorAll('input[name="addon"]:checked'),
+          ].map((c) => c.value);
+          lines.push("*Base price:* ₦10,000 (box & letter, add-ons extra)");
+          lines.push("*Add-ons:* " + picked.join(", "));
         }
 
         if (offering === "Letter Polaroid") {
