@@ -737,7 +737,7 @@ nav.solid {
 }
 
 .card-gallery {
-  height: 260px;
+  aspect-ratio: 4 / 5;
   position: relative;
   overflow: hidden;
   background: var(--sand-2);
