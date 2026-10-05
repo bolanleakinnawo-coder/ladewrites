@@ -402,6 +402,9 @@
           <option value="Letter Polaroid" data-price="13500">
             Letter Polaroid — ₦13,500
           </option>
+          <option value="Polaroid Frame" data-price="9500">
+            Polaroid Frame — ₦9,500
+          </option>
 
           <option value="Letter & Add-ons" data-price="10000">
             Letter &amp; Add-ons — ₦10,000 (add-ons extra)
@@ -685,6 +688,12 @@
               rows="3"
               placeholder="Describe the mood or theme you want for the frame…"
             ></textarea>
+          </div>
+        </div>
+        <div class="dfield" id="df-polaroidframe-pics">
+          <div class="info-note">
+            📸 Please send your favourite Polaroid memories/photos to Lade on
+            WhatsApp after booking.
           </div>
         </div>
 
@@ -997,6 +1006,17 @@
           requireWords: true,
           requireRecipient: "df-letter-recipient",
           requirePolaroidDate: true,
+        },
+        "Polaroid Frame": {
+          title: "Polaroid Frame Details",
+          fields: [
+            "df-frame-recipient",
+            "df-frame-occasion",
+            "df-polaroidframe-pics",
+            "df-frame-vibe",
+            "df-extra",
+          ],
+          requireRecipient: "df-frame-recipient",
         },
 
         "Letter & Add-ons": {
@@ -1445,6 +1465,14 @@
           lines.push("*Date for frame:* " + val("fFrameDate"));
           const occ = val("fFrameOccasion");
           if (occ) lines.push("*Occasion:* " + occ);
+        }
+        if (offering === "Polaroid Frame") {
+          lines.push("*Price:* ₦9,500");
+          const occ = val("fFrameOccasion");
+          if (occ) lines.push("*Occasion:* " + occ);
+          lines.push(
+            "*Photos:* Please send your favourite Polaroid memories/photos to Lade via WhatsApp after booking",
+          );
         }
         if (offering === "Family Letter") {
           lines.push("*Member count:* " + val("fFamilyCount"));
